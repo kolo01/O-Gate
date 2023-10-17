@@ -5,6 +5,9 @@ import Navbar from "../assets/Navbar";
 import { Search2Icon } from "@chakra-ui/icons";
 
 export default function First(){
+    const inscrire = "Nouveau sur Linkedin ? S'inscrire"
+    const identifie = "S'identifier"
+    const okay = "En cliquant sur Continuer, vous acceptez les Conditions d’utilisation, la Politique de confidentialité et la Politique relative aux cookies de LinkedIn. "
     return(<Box>
     
         <Navbar/>
@@ -21,7 +24,7 @@ export default function First(){
                     <Button bgColor={"#0a66c2"} color={"white"} boxShadow={"0 0 0 1px white"} height={"min-content"} p={3} fontSize={"20px"} borderRadius={"25px"}
                     width={"65%"} _hover={{
                         bgColor:"#004182"
-                    }} >S'identifier</Button>
+                    }} >{identifie}</Button>
 
                     <Box position='relative' py={10} width={"80%"} >
   <Divider borderColor={"gray"}/>
@@ -30,7 +33,7 @@ export default function First(){
   </AbsoluteCenter>
 </Box>
                     <Box display={"grid"}>
-                        <Text>En cliquant sur Continuer, vous acceptez les Conditions d’utilisation, la Politique de confidentialité et la Politique relative aux cookies de LinkedIn. </Text>
+                        <Text>{okay}</Text>
                         <Button leftIcon={<FcGoogle/>} width={"65%"} bgColor={"white"} border={"1px solid gray"} borderRadius={"25px"} _hover={{bgColor:"white"}} my={5}>
                             Continuer avec Google
                         </Button>
@@ -38,7 +41,7 @@ export default function First(){
                     width={"65%"} _hover={{
                         bgColor:"rgba(0, 0, 0, 0.1)"
                     }}>
-                            Nouveau sur Linkedin ? S'inscrire
+                            {inscrire}
                         </Button>
                         
 
