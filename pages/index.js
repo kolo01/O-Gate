@@ -1,5 +1,6 @@
 
 import First from '@/Components/home/First'
+import Four from '@/Components/home/Four'
 import Second from '@/Components/home/Second'
 import Three from '@/Components/home/Three'
 
@@ -10,6 +11,7 @@ export default function Home() {
     <First/>
     <Second/>
     <Three/>
+    <Four/>
     </>
     )
 }

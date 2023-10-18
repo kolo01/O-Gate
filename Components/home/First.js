@@ -8,11 +8,11 @@ export default function First(){
     const inscrire = "Nouveau sur Linkedin ? S'inscrire"
     const identifie = "S'identifier"
     const okay = "En cliquant sur Continuer, vous acceptez les Conditions d’utilisation, la Politique de confidentialité et la Politique relative aux cookies de LinkedIn. "
-    return(<Box>
+    return(<Box >
     
         <Navbar/>
-        <Flex width={"100%"}  height={"fit-content"} pb={10}   my={10}>
-            <Box width={"40%"} mr={20} ml={10}>
+        <Box display={["grid","grid","grid","flex","flex"]} width={"100%"}  height={"fit-content"} pb={10}   my={10}>
+            <Box  width={["100%","100%","100%","40%","40%"]} mr={20} ml={10}>
                 <Text fontSize={"40px"} fontWeight={"light"} width={"70%"} color={"#8f5849"}>Trouvez un poste grâce à votre communauté </Text>
                 <Box display={"grid"} mt={5}>
                     <Text  fontSize={"20px"}>E-mail ou téléphone</Text>
@@ -49,11 +49,11 @@ export default function First(){
                     
                 </Box>
             </Box>
-            <Box width={"60%"}  >
+            <Box  width={["100%","100%","100%","60%","60%"]} >
                 <Box bgRepeat={"no-repeat"}  bgImage={"./Home/firsty.svg"} height={"full"} width={"100%"}></Box>
             </Box>
             
-        </Flex>
+        </Box>
         
     </Box>)
 }

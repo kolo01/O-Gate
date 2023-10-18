@@ -5,6 +5,6 @@ export default function Logo(){
     return (<>
     <Text fontSize={"25px"} fontWeight={700} color={"blue"}>
           {text}  
-    </Text> 
+    </Text>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
     </>)
 }
