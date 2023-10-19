@@ -6,7 +6,7 @@ export default function Second(){
         <>
         <Flex width={"90%"} mx={[0,0,0,10,10]} mb={20} display={["grid","grid","grid","flex","flex"]}>
             <Text width={["100%","100%","100%","40%","40%"]} fontSize={"40px"} ml={[0,0,0,20,20]} >
-            Trouvez votre travail ou votre stage idéal 
+            Trouvez votre maison ou votre terrain
             </Text>
 
             <Box width={["100%","100%","100%","60%","60%"]}>
