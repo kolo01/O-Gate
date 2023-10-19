@@ -50,7 +50,7 @@ export default function First(){
                 </Box>
             </Box>
             <Box  width={["100%","100%","100%","60%","60%"]} >
-                <Box bgRepeat={"no-repeat"}  bgImage={"./Home/firsty.svg"} height={"full"} width={"100%"}></Box>
+                <Box bgRepeat={"no-repeat"}  bgImage={"./all/vente1.avif"} height={"full"} width={"100%"}></Box>
             </Box>
             
         </Box>
