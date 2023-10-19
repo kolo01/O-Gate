@@ -1,7 +1,7 @@
 import { Box, Button, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 
 export default function Second(){
-    const suggestion =["Ingenierie","Developpement commercial","Finance","Adjoint administratif","Vendeur","Service clients","Exploitation","Technologies de l'information","Marketing","Ressources humaines","Service de la santé","Ventes","Gestion de projets et de programmes","Comptabilité","Arts et design","Services a la communauté et services sociaux","Consulting"]
+    const suggestion =["Achat de terrain","Vente de terrain","Achat de maison","Vente de maison","Construction de maison","Devis de construction","Amenagement","Voir plus"]
     return(
         <>
         <Flex width={"90%"} mx={[0,0,0,10,10]} mb={20} display={["grid","grid","grid","flex","flex"]}>

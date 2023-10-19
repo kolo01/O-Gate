@@ -1,8 +1,8 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
 
 export default function Three(){
-    const first = "Publiez votre offre d’emploi auprès de millions de personnes"
-    const second = "Publier une offre d'emploi"
+    const first = "Publiez votre offre  auprès de millions de personnes"
+    const second = "Publier une offre de terrain/de maison"
     return(
         <>
         <Flex height={"fit-content"}

@@ -5,9 +5,9 @@ import Navbar from "../assets/Navbar";
 import { Search2Icon } from "@chakra-ui/icons";
 
 export default function First(){
-    const inscrire = "Nouveau sur Linkedin ? S'inscrire"
+    const inscrire = "Nouveau sur O'Gate ? S'inscrire"
     const identifie = "S'identifier"
-    const okay = "En cliquant sur Continuer, vous acceptez les Conditions d’utilisation, la Politique de confidentialité et la Politique relative aux cookies de LinkedIn. "
+    const okay = "En cliquant sur Continuer, vous acceptez les Conditions d’utilisation, la Politique de confidentialité et la Politique relative aux cookies de O'Gate. "
     return(<Box >
     
         <Navbar/>
