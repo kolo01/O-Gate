@@ -1,7 +1,5 @@
-import Login from "@/Components/Signup-Signin/Login";
-import Register from "@/Components/Signup-Signin/Register";
-import Footer from "@/Components/assets/Footer";
-import Navbar from "@/Components/assets/Navbar";
+
+import Navbar from "@/components/home/Navbar";
 import { Center, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from "@chakra-ui/react";
 
 export default function Connexion(){
@@ -21,17 +19,12 @@ export default function Connexion(){
   </TabList>
 
   <TabPanels>
-    <TabPanel>
-      <Login/>
-    </TabPanel>
-    <TabPanel>
-      <Register/>
-    </TabPanel>
+  
    
   </TabPanels>
 </Tabs>
         </Center>
-        <Footer/>
+      
         </>
     )
 }
