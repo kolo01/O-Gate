@@ -1,4 +1,5 @@
 import { Button, Flex } from "@chakra-ui/react";
+import Link from "next/link";
 
 export default function Last(){
     const insc = "S’incrire"
@@ -12,8 +13,9 @@ export default function Last(){
             bgColor:"white",
             color:"#219EF9",
             border:"2px solid #219EF9",
-            borderRadius:"16px"
-        }} border={"2px solid #219EF9"}>
+            borderRadius:"16px",
+            textDecoration:"none"
+        }} border={"2px solid #219EF9"} as={Link} href={"/Inscription"}>
         {insc}
         </Button>
         <Button ml={5} width={"126px"} height={"48px"} borderRadius={"16px"}
@@ -24,8 +26,9 @@ export default function Last(){
             bgColor:"#219EF9",
             color:"#FDFDFD",
             border:"2px solid #219EF9",
-            borderRadius:"16px"
-        }} border={"2px solid #219EF9"}>
+            borderRadius:"16px",
+            textDecoration:"none"
+        }} border={"2px solid #219EF9"}  as={Link} href={"/Connexion"}>
         Connexion
         </Button>
         </Flex>
