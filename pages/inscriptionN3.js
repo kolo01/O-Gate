@@ -32,7 +32,7 @@ export default function Insc3() {
         <Box display={"grid"}>
         <Button mt={5}fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
             bgColor:"#219EF9"
-        }}> Suivant</Button>
+        }}> Terminer</Button>
         <Button mt={5}fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} > Retour</Button>
         </Box>
         </Box>
