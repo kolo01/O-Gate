@@ -1,10 +1,12 @@
 import Navbar from "@/components/home/Navbar";
 import { Box, Button, Center, Input, Text } from "@chakra-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import {FcGoogle} from "react-icons/fc"
 export default function Box2(){
     const av = " l'aventure"
     const insc = " S'incrire"
+    const router = useRouter()
     return(
         <>
         <Navbar/>
@@ -15,7 +17,13 @@ export default function Box2(){
         </Text>
         <Box mt={5}>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
-            Email ou téléphone
+            Email  
+        </Text>
+        <Input borderRadius={"16px"} width={"408px"} height={"55px"}  border={"1px solid black"}/>
+        </Box>
+        <Box mt={5}>
+        <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
+        Téléphone  
         </Text>
         <Input borderRadius={"16px"} width={"408px"} height={"55px"}  border={"1px solid black"}/>
         </Box>
@@ -32,7 +40,7 @@ export default function Box2(){
         <Input borderRadius={"16px"} width={"408px"}  type={"password"}height={"55px"} border={"1px solid black"}/>
         </Box>
         <Box display={"grid"}>
-        <Button mt={5}fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
+        <Button mt={5}fontWeight={700} onClick={()=>{router.push("/inscriptionN1")}} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
             bgColor:"#219EF9"
         }}> {insc}</Button>
         <Button mt={5}  bgColor="transparent" border="1px solid black"fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} leftIcon={<FcGoogle/>} _hover={{
