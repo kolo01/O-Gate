@@ -31,7 +31,7 @@ export default function Box2(){
 
         }).catch((error)=>{
             setClicked(false)
-            toast({
+            toast({  
                 status:"error",duration: 9000,description:"Merci de bien vouloir reesayer",title:"Mot de paase/Numéro incorrect"
             })
         })
