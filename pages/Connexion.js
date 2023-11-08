@@ -72,7 +72,7 @@ export default function Box2(){
         </Center>
         <Button mt={5} bgColor="transparent" border="1px solid black" fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} _hover={{
             bgColor:"transparent"
-        }}> Démarrer{av} en <Text ml={2} color="#219EF9" as={Link} href={"/Connexion"} _hover={{textDecoration:"none",color:"#219EF9"}}>{insc}</Text> </Button>
+        }}> Démarrer{av} en <Text ml={2} color="#219EF9" as={Link} href={"/Inscription"} _hover={{textDecoration:"none",color:"#219EF9"}}>{insc}</Text> </Button>
         </Box>
         </Center>
         </>
