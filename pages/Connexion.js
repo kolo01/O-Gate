@@ -2,6 +2,8 @@ import Navbar from "@/components/home/Navbar";
 import { Box, Button, Center, Input, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import { useState } from "react";
 import {FcGoogle} from "react-icons/fc"
 import secureLocalStorage from "react-secure-storage";
@@ -11,6 +13,7 @@ export default function Box2(){
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const [clicked,setClicked] = useState(false)
+    const router = useRouter()
     const toast = useToast()
 
     const handleConnect = async () =>{
@@ -24,6 +27,7 @@ export default function Box2(){
             toast({
                 status:"success",duration: 9000,description:"Merci pour votre confiance",title:"Connexion Approuvé!"
             })
+
         }).catch((error)=>{
             setClicked(false)
             toast({
