@@ -12,7 +12,7 @@ const router = useRouter()
 const  [verifCo,setVerifCo] = useState(false)
 
   useEffect(()=>{
-    if(secureLocalStorage.getItem(local)){
+    if(secureLocalStorage.getItem("local")){
       setVerifCo(true)
     }
   },[])

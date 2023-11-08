@@ -27,6 +27,7 @@ export default function Box2(){
             toast({
                 status:"success",duration: 9000,description:"Merci pour votre confiance",title:"Connexion Approuvé!"
             })
+            router.push("/home")
 
         }).catch((error)=>{
             setClicked(false)
@@ -59,7 +60,7 @@ export default function Box2(){
         </Box>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} mt={5}> Mot de passe oublié ?</Text>
         <Box display={"grid"}>
-        <Button mt={5}fontWeight={700} onClick={()=>handleConnect()}isDisabled={email.length<10 || password.length<7} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
+        <Button mt={5}fontWeight={700} onClick={()=>handleConnect()}isDisabled={email.length<8 || password.length<7} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
             bgColor:"#219EF9"
         }} isLoading={clicked}> Se connecter</Button>
         <Button mt={5}  bgColor="transparent" border="1px solid black"fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} leftIcon={<FcGoogle/>} _hover={{

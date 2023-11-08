@@ -1,5 +1,6 @@
 import Navbar from "@/components/home/Navbar";
 import { Box, Button, Center, Input, Select, Text, useToast } from "@chakra-ui/react";
+import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -26,25 +27,35 @@ export default function Box2(){
     // sessionStorage.setItem("mdpC",mdpC)
     // }
     
-    const [compte, setCompte] = useState("Particulier");
+    const [compte, setCompte] = useState("PARTICULIER");
    
 
    const Validate = async () => {
      if(mdp == mdpC){
         await axios.post("http://185.98.139.246:9090/ogatemanagement-api/signup", {
-            nom: "",
+            nom: "NON DEFINI",
             username: tel,
             password:mdp ,
             typeCompte: compte,
-            localisation: "",
+            localisation: "NON DEFINI",
           }).then((response)=>{
             toast({
               description:"Merci pour votre confiance",title:"Inscription validée",duration:9000,status:"success"
             }),
             sessionStorage.clear()
-          }).catch((error)=>  toast({
-            description:"Veuillez reesayer apres 5 minutes",title:"Erreur inattendu",duration:9000,status:"error"
-          }), );
+          }).catch((error)=>{ 
+            console.log(error.response.data)
+            if(error.response.data.donnee=="Le numéro de téléphone appartient à un autre utilisateur"){
+                toast({
+                    description:"Veuillez vous connectez svp",title:"Compte deja existant",duration:9000,status:"error"
+                  })
+            }
+            else if (error.response.data.donnee == null){
+                toast({
+                    description:"Merci pour votre confiance",title:"Inscription validée",duration:9000,status:"success"
+                  })
+            }
+           } );
      }else{
         toast({
             description:"Veuillez verifier les mots de passe",title:"Mot de passe different",duration:9000,status:"error"
@@ -61,19 +72,19 @@ export default function Box2(){
         <Text color={" #219EF9"} fontWeight={700} fontSize={"48px"}>
             Inscription
         </Text>
-        <Box mt={5}>
+        {/* <Box mt={5}>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
             Email  
         </Text>
         <Input borderRadius={"16px"} onChange={(e)=>{setEmail(e.target.value)}} type="email" value={email} width={"408px"} height={"55px"}  border={"1px solid black"}/>
-        </Box>
+        </Box> */}
         <Box mt={5}>
             <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}>
               Type de Compte
             </Text>
             <Select onChange={(e) => setCompte(e.target.value)}>
-              <option>PARTICULIER</option>
-              <option>ENTREPRISE</option>
+              <option value={"PARTICULIER"}>PARTICULIER</option>
+              <option value={"ENTREPRISE"}>ENTREPRISE</option>
             </Select>
           </Box>
         <Box mt={5}>
