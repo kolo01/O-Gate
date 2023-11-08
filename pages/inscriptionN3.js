@@ -33,7 +33,11 @@ export default function Insc3() {
         description:"Merci pour votre confiance",title:"Inscription validée",duration:9000,status:"success"
       }),
       sessionStorage.clear()
-    }).catch((error)=>console.log(error.response));
+    }).catch((error)=>{
+      toast({
+        description:"Si le probleme persiste merci de bien vouloir contacter notre",title:"Merci de bien vouloir reesayer plus tard ",duration:9000,status:"error"
+      }),
+    });
   };
   return (
     <>

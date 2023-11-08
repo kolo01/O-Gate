@@ -2,26 +2,36 @@ import { Box, Button, Input, Text, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import {FcGoogle} from "react-icons/fc"
 import axios from "axios";
+import secureLocalStorage from "react-secure-storage";
+import { useRouter } from "next/router";
 
 export default function Box2(){
     const av = " l'aventure"
     const insc = " S'incrivant"
     const [email,setEmail] = useState("")
+    const [clicked,setClicked] = useState(false)
     const [password,setPassword] = useState("")
     const toast = useToast()
-    
+    const router = useRouter()
     const handleConnect = async () =>{
+        setClicked(true)
+        
         await axios.post("http://185.98.139.246:9090/ogatemanagement-api/signin",{
             username : email,
             password : password
         }).then((response)=>{
+           
             secureLocalStorage.setItem("local",JSON.stringify(response))
             toast({
                 status:"success",duration: 9000,description:"Merci pour votre confiance",title:"Connexion Approuvé!"
             })
+            router.push("/home")
+
         }).catch((error)=>{
-            toast({
-                status:"error",duration: 9000,description:"Merci de bien vouloir reesayer",title:"Mot de paase/Numéro incorrect"
+            // console.log(error)
+            setClicked(false)
+            toast({  
+                status:"error",duration: 9000,description:"Merci de bien vouloir reesayer",title:"Mot de passe/Numéro incorrect"
             })
         })
     }
@@ -43,9 +53,9 @@ export default function Box2(){
         <Input borderRadius={"16px"} width={"408px"} onChange={(e)=>{setPassword(e.target.value)}}  type={"password"}height={"55px"} border={"1px solid black"}/>
         </Box>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} mt={5}> Mot de passe oublié ?</Text>
-        <Button mt={5}fontWeight={700} onClick={()=>handleConnect()} isDisabled={email.length<10 || password.length<7} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
+        <Button mt={5}fontWeight={700} onClick={()=>handleConnect()} isDisabled={email.length<8 || password.length<7} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
             bgColor:"#219EF9"
-        }}> Se connecter</Button>
+        }} isLoading={clicked}> Se connecter</Button>
         <Button mt={5}  bgColor="transparent" border="1px solid black"fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} leftIcon={<FcGoogle/>} _hover={{
             bgColor:"transparent"
         }}> Continuer avec Google</Button>

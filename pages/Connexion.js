@@ -18,7 +18,7 @@ export default function Box2(){
 
     const handleConnect = async () =>{
         setClicked(true)
-        await axios.post("185.98.139.246:9090/ogatemanagement-api/signin",{
+        await axios.post("http://185.98.139.246:9090/ogatemanagement-api/signin",{
             username : email,
             password : password
         }).then((response)=>{
@@ -30,9 +30,10 @@ export default function Box2(){
             router.push("/home")
 
         }).catch((error)=>{
+            // console.log(error.response)
             setClicked(false)
             toast({  
-                status:"error",duration: 9000,description:"Merci de bien vouloir reesayer",title:"Mot de paase/Numéro incorrect"
+                status:"error",duration: 9000,description:"Merci de bien vouloir reesayer",title:"Mot de passe/Numéro incorrect"
             })
         })
     }
@@ -60,7 +61,7 @@ export default function Box2(){
         </Box>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} mt={5}> Mot de passe oublié ?</Text>
         <Box display={"grid"}>
-        <Button mt={5}fontWeight={700} onClick={()=>handleConnect()}isDisabled={email.length<8 || password.length<7} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
+        <Button mt={5}fontWeight={700} onClick={()=>handleConnect()}isDisabled={email.length<7 || password.length<7} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
             bgColor:"#219EF9"
         }} isLoading={clicked}> Se connecter</Button>
         <Button mt={5}  bgColor="transparent" border="1px solid black"fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} leftIcon={<FcGoogle/>} _hover={{
