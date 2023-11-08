@@ -9,6 +9,7 @@ export default function Box2(){
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const toast = useToast()
+    
     const handleConnect = async () =>{
         await axios.post("http://185.98.139.246:9090/ogatemanagement-api/signin",{
             username : email,

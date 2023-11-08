@@ -1,5 +1,5 @@
 import Navbar from "@/components/home/Navbar";
-import { Box, Button, Center, Input, Select, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Input, Select, Text, useToast } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -8,7 +8,7 @@ export default function Box2(){
     const av = " l'aventure"
     const insc = " S'incrire"
     const router = useRouter()
-
+    const toast = useToast()
     const [email,setEmail] = useState("")
     const [tel,setTel] = useState("")
     const [mdp,setMdp] = useState("")
@@ -27,7 +27,7 @@ export default function Box2(){
     // }
     
     const [compte, setCompte] = useState("Particulier");
-    const toast = useToast()
+   
 
    const Validate = async () => {
      if(mdp == mdpC){
@@ -95,7 +95,7 @@ export default function Box2(){
         <Input borderRadius={"16px"} width={"408px"} onChange={(e)=>{setMdpC(e.target.value)}} value={mdpC}  type={"password"}height={"55px"} border={"1px solid black"}/>
         </Box>
         <Box display={"grid"}>
-        <Button mt={5}fontWeight={700} onClick={()=>{router.push("/inscriptionN1"),Next()}} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
+        <Button mt={5}fontWeight={700} onClick={()=>{Validate()}} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
             bgColor:"#219EF9"
         }}> {insc}</Button>
         <Button mt={5}  bgColor="transparent" border="1px solid black"fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} leftIcon={<FcGoogle/>} _hover={{
