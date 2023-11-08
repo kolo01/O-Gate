@@ -59,6 +59,10 @@ export default function Box2(){
                 toast({
                     description:"Merci pour votre confiance",title:"Inscription validée",duration:9000,status:"success"
                   })
+            }else{
+              toast({
+                description:"Une erreur inattendu est survenu, merci de reesayer plus tard",title:"Erreur detecté!!!",duration:9000,status:"success"
+              })
             }
            } );
      }else{
