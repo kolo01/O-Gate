@@ -1,13 +1,38 @@
 import Navbar from "@/components/home/Navbar";
-import { Box, Button, Center, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Input, Text, useToast } from "@chakra-ui/react";
+import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 import {FcGoogle} from "react-icons/fc"
+import secureLocalStorage from "react-secure-storage";
 export default function Box2(){
     const av = " l'aventure"
     const insc = " S'incrivant"
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    const [clicked,setClicked] = useState(false)
+    const toast = useToast()
+
+    const handleConnect = async () =>{
+        setClicked(true)
+        await axios.post("http://185.98.139.246:9090/ogatemanagement-api/signin",{
+            username : email,
+            password : password
+        }).then((response)=>{
+           
+            secureLocalStorage.setItem("local",JSON.stringify(response))
+            toast({
+                status:"success",duration: 9000,description:"Merci pour votre confiance",title:"Connexion Approuvé!"
+            })
+        }).catch((error)=>{
+            setClicked(false)
+            toast({
+                status:"error",duration: 9000,description:"Merci de bien vouloir reesayer",title:"Mot de paase/Numéro incorrect"
+            })
+        })
+    }
+
+
     return(
         <>
         <Navbar/>
@@ -18,7 +43,7 @@ export default function Box2(){
         </Text>
         <Box mt={5}>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
-            Email ou téléphone
+           Téléphone
         </Text>
         <Input borderRadius={"16px"} onChange={(e)=>{setEmail(e.target.value)}} width={"408px"} height={"55px"}  border={"1px solid black"}/>
         </Box>
@@ -30,9 +55,9 @@ export default function Box2(){
         </Box>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} mt={5}> Mot de passe oublié ?</Text>
         <Box display={"grid"}>
-        <Button mt={5}fontWeight={700} isDisabled={email.length<10 || password.length<7} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
+        <Button mt={5}fontWeight={700} onClick={()=>handleConnect()}isDisabled={email.length<10 || password.length<7} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
             bgColor:"#219EF9"
-        }}> Se connecter</Button>
+        }} isLoading={clicked}> Se connecter</Button>
         <Button mt={5}  bgColor="transparent" border="1px solid black"fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} leftIcon={<FcGoogle/>} _hover={{
             bgColor:"transparent"
         }}> Continuer avec Google</Button>

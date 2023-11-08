@@ -3,10 +3,18 @@
 import Navbar from "@/components/home/Navbar";
 import { Box, Button, Center, Divider, Flex, Image, Input, Select, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Insc2() {
     const router = useRouter()
     const  ci = "Côte d'Ivoire"
+    const [pays,setPays] = useState("Burkina Faso")
+    const [adress,setAdress] = useState("")
+   
+    const Next = ()=>{
+        sessionStorage.setItem("pays",pays)
+    sessionStorage.setItem("adress",adress)
+    }
   return (
     <>
       <Navbar />
@@ -22,15 +30,15 @@ export default function Insc2() {
            
             <Box mt={5}>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
-            Pays  
+             Adresse
         </Text>
-        <Input   borderRadius={"16px"} width={"408px"} height={"55px"}  border={"1px solid black"}/>
+        <Input   borderRadius={"16px"} type="text" onChange={(e)=>{setAdress(e.target.value)}}width={"408px"} height={"55px"}  border={"1px solid black"}/>
         </Box>
         <Box mt={5}>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
-        Adresse  
+        Pays
         </Text>
-        <Select>
+        <Select onChange={(e)=>setPays(e.target.value)}>
             <option>
                 Burkina Faso
             </option>
@@ -47,10 +55,10 @@ export default function Insc2() {
         </Box>
         
         <Box display={"grid"}>
-        <Button mt={5}fontWeight={700} fontSize={"16px"} onClick={()=>router.push("/inscriptionN3")}lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
+        <Button mt={5}fontWeight={700} fontSize={"16px"} onClick={()=>{router.push("/inscriptionN3"),Next()}}lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
             bgColor:"#219EF9"
         }}> Suivant</Button>
-        <Button mt={5}fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} > Retour</Button>
+        <Button mt={5}fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} onClick={()=>router.back()}> Retour</Button>
         </Box>
         </Box>
       </Center>
