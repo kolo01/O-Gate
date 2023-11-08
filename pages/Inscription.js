@@ -14,8 +14,8 @@ export default function Box2(){
     const [tel,setTel] = useState("")
     const [mdp,setMdp] = useState("")
     const [mdpC,setMdpC] = useState("")
-    const [] = useState("")
-    const [] = useState("")
+    const [color,setColor] = useState("green")
+    const [message,setMessage] = useState("")
     const [] = useState("")
     const [] = useState("")
     const [] = useState("")
@@ -39,24 +39,31 @@ export default function Box2(){
             typeCompte: compte,
             localisation: "NON DEFINI",
           }).then((response)=>{
+            setMessage("Inscription validée")
+            setColor("green")
             toast({
               description:"Merci pour votre confiance",title:"Inscription validée",duration:9000,status:"success"
             }),
             sessionStorage.clear()
           }).catch((error)=>{ 
-            console.log(error.response.data)
+            setMessage("Le numéro de téléphone appartient à un autre utilisateur")
+            setColor("red")
             if(error.response.data.donnee=="Le numéro de téléphone appartient à un autre utilisateur"){
                 toast({
-                    description:"Veuillez vous connectez svp",title:"Compte deja existant",duration:9000,status:"error"
+                    description:"Veuillez vous connectez svp",title:"Compte deja existant",duration:9000,status:"warning"
                   })
             }
             else if (error.response.data.donnee == null){
+              setMessage("Inscription validée")
+            setColor("green")
                 toast({
                     description:"Merci pour votre confiance",title:"Inscription validée",duration:9000,status:"success"
                   })
             }
            } );
      }else{
+      setMessage("Mot de passe different")
+            setColor("red")
         toast({
             description:"Veuillez verifier les mots de passe",title:"Mot de passe different",duration:9000,status:"error"
           })
@@ -72,6 +79,7 @@ export default function Box2(){
         <Text color={" #219EF9"} fontWeight={700} fontSize={"48px"}>
             Inscription
         </Text>
+        <Text ></Text>
         {/* <Box mt={5}>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
             Email  
