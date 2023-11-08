@@ -98,19 +98,19 @@ export default function Box2(){
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
         Téléphone  
         </Text>
-        <Input borderRadius={"16px"} onChange={(e)=>{setTel(e.target.value)}} value={tel} type="number" width={"408px"} height={"55px"}  border={"1px solid black"}/>
+        <Input borderRadius={"16px"} onChange={(e)=>{setTel(e.target.value)}}  type="number" width={"408px"} height={"55px"}  border={"1px solid black"}/>
         </Box>
         <Box mt={5}>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}>
             Mot de passe
         </Text>
-        <Input borderRadius={"16px"}   width={"408px"} onChange={(e)=>{setMdp(e.target.value)}} value={mdp}  type={"password"}height={"55px"} border={"1px solid black"}/>
+        <Input borderRadius={"16px"}   width={"408px"} onChange={(e)=>{setMdp(e.target.value)}}  type={"password"}height={"55px"} border={"1px solid black"}/>
         </Box>
         <Box mt={5}>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}>
             Confirmer votre mot de passe
         </Text>
-        <Input borderRadius={"16px"} width={"408px"} onChange={(e)=>{setMdpC(e.target.value)}} value={mdpC}  type={"password"}height={"55px"} border={"1px solid black"}/>
+        <Input borderRadius={"16px"} width={"408px"} onChange={(e)=>{setMdpC(e.target.value)}}   type={"password"}height={"55px"} border={"1px solid black"}/>
         </Box>
         <Box display={"grid"}>
         <Button mt={5}fontWeight={700} onClick={()=>{Validate()}} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
