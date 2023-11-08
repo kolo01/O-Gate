@@ -35,7 +35,7 @@ export default function Box2(){
       mdp,
       compte)
      if(mdp == mdpC){
-         axios.post("http://185.98.139.246:9090/ogatemanagement-api/signup", {
+         axios.post("https://185.98.139.246:9090/ogatemanagement-api/signup", {
             nom: "NON DEFINI",
             username: tel,
             password:mdp ,
