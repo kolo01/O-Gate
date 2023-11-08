@@ -35,7 +35,7 @@ export default function Box2(){
       mdp,
       compte)
      if(mdp == mdpC){
-         axios.post("https://185.98.139.246:9090/ogatemanagement-api/signup", {
+         axios.post("185.98.139.246:9090/ogatemanagement-api/signup", {
             nom: "NON DEFINI",
             username: tel,
             password:mdp ,
@@ -48,7 +48,7 @@ export default function Box2(){
             }),
             sessionStorage.clear()
           }).catch((error)=>{ 
-            
+            // console.log(error)
             if(error.response.data.donnee=="Le numéro de téléphone appartient à un autre utilisateur"){
                 toast({
                     description:"Veuillez vous connectez svp",title:"Compte deja existant",duration:9000,status:"warning"
