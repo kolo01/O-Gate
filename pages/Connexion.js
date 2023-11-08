@@ -18,7 +18,7 @@ export default function Box2(){
 
     const handleConnect = async () =>{
         setClicked(true)
-        await axios.post("http://185.98.139.246:9090/ogatemanagement-api/signin",{
+        await axios.post("185.98.139.246:9090/ogatemanagement-api/signin",{
             username : email,
             password : password
         }).then((response)=>{
