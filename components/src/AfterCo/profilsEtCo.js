@@ -1,19 +1,22 @@
 import { Avatar, Box, Center, Flex, Text } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import secureLocalStorage from "react-secure-storage";
 
 export default function Profilers(){
     const [nom,setNom] = useState("")
     useEffect(()=>{
-        setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
+        // JSON.parse(secureLocalStorage.getItem("local")).data.nom 
+        setNom( "Default user")
     },[nom])
-    return(<>
-    <Box>
+    return(<Box>
+    <Box borderRadius={"25px"} p={10} width={"240px"} height={"144px"}  boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"} >
         <Center><Avatar/></Center>
-        <Text mx={5}> {nom=="NON DEFINI"? "Veuillez mettre à jour votre profil" : nom}</Text>
-        <Flex>
+        <Text textAlign={"center"}  fontWeight={700}> {nom=="NON DEFINI"? "Veuillez mettre à jour votre profil" : nom}</Text>
+        <Flex textAlign={"center"} fontWeight={700}>
             
-            <Text>Actif</Text>
+           <Center mx={"30%"} display={"flex"}> <Box  w={4} h={4} bg= 'green.300' border= '2px solid white' rounded='full'/><Text >Actif</Text></Center>
         </Flex>
     </Box>
-    </>)
+  
+    </Box>)
 }
