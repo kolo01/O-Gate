@@ -40,7 +40,7 @@ export default function Home(){
         }
     ]
     return(
-    <Box  bgColor={"#F6F6F6"} pb={10}>
+    <Box  bgColor={"#F6F6F6"} mb={10} >
     <Navbar/>
     
     <Flex  justifyContent={"space-around"} mt={5}  >

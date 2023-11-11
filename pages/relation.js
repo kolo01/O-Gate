@@ -5,12 +5,12 @@ import { Avatar, Box, Button, Center, Flex, Image, Input, InputGroup, InputRight
 
 export default function Relation(){
     const texted="Térrain de 500m2 disponible à cocody angré Contactez moi en inbox pour plus d’informations"
-    return(<Box bgColor={"#F6F6F6"} pb={10}>
+    return(<Box bgColor={"#F6F6F6"} pb={10} h={"45em"}>
     <Navbar/>
     
     <Center display={"flex"}>
         <Flex>
-        <Box width={"788px"} pt={5} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"} height={"814px"}  mt={10}  borderRadius={"25px"} bgColor={"white"}>
+        <Box width={"788px"} pt={5} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"} height={"fit-content"} pb={10} mt={10}  borderRadius={"25px"} bgColor={"white"}>
             <Flex ml={10} mb={5} >
                 <Flex  border={"1px solid #F1F1F1"} w={"fit-content"} p={2} mr={20}>
                 <Image src="./sort.png" alt="sort" />
