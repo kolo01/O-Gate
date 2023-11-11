@@ -41,7 +41,7 @@ export default function Home(){
     ]
     return(
     <Box  bgColor={"#F6F6F6"} mb={10} >
-    <Navbar/>
+    <NavbarCo/>
     
     <Flex  justifyContent={"space-around"} mt={5}  >
     <Box>

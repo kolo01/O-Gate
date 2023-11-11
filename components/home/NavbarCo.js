@@ -2,6 +2,7 @@ import { Flex, Input, InputGroup, InputLeftElement, InputRightElement } from "@c
 import { FcSearch } from "react-icons/fc";
 import Logo from "../src/Logo";
 import ThreeSec from "./three";
+import { Search2Icon } from "@chakra-ui/icons";
 
 export default function NavbarCo(){
     return(
@@ -9,7 +10,7 @@ export default function NavbarCo(){
          <Logo/>
          <InputGroup width={"335px"} height={"34px"} mt={5} ml={-5} mr={10}>
          <Input type="search"border={"1px solid black"}  />
-         <InputRightElement as={FcSearch}/>
+         <InputRightElement as={Search2Icon}/>
          </InputGroup>
          <ThreeSec/>
         </Flex>

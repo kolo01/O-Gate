@@ -22,7 +22,8 @@ export default function ThreeSec(){
 
 
     useEffect(()=>{
-        setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
+        // setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
+        setNom("Default user")
     },[nom])
 
 
