@@ -9,7 +9,7 @@ export default function Suggestion(){
         // JSON.parse(secureLocalStorage.getItem("local")).data.nom 
         setNom( "Default user")
     },[nom])
-    return(<Box borderRadius={"25px"} position={"fixed"} py={5}  width={"250px"} height={"fit-content"}  boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}>
+    return(<Box borderRadius={"25px"}  py={5}  width={"250px"} height={"fit-content"}  boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}>
     <Box>
       <Text fontWeight={700} fontSize={"16px"} ml={2} mb={5}  width={"240px"}>Suggestions nouvelles relations</Text>
       <Box width={"220px"} ml={5}>

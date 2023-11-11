@@ -40,15 +40,15 @@ export default function Home(){
         }
     ]
     return(
-    <>
+    <Box  bgColor={"#F6F6F6"} pb={10}>
     <Navbar/>
     
-    <Flex  justifyContent={"space-around"}  >
+    <Flex  justifyContent={"space-around"} mt={5}  >
     <Box>
             <Profilers/>
             <Stats/>
         </Box>
-        <Box bgColor={"black"}>
+        <Box >
             <Box></Box>
             {message2.map((data,ind)=><Box key={ind} scr><Messages  idM={data.idM} propio={data.propio} date={data.date} image={data.image} message={data.message}/></Box>)}
             
@@ -58,6 +58,6 @@ export default function Home(){
         </Box>
     </Flex>
     
-    </>
+    </Box>
     )
 }
