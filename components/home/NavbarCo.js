@@ -6,7 +6,7 @@ import { Search2Icon } from "@chakra-ui/icons";
 
 export default function NavbarCo(){
     return(
-        <Flex>
+        <Flex bgColor={"white"} pb={5}>
          <Logo/>
          <InputGroup width={"335px"} height={"34px"} mt={5} ml={-5} mr={10}>
          <Input type="search"border={"1px solid black"}  />

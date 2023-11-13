@@ -28,12 +28,18 @@ export default function ThreeSec(){
 
 
     return(
-        <Flex>
+        <Flex >
             {all.map((data,index)=>(
                 <Box key={index} maxW={"107px"} maxH={"56px"} mt={"12px"} mr={"20px"}  textAlign={"center"}>
+                    {index==0 ? <Box bgColor={"#219EF9"} py={2} px={4}>
+                        <Image ml={data.l}alt={data.text} src={data.image} color={"black"}/>
+                    <Text fontSize={"16px"} lineHeight={"16px"} >{data.text}</Text>
+                    </Box>:<Box mt={2}>
                     <Image ml={data.l}alt={data.text} src={data.image} color={"black"}/>
-                    <Text fontSize={"16px"} lineHeight={"16px"}
-                   >{data.text}</Text>
+                <Text fontSize={"16px"} lineHeight={"16px"} >{data.text}</Text>
+                </Box>}
+                    
+                  
                 </Box>
             ))}
             <Menu>

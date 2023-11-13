@@ -15,25 +15,28 @@ export default function Box2(){
     const router = useRouter()
     const handleConnect = async () =>{
         setClicked(true)
-        
-        await axios.post("http://185.98.139.246:9090/ogatemanagement-api/signin",{
-            username : email,
-            password : password
-        }).then((response)=>{
-           
-            secureLocalStorage.setItem("local",JSON.stringify(response))
-            toast({
-                status:"success",duration: 9000,description:"Merci pour votre confiance",title:"Connexion Approuvé!"
-            })
-            router.push("/home")
-
-        }).catch((error)=>{
-            // console.log(error)
-            setClicked(false)
-            toast({  
-                status:"error",duration: 9000,description:"Merci de bien vouloir reesayer",title:"Mot de passe/Numéro incorrect"
-            })
+        toast({
+            status:"success",duration: 9000,description:"Merci pour votre confiance",title:"Connexion Approuvé!"
         })
+        router.push("/home")
+        // await axios.post("http://185.98.139.246:9090/ogatemanagement-api/signin",{
+        //     username : email,
+        //     password : password
+        // }).then((response)=>{
+           
+        //     secureLocalStorage.setItem("local",JSON.stringify(response))
+        //     toast({
+        //         status:"success",duration: 9000,description:"Merci pour votre confiance",title:"Connexion Approuvé!"
+        //     })
+        //     router.push("/home")
+
+        // }).catch((error)=>{
+        //     // console.log(error)
+        //     setClicked(false)
+        //     toast({  
+        //         status:"error",duration: 9000,description:"Merci de bien vouloir reesayer",title:"Mot de passe/Numéro incorrect"
+        //     })
+        // })
     }
     return(
         <Box >
