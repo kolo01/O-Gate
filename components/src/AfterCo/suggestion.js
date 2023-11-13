@@ -13,9 +13,9 @@ export default function Suggestion(){
     <Box>
       <Text fontWeight={700} fontSize={"16px"} ml={2} mb={5}  width={"240px"}>Suggestions nouvelles relations</Text>
       <Box width={"220px"} ml={5}>
-      <Flex fontSize={"12px"} mb={2} justifyContent={"space-between"}><Flex><Avatar width={"24px"} h={"24px"}/><Text>Domé Carole</Text></Flex><Text color={"#219EF9"}>Suivre</Text></Flex>
-      <Flex fontSize={"12px"} mb={2} justifyContent={"space-between"}><Flex><Avatar width={"24px"} h={"24px"}/><Text>Assita bintou</Text></Flex><Text color={"#219EF9"}>Suivre</Text></Flex>
-      <Flex fontSize={"12px"} justifyContent={"space-between"}><Flex><Avatar width={"24px"} h={"24px"}/><Text>Blé Gérard</Text></Flex><Text color={"#219EF9"}>Suivre</Text></Flex>
+      <Flex fontSize={"12px"} mb={2} justifyContent={"space-between"}><Flex><Avatar width={"24px"} h={"24px"}/><Text ml={2}>Domé Carole</Text></Flex><Text color={"#219EF9"}>Suivre</Text></Flex>
+      <Flex fontSize={"12px"} mb={2} justifyContent={"space-between"}><Flex><Avatar width={"24px"} h={"24px"}/><Text ml={2}>Assita bintou</Text></Flex><Text color={"#219EF9"}>Suivre</Text></Flex>
+      <Flex fontSize={"12px"} justifyContent={"space-between"}><Flex><Avatar width={"24px"} h={"24px"}/><Text ml={2}>Blé Gérard</Text></Flex><Text color={"#219EF9"}>Suivre</Text></Flex>
       </Box>
     </Box>
     <Center><Button bgColor={"white"} _hover={{bgColor:"white"}} rightIcon={<ArrowRightIcon/>} fontSize={"12px"}>Toutes les suggestions</Button></Center>
