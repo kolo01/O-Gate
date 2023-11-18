@@ -1,10 +1,11 @@
 import Navbar from "@/components/home/Navbar";
+import NavbarCo from "@/components/home/NavbarCo";
 import { Avatar, Box, Button, Center, Flex, Image, Text } from "@chakra-ui/react";
 
 export default function Offers(){
     const texted="Térrain de 500m2 disponible à cocody angré Contactez moi en inbox pour plus d’informations"
     return(<Box bgColor={"#F6F6F6"} pb={10} h={"45em"}>
-    <Navbar/>
+    <NavbarCo/>
     <Center>
         <Box width={"788px"} pt={10} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"} height={"fit-content"} pb={10} mt={"96px"}   borderRadius={"25px"} bgColor={"white"}>
         <Flex ml={10} mb={2} border={"1px solid #F1F1F1"} w={"fit-content"} p={2}>

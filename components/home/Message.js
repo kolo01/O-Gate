@@ -1,4 +1,6 @@
 import { Avatar, Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 
 export default function Messages(
 {  idM,
@@ -8,6 +10,7 @@ export default function Messages(
   image,}
   
 ) {
+  const Imaged = ["./images/P1.jpeg","./images/P2.jpeg","./images/P3.jpeg","./images/p4.jpeg"]
     const item =[{images:"./like.png",alte:"like"},{images:"./comment.png",alte:"comment"},{images:"./share.png",alte:"share"},{images:"./save.png",alte:"save"},]
   return (
     <>
@@ -41,10 +44,21 @@ export default function Messages(
         <Box
         width={"full"}
         // bgImage={image}
-        bgColor={"gray"}
+        // bgColor={"gray"}
         height={"349px"}
         bgRepeat={"no-repeat"}
-        bgSize={"contain"} mb={2}/>
+        bgSize={"contain"}
+         mb={2}>
+          <Carousel>
+            {Imaged.map((images,index)=><Box key={index} width="full"
+              height={"349px"}
+              bgRepeat={"no-repeat"}
+              bgSize={"contain"}
+        bgImage={images}
+              
+            />)}
+          </Carousel>
+        </Box>
         <Flex width={"192px"} height={"36px"}>
             {item.map((data,index)=><Image key={index} src={data.images} alt={data.alte}/>)}
         </Flex>
