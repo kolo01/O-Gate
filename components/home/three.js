@@ -55,12 +55,12 @@ export default function ThreeSec(){
                
                 <Text fontSize={"16px"} lineHeight={"16px"} >{"Notifications"}</Text>
                 </Box>
-                <Box mt={2} mr={5} maxW={"107px"} maxH={"56px"} textAlign={"center"}  onClick={()=>router.push("/offres")} cursor={"pointer"}>
+                <Box mt={2} mr={5} maxW={"107px"} maxH={"56px"} textAlign={"center"}  onClick={()=>router.push("/Posts")} cursor={"pointer"}>
                    <Box ml={2}>
                     <Image ml={5} src={"./all/Sell.png"} alt="" width={"42px"}  height={"42px"} fontSize={"42px"}/>
                    </Box>
                
-                <Text fontSize={"16px"} lineHeight={"16px"} >{"Offres immobilières"}</Text>
+                <Text fontSize={"16px"} lineHeight={"16px"} >{"Postes"}</Text>
                 </Box>
                 <Box mt={2} mr={5}  onClick={()=>router.push("/messages")} cursor={"pointer"}>
                    <Box ml={2}>
