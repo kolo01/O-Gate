@@ -8,7 +8,7 @@ import Profilers from "@/components/src/AfterCo/profilsEtCo";
 import Suggestion from "@/components/src/AfterCo/suggestion";
 import Logo from "@/components/src/Logo";
 import { Search2Icon } from "@chakra-ui/icons";
-import { Avatar, Box, Flex, Icon, Image, Input, InputGroup, InputRightAddon, InputRightElement, Link, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
+import { Avatar, Box, Center, Flex, Icon, Image, Input, InputGroup, InputRightAddon, InputRightElement, Link, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -75,7 +75,16 @@ export default function Home(){
             <Stats/>
         </Box>
         <Box >
-            <Box></Box>
+            <Center>
+            <iframe
+                  width="400"
+                  height="200"
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyAoJQLE8uAbWnyPHCv-_udEUhH7HQooJlM&q='DEUX PLATEAUX BLD LATRILLE '"}
+                ></iframe>
+            </Center>
             {message2.map((data,ind)=><Box key={ind} scr><Messages  idM={data.idM} propio={data.propio} date={data.date} image={data.image} message={data.message}/></Box>)}
             
         </Box>
