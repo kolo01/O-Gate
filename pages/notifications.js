@@ -8,23 +8,8 @@ import { useEffect, useState } from "react";
 
 export default function Offers(){
     const texted="Térrain de 500m2 disponible à cocody angré Contactez moi en inbox pour plus d’informations"
-     const [nom,setNom] = useState("")
-  const all=[
-      {
-      image:"./house.png",
-      text:"Accueil", l:2,link:"/home"},
-     
-      {
-          image:"./all/partenaire.png",
-          text:"Mes relations", l:5,link:"/relation"},
-          {
-              image:"./all/notifications.png",
-              text:"Notifications", l:10,link:"/notifications"},,
-              {
-                  image:"./all/mesasge.png",
-                  text:"Messagerie", l:10,link:"/messages"},
-  ]
-  const router = useRouter()
+    const [nom,setNom] = useState("")
+    const router = useRouter()
 
   useEffect(()=>{
       // setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
