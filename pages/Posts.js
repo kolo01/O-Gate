@@ -1,12 +1,12 @@
 import {Box, Button, Center, Flex, Input, InputGroup, Select, Text } from '@chakra-ui/react'
 import NavbarCo from "@/components/home/NavbarCo";
 export default function Postes(){
-
+const enr ="Formulaire d'enregistrement de postes"
     return(
         <>
          <NavbarCo/>
         <Center width={"full"} display={"grid"} mb={10}>
-            <Text fontSize={"30px"} fontWeight={700}>Formulaire d'enregistrement de postes</Text>
+            <Text fontSize={"30px"} fontWeight={700}>{enr}</Text>
             <Box width={"100%"}>
                 <Flex>
                     <InputGroup>
