@@ -57,7 +57,7 @@ export default function ThreeSec(){
                 </Box>
                 <Box mt={2} mr={5} maxW={"107px"} maxH={"56px"} textAlign={"center"}  onClick={()=>router.push("/Posts")} cursor={"pointer"}>
                    <Box ml={2}>
-                    <Image ml={5} src={"./all/Sell.png"} alt="" width={"42px"}  height={"42px"} fontSize={"42px"}/>
+                    <Image src={"./all/Sell.png"} alt="" width={"42px"}  height={"42px"} fontSize={"42px"}/>
                    </Box>
                
                 <Text fontSize={"16px"} lineHeight={"16px"} >{"Postes"}</Text>
