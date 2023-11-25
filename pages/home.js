@@ -74,15 +74,15 @@ export default function Home(){
             <Profilers/>
             <Stats/>
         </Box>
-        <Box >
-            <Center>
+        <Box mb={50}   >
+            <Center width={600} h={600}>
             <iframe
-                  width="400"
-                  height="200"
+                  width="500"
+                  height="400"
                   loading="lazy"
                   allowFullScreen
                   referrerPolicy="no-referrer-when-downgrade"
-                  src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyAoJQLE8uAbWnyPHCv-_udEUhH7HQooJlM&q='DEUX PLATEAUX BLD LATRILLE '"}
+                  src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyAoJQLE8uAbWnyPHCv-_udEUhH7HQooJlM&q={'DEUX PLATEAUX BLD LATRILLE ','angre 8eme tranche'}"}
                 ></iframe>
             </Center>
             {message2.map((data,ind)=><Box key={ind} scr><Messages  idM={data.idM} propio={data.propio} date={data.date} image={data.image} message={data.message}/></Box>)}

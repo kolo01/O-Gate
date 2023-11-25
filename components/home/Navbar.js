@@ -19,15 +19,12 @@ export default function Navbar(){
     ]
     const insc = "S’incrire"
     return(
-        <Box display={"flex"} width={"full"}  bgColor={"#ffffff"} pb={2}>
+        <Box display={"flex"} width={"full"} justifyContent={"space-between"}  bgColor={"#ffffff"} pb={2}>
           <Logo/>
-       <SecondSec/>
-            <Box orientation="vertical" height={"42px"} mt={"20px"} mr={5} color={"black"} bgColor={"black"}>
-            <svg width="2" height="42" viewBox="0 0 2 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1 0V42" stroke="black" stroke-width="2"/>
-</svg> 
-            </Box>
+       
+          <Box mr={20}>
            <Last/>
+           </Box>
         </Box>
     )
 }
