@@ -1,4 +1,12 @@
-import { Avatar, Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import { Avatar, Box, Button, Flex, Image, Text,  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+  Center, } from "@chakra-ui/react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 
@@ -11,10 +19,14 @@ export default function Messages(
   
 ) {
   const Imaged = ["./images/P1.jpeg","./images/P2.jpeg","./images/P3.jpeg","./images/p4.jpeg"]
+  const { isOpen, onOpen, onClose } = useDisclosure()
     const item =[{images:"./like.png",alte:"like"},{images:"./comment.png",alte:"comment"},{images:"./share.png",alte:"share"},{images:"./save.png",alte:"save"},]
+    const HandleDrawner=()=>{
+      onOpen()
+    }
   return (
     <>
-      <Box width={"542px"} height={"fit-content"} py={2} mb={5} bgColor={"white"} >
+      <Box width={"542px"} height={"fit-content"} py={2} mb={5} bgColor={"white"} borderRadius={25} p={5} >
         <Flex justifyContent={"space-between"} >
           <Flex mt={2} ml={5}>
             <Avatar />
@@ -39,7 +51,13 @@ export default function Messages(
             Suivre
           </Button>
         </Flex>
-        <Text width={"50%"} my={5}>{message}</Text>
+        <Flex>
+        <Text width={"90%"} my={5} noOfLines={5}>{message}</Text>
+        <Button mt={"110px"} onClick={()=>HandleDrawner()} bgColor={"transparent"} _hover={{
+          bgColor:"transparent"
+        }}>Voir plus</Button>
+        </Flex>
+        
         {/* <Text width={"50%"}>{"message"}</Text> */}
         <Box
         width={"full"}
@@ -49,7 +67,7 @@ export default function Messages(
         bgRepeat={"no-repeat"}
         bgSize={"contain"}
          mb={2}>
-          <Carousel>
+          <Carousel autoPlay infiniteLoop>
             {Imaged.map((images,index)=><Box key={index} width="full"
               height={"349px"}
               bgRepeat={"no-repeat"}
@@ -63,6 +81,47 @@ export default function Messages(
             {item.map((data,index)=><Image key={index} src={data.images} alt={data.alte}/>)}
         </Flex>
       </Box>
+
+
+      <Drawer onClose={onClose} isOpen={isOpen} size={"full"}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader><Center>{`Vente de maison`}</Center></DrawerHeader>
+          <DrawerBody mx={"20%"} display={"grid"}>
+            <Box mb={10}>
+           <Text fontWeight={600} fontSize={"15px"}>
+           {message}
+           </Text>
+           <Center width={"full"}>
+           <Box
+           mt={5}
+        width={"450px"}
+        // bgImage={image}
+        // bgColor={"gray"}
+        height={"250px"}
+        bgRepeat={"no-repeat"}
+        bgSize={"contain"}
+         mb={2}>
+          <Carousel autoPlay infiniteLoop showIndicators={false}  >
+            {Imaged.map((images,index)=><Box key={index} width="400px"
+              height={"349px"}
+              bgRepeat={"no-repeat"}
+              bgSize={"cover"}
+        bgImage={images}
+              
+            />)}
+          </Carousel>
+        </Box>
+        </Center>
+        </Box>
+        <Box mt={[20,20,20,10,10]}>
+          <Text fontSize={"25px"} fontWeight={700}>Commentaires</Text>
+        </Box>
+        
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 }

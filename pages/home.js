@@ -8,7 +8,7 @@ import Profilers from "@/components/src/AfterCo/profilsEtCo";
 import Suggestion from "@/components/src/AfterCo/suggestion";
 import Logo from "@/components/src/Logo";
 import { Search2Icon } from "@chakra-ui/icons";
-import { Avatar, Box, Center, Flex, Icon, Image, Input, InputGroup, InputRightAddon, InputRightElement, Link, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
+import { AspectRatio, Avatar, Box, Center, Flex, Icon, Image, Input, InputGroup, InputRightAddon, InputRightElement, Link, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -18,28 +18,100 @@ export default function Home(){
             idM:"1",
             propio:"user1",
             date:"18/10/2020",
-            message:"Hello all",
+            message:`Nos maisons sont situées en bordure de voie bitumée et à 5mn de la lagune.
+            La Cité est également situé à 10 mn du projet d’état de 144 immeubles et du plus grand mall d’Afrique de l’ouest.
+            Nos maisons sont également situées à environ 600m de la lagune et l’Eau, l’électricité sont disponibles dans la zone .
+            
+            Caractéristiques des Villas Duplex 6 Pièces avec Piscine
+            Villas haut standing de 6 pièces sur 300m2.
+            ✓ grand Salon + Salle à Manger
+            ✓ 5 Grandes Chambres avec Douche Chacune.
+            ✓ Garage de 2 voitures + Grande Cours + Piscine + Clôture + jardin + Portails.
+            ✓ Villas déjà en construction et en attente de finition selon les gouts et couleurs de l’acquéreur.
+            ✓ Villas livrées complètement finies avec clôture, portails, décoration extérieure, gazon etc.
+            ✓ Route Bitumée Jusqu’à La Cité – Lagune à 5mn
+            
+            Condition d’accès
+            1. Apport initial : 40.millions pour réserver votre maison
+            2. Frais de dossier : 900.milles
+            3. Le reste 95 millions échelonnés sur 40 mois
+            
+            Document : ACD`,
             image:"",
         },
         {
             idM:"2",
             propio:"user2",
             date:"18/10/2020",
-            message:"hello ALL",
+            message:`Nos maisons sont situées en bordure de voie bitumée et à 5mn de la lagune.
+            La Cité est également situé à 10 mn du projet d’état de 144 immeubles et du plus grand mall d’Afrique de l’ouest.
+            Nos maisons sont également situées à environ 600m de la lagune et l’Eau, l’électricité sont disponibles dans la zone .
+            
+            Caractéristiques des Villas Duplex 6 Pièces avec Piscine
+            Villas haut standing de 6 pièces sur 300m2.
+            ✓ grand Salon + Salle à Manger
+            ✓ 5 Grandes Chambres avec Douche Chacune.
+            ✓ Garage de 2 voitures + Grande Cours + Piscine + Clôture + jardin + Portails.
+            ✓ Villas déjà en construction et en attente de finition selon les gouts et couleurs de l’acquéreur.
+            ✓ Villas livrées complètement finies avec clôture, portails, décoration extérieure, gazon etc.
+            ✓ Route Bitumée Jusqu’à La Cité – Lagune à 5mn
+            
+            Condition d’accès
+            1. Apport initial : 40.millions pour réserver votre maison
+            2. Frais de dossier : 900.milles
+            3. Le reste 95 millions échelonnés sur 40 mois
+            
+            Document : ACD`,
             image:"",
         },
         {
             idM:"3",
             propio:"user3",
             date:"18/10/2020",
-            message:"Hello me",
+            message:`Nos maisons sont situées en bordure de voie bitumée et à 5mn de la lagune.
+            La Cité est également situé à 10 mn du projet d’état de 144 immeubles et du plus grand mall d’Afrique de l’ouest.
+            Nos maisons sont également situées à environ 600m de la lagune et l’Eau, l’électricité sont disponibles dans la zone .
+            
+            Caractéristiques des Villas Duplex 6 Pièces avec Piscine
+            Villas haut standing de 6 pièces sur 300m2.
+            ✓ grand Salon + Salle à Manger
+            ✓ 5 Grandes Chambres avec Douche Chacune.
+            ✓ Garage de 2 voitures + Grande Cours + Piscine + Clôture + jardin + Portails.
+            ✓ Villas déjà en construction et en attente de finition selon les gouts et couleurs de l’acquéreur.
+            ✓ Villas livrées complètement finies avec clôture, portails, décoration extérieure, gazon etc.
+            ✓ Route Bitumée Jusqu’à La Cité – Lagune à 5mn
+            
+            Condition d’accès
+            1. Apport initial : 40.millions pour réserver votre maison
+            2. Frais de dossier : 900.milles
+            3. Le reste 95 millions échelonnés sur 40 mois
+            
+            Document : ACD`,
             image:"",
         },
         {
             idM:"4",
             propio:"user4",
             date:"18/10/2020",
-            message:"Hello me",
+            message:`Nos maisons sont situées en bordure de voie bitumée et à 5mn de la lagune.
+            La Cité est également situé à 10 mn du projet d’état de 144 immeubles et du plus grand mall d’Afrique de l’ouest.
+            Nos maisons sont également situées à environ 600m de la lagune et l’Eau, l’électricité sont disponibles dans la zone .
+            
+            Caractéristiques des Villas Duplex 6 Pièces avec Piscine
+            Villas haut standing de 6 pièces sur 300m2.
+            ✓ grand Salon + Salle à Manger
+            ✓ 5 Grandes Chambres avec Douche Chacune.
+            ✓ Garage de 2 voitures + Grande Cours + Piscine + Clôture + jardin + Portails.
+            ✓ Villas déjà en construction et en attente de finition selon les gouts et couleurs de l’acquéreur.
+            ✓ Villas livrées complètement finies avec clôture, portails, décoration extérieure, gazon etc.
+            ✓ Route Bitumée Jusqu’à La Cité – Lagune à 5mn
+            
+            Condition d’accès
+            1. Apport initial : 40.millions pour réserver votre maison
+            2. Frais de dossier : 900.milles
+            3. Le reste 95 millions échelonnés sur 40 mois
+            
+            Document : ACD`,
             image:"",
         }
     ]
@@ -75,16 +147,18 @@ export default function Home(){
             <Stats/>
         </Box>
         <Box mb={50}   >
-            <Center width={600} h={600}>
-            <iframe
-                  width="500"
-                  height="400"
+           
+                <AspectRatio ratio={16 / 9} mb={10} borderRadius={25}>
+                <iframe
+                  
                   loading="lazy"
                   allowFullScreen
                   referrerPolicy="no-referrer-when-downgrade"
                   src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyAoJQLE8uAbWnyPHCv-_udEUhH7HQooJlM&q={'DEUX PLATEAUX BLD LATRILLE ','angre 8eme tranche'}"}
                 ></iframe>
-            </Center>
+                </AspectRatio>
+            
+          
             {message2.map((data,ind)=><Box key={ind} scr><Messages  idM={data.idM} propio={data.propio} date={data.date} image={data.image} message={data.message}/></Box>)}
             
         </Box>
