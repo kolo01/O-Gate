@@ -95,6 +95,7 @@ export default function Messages(
            </Text>
            <Center width={"full"}>
            <Box
+           cursor={"pointer"}
            mt={5}
         width={"450px"}
         // bgImage={image}

@@ -10,63 +10,61 @@ export default function Box2(){
     const insc = " S'incrire"
     const router = useRouter()
     const toast = useToast()
-    const [email,setEmail] = useState("")
+    const [nom,setNom] = useState("")
     const [tel,setTel] = useState("")
     const [mdp,setMdp] = useState("")
     const [mdpC,setMdpC] = useState("")
-    // const [color,setColor] = useState("green")
-    // const [message,setMessage] = useState("")
+
+    const [loaded,setLoaded] = useState(false)
     const [] = useState("")
     const [] = useState("")
     const [] = useState("")
-    const [] = useState("")
-    // const Next = ()=>{
-    //     sessionStorage.setItem("email",email)
-    // sessionStorage.setItem("tel",tel)
-    // sessionStorage.setItem("mdp",mdp)
-    // sessionStorage.setItem("mdpC",mdpC)
-    // }
+ 
     
     const [compte, setCompte] = useState("PARTICULIER");
    
 
    const Validate =  () => {
-    // console.log(tel,
-    //   mdp,
-    //   compte)
+   setLoaded(true)
      if(mdp == mdpC){
-         axios.post("http://185.98.139.246:9090/ogatemanagement-api/signup", {
-            nom: "NON DEFINI",
-            username: tel,
-            password:mdp ,
-            typeCompte: compte,
-            localisation: "NON DEFINI",
-          }).then((response)=>{
+      axios.post("http://185.98.139.246:9090/ogatemanagement-api/signup", {
+        nom:nom,
+        username: tel,
+        password:mdp ,
+        typeCompte: compte,
+        localisation: "NON DEFINI",
+      }).then((response)=>{
+        sessionStorage.clear()
+        toast({
+          title:"Inscription validée",status:"success",
+        })
+        router.push("/Connexion")
+        console.log({ response: 'succes' })
+      }).catch((error)=>{ 
+       
+        setLoaded(false)
+        if(error.response.data.donnee=="Le numéro de téléphone appartient à un autre utilisateur"){
+          toast({
+            title:"Numéro déjà existant",status:"info",
+          })
+          router.push("/Connexion")
+        }
+        else if (error.response.data.donnee == null){
+          toast({
+            title:"Inscription validée",status:"success",
+          })
+          router.push("/Connexion")
             
-            toast({
-              description:"Merci pour votre confiance",title:"Inscription validée",duration:9000,status:"success"
-            }),
-            sessionStorage.clear()
-          }).catch((error)=>{ 
-            // console.log(error)
-            if(error.response.data.donnee=="Le numéro de téléphone appartient à un autre utilisateur"){
-                toast({
-                    description:"Veuillez vous connectez svp",title:"Compte deja existant",duration:9000,status:"warning"
-                  })
-            }
-            else if (error.response.data.donnee == null){
-             
-                toast({
-                    description:"Merci pour votre confiance",title:"Inscription validée",duration:9000,status:"success"
-                  })
-            }else{
-              toast({
-                description:"Une erreur inattendu est survenu, merci de reesayer plus tard",title:"Erreur detecté!!!",duration:9000,status:"success"
-              })
-            }
-           } );
+        }else{
+           
+          toast({
+            title:"Une erreur est survenu",status:"error",description:"Merci de bien vouloir réesayer plus tard!!!"
+          })
+          
+        } 
+       });
      }else{
-     
+      setLoaded(false)
         toast({
             description:"Veuillez verifier les mots de passe",title:"Mot de passe different",duration:9000,status:"error"
           })
@@ -102,8 +100,14 @@ export default function Box2(){
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
         Téléphone  
         </Text>
-        <Input borderRadius={"16px"} onChange={(e)=>{setTel(e.target.value)}}  type="number" width={"408px"} height={"55px"}  border={"1px solid black"}/>
+        <Input borderRadius={"16px"} onChange={(e)=>{setTel(e.target.value)}}  type="number" width={"408px"} height={"55px"}  maxLength={8} border={"1px solid black"}/>
         </Box>
+         <Box mt={5}>
+        <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
+        Nom  
+        </Text>
+        <Input borderRadius={"16px"} onChange={(e)=>{setNom(e.target.value)}}  type="text" width={"408px"} height={"55px"}  border={"1px solid black"}/>
+        </Box> 
         <Box mt={5}>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}>
             Mot de passe
@@ -117,7 +121,7 @@ export default function Box2(){
         <Input borderRadius={"16px"} width={"408px"} onChange={(e)=>{setMdpC(e.target.value)}}   type={"password"}height={"55px"} border={"1px solid black"}/>
         </Box>
         <Box display={"grid"}>
-        <Button mt={5}fontWeight={700} onClick={()=>{Validate()}} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
+        <Button mt={5}fontWeight={700} isLoading={loaded} onClick={()=>{Validate()}} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
             bgColor:"#219EF9"
         }}> {insc}</Button>
         <Button mt={5}  bgColor="transparent" border="1px solid black"fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} leftIcon={<FcGoogle/>} _hover={{

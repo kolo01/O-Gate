@@ -11,6 +11,8 @@ import { Search2Icon } from "@chakra-ui/icons";
 import { AspectRatio, Avatar, Box, Center, Flex, Icon, Image, Input, InputGroup, InputRightAddon, InputRightElement, Link, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import secureLocalStorage from "react-secure-storage";
+import { useStyleRegistry } from "styled-jsx";
 
 export default function Home(){
     const message2=[
@@ -132,41 +134,56 @@ export default function Home(){
                     text:"Messagerie", l:10,link:"/messages"},
     ]
     const router = useRouter()
+  const [checker,setChecker] = useState(false)
 
     useEffect(()=>{
-        // setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
-        setNom("Default user")
-    },[nom])
-    return(
-    <Box  bgColor={"#F6F6F6"} mb={10} >
-   <NavbarCo/>
-    
-    <Flex  justifyContent={"space-around"} mt={5}  >
-    <Box>
-            <Profilers/>
-            <Stats/>
-        </Box>
-        <Box mb={50}   >
-           
-                <AspectRatio ratio={16 / 9} mb={10} borderRadius={25}>
-                <iframe
+        try{
+            // console.log(secureLocalStorage.getItem("local"))
+            if(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken.length >10){
+                setChecker(true)
+            }else{
+                router.push("/")
+            }
+        }catch (error){
+            // console.log(error)
+            router.push("/")
+        }
+       
+       
+    },[router])
+    if(checker){
+        return(
+            <Box  bgColor={"#F6F6F6"} mb={10} >
+           <NavbarCo/>
+            
+            <Flex  justifyContent={["normal","normal","normal","space-around","space-around"]} mt={5} mx={["10%","10%","10%","0","0"]}  >
+            <Box display={["none","none","none","block","block"]} height={"fit-content"}>
+                    <Profilers/>
+                    <Stats/>
+                </Box>
+                <Box mb={50}   >
+                   
+                        <AspectRatio ratio={16 / 9} mb={10} borderRadius={25}>
+                        <iframe
+                          
+                          loading="lazy"
+                          allowFullScreen
+                          referrerPolicy="no-referrer-when-downgrade"
+                          src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyAoJQLE8uAbWnyPHCv-_udEUhH7HQooJlM&q={'DEUX PLATEAUX BLD LATRILLE ','angre 8eme tranche'}"}
+                        ></iframe>
+                        </AspectRatio>
+                    
                   
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                  src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyAoJQLE8uAbWnyPHCv-_udEUhH7HQooJlM&q={'DEUX PLATEAUX BLD LATRILLE ','angre 8eme tranche'}"}
-                ></iframe>
-                </AspectRatio>
+                    {message2.map((data,ind)=><Box key={ind} scr><Messages  idM={data.idM} propio={data.propio} date={data.date} image={data.image} message={data.message}/></Box>)}
+                    
+                </Box>
+                <Box display={["none","none","none","grid","grid"]} >
+                    <Suggestion/>
+                </Box>
+            </Flex>
             
-          
-            {message2.map((data,ind)=><Box key={ind} scr><Messages  idM={data.idM} propio={data.propio} date={data.date} image={data.image} message={data.message}/></Box>)}
-            
-        </Box>
-        <Box >
-            <Suggestion/>
-        </Box>
-    </Flex>
+            </Box>
+            )
+    }
     
-    </Box>
-    )
 }

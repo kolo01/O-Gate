@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Flex, Image, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
+import { Avatar, Box, Button, Center, Flex, Image, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 import { MdHome } from "react-icons/md";
@@ -25,11 +25,25 @@ export default function ThreeSec(){
                     text:"Messagerie", l:10},
     ]
 
+        const Logout= ()=>{
+            secureLocalStorage.removeItem("local")
+            router.push("/")
+        }
 
+    
     useEffect(()=>{
-        // setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
-        setNom("Default user")
-    },[nom])
+        try{
+            if(JSON.parse(secureLocalStorage.getItem("local")).data.nom == "NON DEFINI"){
+                setNom("NON DEFINI")
+               }else{
+                setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
+               }
+        }catch (error){
+            
+            router.push("/")
+        }
+      
+    },[nom,router])
 
 
     return(
@@ -42,10 +56,11 @@ export default function ThreeSec(){
                 <Text fontSize={"16px"} lineHeight={"16px"} >{"Accueil"}</Text>
                 </Box>
                 <Box mt={2} mr={5}  onClick={()=>router.push("/relation")} cursor={"pointer"}>
-                   <Box ml={2} width={"45px"} height={"45px"} borderRadius={"50%"} bgColor={"blackAlpha.700"}>
+                  <Center mb={-1}>
+                   <Box width={"45px"} height={"45px"} borderRadius={"50%"}>
                     <PiUsers  width={"42px"}  height={"42px"} fontSize={"42px"}/>
                    </Box>
-               
+                   </Center>
                 <Text fontSize={"16px"} lineHeight={"16px"} >{"Mes relations"}</Text>
                 </Box>
                 <Box mt={2} mr={5}  onClick={()=>router.push("/notifications")} cursor={"pointer"}>
@@ -79,8 +94,8 @@ export default function ThreeSec(){
   </MenuButton>
   <MenuList>
     <MenuItem>Mon profils</MenuItem>
-    <MenuItem>Deconnexion de {nom=="NON DEFINI"? "New user" : nom}</MenuItem>
-   <Text mx={5}> {nom=="NON DEFINI"? "Veuillez mettre à jour votre profil" : nom}</Text>
+    <MenuItem onClick={()=>{Logout()}}>Deconnexion de {nom=="NON DEFINI"? "New user" : nom}</MenuItem>
+   {/* <Text mx={5}> {nom=="NON DEFINI"? "Veuillez mettre à jour votre profil" : nom}</Text> */}
   </MenuList>
 </Menu>
             
