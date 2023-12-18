@@ -222,8 +222,8 @@ console.log(valeur)
       <>
       <NavbarCo/>
       <Box mt={2} mb={20}>
-         <Box boxShadow={" rgba(0, 0, 0, 0.35) 0px 5px 15px;"} mx={10} borderRadius={"25px"}>
-        <Center> <Heading ml={10}>Faire Une Publication</Heading></Center>
+         <Box  mx={10} >
+        
   
         
   <SimpleGrid columns={[1,1,1,2,3]} mt={5} ml={2} pb={10} >
