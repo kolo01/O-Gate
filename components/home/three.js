@@ -6,6 +6,7 @@ import { IoIosNotifications } from "react-icons/io";
 import { MdMessage } from "react-icons/md";
 import { PiUsers } from "react-icons/pi";
 import { useRouter } from "next/router";
+import PrincipalePopup from "../popupPosts/popupPrincipale";
 export default function ThreeSec(){
     const [nom,setNom] = useState("")
     const router = useRouter()
@@ -70,13 +71,7 @@ export default function ThreeSec(){
                
                 <Text fontSize={"16px"} lineHeight={"16px"} >{"Notifications"}</Text>
                 </Box>
-                <Box mt={2} mr={5} maxW={"107px"} maxH={"56px"} textAlign={"center"}  onClick={()=>router.push("/Posts")} cursor={"pointer"}>
-                   <Box ml={2}>
-                    <Image src={"./all/Sell.png"} alt="" width={"42px"}  height={"42px"} fontSize={"42px"}/>
-                   </Box>
-               
-                <Text fontSize={"16px"} lineHeight={"16px"} >{"Postes"}</Text>
-                </Box>
+                <PrincipalePopup/>
                 <Box mt={2} mr={5}  onClick={()=>router.push("/messages")} cursor={"pointer"}>
                    <Box ml={2}>
                     <MdMessage  width={"42px"}  height={"42px"} fontSize={"42px"}/>
