@@ -24,7 +24,7 @@ else
   return (
     <Box >
     <Navbar/>
-    <Flex mx={"10%"} mt={"5%"}>
+    <Flex mx={{base:"0%",lg:"10%"}} mt={"5%"}>
       <Box display={["none","none","none","grid","grid"]}>
       <Box1/>
       <Image mt={"-150px  "} alt='clé en main' src="./all/key.png"/> 

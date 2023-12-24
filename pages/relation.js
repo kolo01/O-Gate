@@ -36,14 +36,14 @@ export default function Relation(){
     
     <Center display={"flex"}>
         <Flex>
-        <Box width={"788px"} pt={5} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"} height={"fit-content"} pb={10} mt={10}  borderRadius={"25px"} bgColor={"white"}>
-            <Flex ml={10} mb={5} >
+        <Box   width={{base:"100%",lg:"788px"}} ml={{base:"5%",lg:"0"}} pt={5} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"} height={"fit-content"} pb={10} mt={10}  borderRadius={"25px"} bgColor={"white"}>
+            <Flex ml={{base:5,lg:10}} mb={5} px={5}>
                 <Flex  border={"1px solid #F1F1F1"} w={"fit-content"} p={2} mr={20}>
                 <Image src="./sort.png" alt="sort" />
                 <Text color={"#CDCDCD"} fontSize={"16px"} fontWeight={700}>Trier par</Text>
                 </Flex>
                
-                    <InputGroup width={"335px"} height={"34px"}>
+                    <InputGroup  width={{base:"100%",lg:"335px"}}  height={"34px"}>
                     <InputRightElement>
                     <Search2Icon/>  
                     </InputRightElement> 

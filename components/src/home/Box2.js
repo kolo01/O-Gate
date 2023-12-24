@@ -1,4 +1,4 @@
-import { Box, Button, Input, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, Center, Input, Link, Text, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import {FcGoogle} from "react-icons/fc"
 import axios from "axios";
@@ -38,8 +38,9 @@ export default function Box2(){
             })
         })
     }
-    return(
-        <Box >
+    return(<>
+    <Center display={{base:"grid",lg:"none"}} ml={["5%","25%","25%","0%","0%"]} width={"full"}>
+    <Box>
         <Text color={" #219EF9"} fontWeight={700} fontSize={"48px"}>
             Connexion
         </Text>
@@ -65,7 +66,37 @@ export default function Box2(){
         <Text ml={"30%"}fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} mt={5}>Ou</Text>
         <Button mt={5} bgColor="transparent" border="1px solid black" fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} _hover={{
             bgColor:"transparent"
-        }}> Démarrer{av} en <Text ml={2} color="#219EF9">{insc}</Text> </Button>
+        }}> Démarrer{av} en <Text ml={2} color="#219EF9" as={Link} href={"/Inscription"} _hover={{textDecoration:"none",color:"#219EF9"}}>{insc}</Text> </Button>
         </Box>
+    </Center>
+        <Box display={{base:"none",lg:"grid"}}>
+        <Text color={" #219EF9"} fontWeight={700} fontSize={"48px"}>
+            Connexion
+        </Text>
+        <Box mt={5}>
+        <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
+            Téléphone
+        </Text>
+        <Input borderRadius={"16px"} onChange={(e)=>{setEmail(e.target.value)}}  width={"408px"} height={"55px"}  border={"1px solid black"}/>
+        </Box>
+        <Box mt={5}>
+        <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}>
+            Mot de passe
+        </Text>
+        <Input borderRadius={"16px"} width={"408px"} onChange={(e)=>{setPassword(e.target.value)}}  type={"password"}height={"55px"} border={"1px solid black"}/>
+        </Box>
+        <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} mt={5}> Mot de passe oublié ?</Text>
+        <Button mt={5}fontWeight={700} onClick={()=>handleConnect()} isDisabled={email.length<8 || password.length<7} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
+            bgColor:"#219EF9"
+        }} isLoading={clicked}> Se connecter</Button>
+        <Button mt={5}  bgColor="transparent" border="1px solid black"fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} leftIcon={<FcGoogle/>} _hover={{
+            bgColor:"transparent"
+        }}> Continuer avec Google</Button>
+        <Text ml={"30%"}fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} mt={5}>Ou</Text>
+        <Button mt={5} bgColor="transparent" border="1px solid black" fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} _hover={{
+            bgColor:"transparent"
+        }}> Démarrer{av} en <Text ml={2} color="#219EF9" as={Link} href={"/Inscription"} _hover={{textDecoration:"none",color:"#219EF9"}}>{insc}</Text> </Button>
+        </Box>
+        </>
     )
 }

@@ -30,7 +30,7 @@ export default function PrincipalePopup() {
       const [meuble, setMeuble] = useState("NON DEFINI");
       //fin des declarations
       useEffect(() => {
-        setToken(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken);
+        // setToken(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken);
     
         let config = {
           headers: { Authorization: `Bearer ${token}` },

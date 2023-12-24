@@ -1,10 +1,13 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
+import { Box, Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Flex, useDisclosure } from "@chakra-ui/react";
 import Link from "next/link";
 
 export default function Last(){
     const insc = "S’incrire"
+    const { isOpen, onOpen, onClose } = useDisclosure()
     return(
-        <Flex  marginTop={"20px"}>
+        <>
+        <Flex  marginTop={"20px"} display={{base:"none",lg:"flex"}}>
         <Button width={"126px"} height={"48px"} borderRadius={"16px"}
         fontSize={"16px"}
         fontWeight={700} bgColor={"white"}
@@ -32,5 +35,68 @@ export default function Last(){
         Connexion
         </Button>
         </Flex>
+        <Box display={{base:"grid",lg:"none"}} onClick={onOpen} cursor={"pointer"}>
+            <Flex>
+                <HamburgerIcon mt={3} fontSize={"20px"} mr={2}/>
+                <Button variant={"unstyled"} >
+        Menu
+      </Button>
+            </Flex>
+        
+      <Drawer  onClose={onClose} isOpen={isOpen}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerHeader>Menu</DrawerHeader>
+          <DrawerBody >
+            <Box display={"grid"} ml={"20%"}>
+          <Button width={"126px"} height={"48px"} borderRadius={"16px"}
+        fontSize={"16px"}
+        fontWeight={700} bgColor={"white"}
+        
+        mt={5}
+        _hover={{
+            bgColor:"white",
+      
+            textDecoration:"none"
+        }}  as={Link} href={"/"}>Accueil</Button>
+        
+            <Button width={"126px"} height={"48px"} borderRadius={"16px"}
+        fontSize={"16px"}
+        fontWeight={700} bgColor={"white"}
+        color={"#219EF9"}
+        mt={5}
+        _hover={{
+            bgColor:"white",
+            color:"#219EF9",
+            border:"2px solid #219EF9",
+            borderRadius:"16px",
+            textDecoration:"none"
+        }} border={"2px solid #219EF9"} as={Link} href={"/Inscription"}>
+        {insc}
+        </Button>
+        <Button width={"126px"} height={"48px"} borderRadius={"16px"}
+        fontSize={"16px"}
+        fontWeight={700} bgColor={"#219EF9"}
+        color={"#FDFDFD"}
+        mt={5}
+        _hover={{
+            bgColor:"#219EF9",
+            color:"#FDFDFD",
+            border:"2px solid #219EF9",
+            borderRadius:"16px",
+            textDecoration:"none"
+        }} border={"2px solid #219EF9"}  as={Link} href={"/Connexion"}>
+        Se Connecter
+        </Button>
+
+           
+        </Box>  
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+
+        </Box>
+        
+        </>
     )
 }

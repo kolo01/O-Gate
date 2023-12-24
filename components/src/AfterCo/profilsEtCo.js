@@ -7,19 +7,19 @@ export default function Profilers(){
     const [nom,setNom] = useState("")
     const router = useRouter()
     useEffect(()=>{
-        try{
-            if(JSON.parse(secureLocalStorage.getItem("local")).data.nom == "NON DEFINI"){
-                setNom("NON DEFINI")
-               }else{
-                setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
-               }
-        }catch (error){
+        // try{
+        //     if(JSON.parse(secureLocalStorage.getItem("local")).data.nom == "NON DEFINI"){
+        //         setNom("NON DEFINI")
+        //        }else{
+        //         setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
+        //        }
+        // }catch (error){
         
-            router.push("/")
-        }
+        //     router.push("/")
+        // }
       
     },[nom,router])
-    return(<Box>
+    return(<Box display={{base:"none",lg:"grid"}}>
     <Box borderRadius={"25px"} p={10} width={"240px"} height={"144px"}  boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"} >
         <Center><Avatar/></Center>
         <Text textAlign={"center"}  fontWeight={700}> {nom}</Text>

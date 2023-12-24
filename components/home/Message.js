@@ -26,7 +26,7 @@ export default function Messages(
     }
   return (
     <>
-      <Box width={"542px"} height={"fit-content"} py={2} mb={5} bgColor={"white"} borderRadius={25} p={5} >
+      <Box width={{base:"400px",lg:"542px"}} height={"fit-content"} py={2} mb={5} bgColor={"white"} borderRadius={25} p={5} >
         <Flex justifyContent={"space-between"} >
           <Flex mt={2} ml={5}>
             <Avatar />
