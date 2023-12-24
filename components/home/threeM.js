@@ -32,16 +32,16 @@ export default function ThreeSecM(){
 
     
     useEffect(()=>{
-        // try{
-        //     if(JSON.parse(secureLocalStorage.getItem("local")).data.nom == "NON DEFINI"){
-        //         setNom("NON DEFINI")
-        //        }else{
-        //         setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
-        //        }
-        // }catch (error){
+        try{
+            if(JSON.parse(secureLocalStorage.getItem("local")).data.nom == "NON DEFINI"){
+                setNom("NON DEFINI")
+               }else{
+                setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
+               }
+        }catch (error){
             
-        //     router.push("/")
-        // }
+            router.push("/")
+        }
       
     },[nom,router])
 

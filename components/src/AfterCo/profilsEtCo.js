@@ -7,16 +7,16 @@ export default function Profilers(){
     const [nom,setNom] = useState("")
     const router = useRouter()
     useEffect(()=>{
-        // try{
-        //     if(JSON.parse(secureLocalStorage.getItem("local")).data.nom == "NON DEFINI"){
-        //         setNom("NON DEFINI")
-        //        }else{
-        //         setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
-        //        }
-        // }catch (error){
+        try{
+            if(JSON.parse(secureLocalStorage.getItem("local")).data.nom == "NON DEFINI"){
+                setNom("NON DEFINI")
+               }else{
+                setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
+               }
+        }catch (error){
         
-        //     router.push("/")
-        // }
+            router.push("/")
+        }
       
     },[nom,router])
     return(<Box display={{base:"none",lg:"grid"}}>

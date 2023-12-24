@@ -8,16 +8,16 @@ export default function Suggestion(){
     const [nom,setNom] = useState("")
     const router = useRouter()
     useEffect(()=>{
-      // try{
-      //     if(JSON.parse(secureLocalStorage.getItem("local")).data.nom == "NON DEFINI"){
-      //         setNom("NON DEFINI")
-      //        }else{
-      //         setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
-      //        }
-      // }catch (error){
+      try{
+          if(JSON.parse(secureLocalStorage.getItem("local")).data.nom == "NON DEFINI"){
+              setNom("NON DEFINI")
+             }else{
+              setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
+             }
+      }catch (error){
        
-      //     router.push("/")
-      // }
+          router.push("/")
+      }
     
   },[nom,router])
     return(<Box borderRadius={"25px"}  py={5}  width={"250px"} height={"fit-content"} display={{base:"none",lg:"grid"}}  boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}>

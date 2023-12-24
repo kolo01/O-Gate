@@ -136,22 +136,22 @@ export default function Home(){
     const router = useRouter()
   const [checker,setChecker] = useState(false)
 
-    // useEffect(()=>{
-    //     try{
-    //         // // console.log(secureLocalStorage.getItem("local"))
-    //         // if(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken.length >10){
-    //         //     setChecker(true)
-    //         // }else{
-    //         //     router.push("/")
-    //         // }
-    //     }catch (error){
-    //         // console.log(error)
-    //         router.push("/")
-    //     }
+    useEffect(()=>{
+        try{
+            // console.log(secureLocalStorage.getItem("local"))
+            if(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken.length >10){
+                setChecker(true)
+            }else{
+                router.push("/")
+            }
+        }catch (error){
+            // console.log(error)
+            router.push("/")
+        }
        
        
-    // },[router])
-    // if(checker){
+    },[router])
+    if(checker){
         return(
             <Box  bgColor={"#F6F6F6"} mb={10} >
            <NavbarCo/>
@@ -186,4 +186,4 @@ export default function Home(){
             )
     }
     
-// }
+}

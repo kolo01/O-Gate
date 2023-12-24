@@ -68,7 +68,7 @@ const CheckedQuartier = (index,valeur)=>[
   //variable pour Besoin
   //fin des declarations
   useEffect(() => {
-    // setToken(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken);
+    setToken(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken);
 
     let config = {
       headers: { Authorization: `Bearer ${token}` },
