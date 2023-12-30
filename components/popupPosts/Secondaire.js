@@ -37,7 +37,7 @@ export default function Secondaire() {
     const [nbSbain,SetNbSbain] = useState(0)
     const [nbSalon,SetNbSalon] = useState(0)
     const [prix,SetPrix] = useState(0)
-    const [periodicite,SetPeriodicite ] = useState("jours")
+    const [periodicite,SetPeriodicite ] = useState("JOUR")
     const [apportInit,SetApportInit ] = useState(0)
 
     
