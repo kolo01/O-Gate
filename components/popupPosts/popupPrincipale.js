@@ -18,16 +18,41 @@ export default function PrincipalePopup() {
       };
     
 
-
-      const [typebienId, setTypebienId] = useState([]);
-      const [documentId, setDocumentId] = useState([]);
-      const [quartierId, setQuartierId] = useState([]);
-      const [bienId, setBienId] = useState([]);
-      const [TypePoste, setTypePoste] = useState("");
-     
+    ///Fonction des checkbox
+   
+    const CheckedDoc = (index,valeur,bool)=>{
       
-      const [StypeBien, setStypeBien] = useState("");
-      const [meuble, setMeuble] = useState("NON DEFINI");
+      if(bool == true){
+        checkedD[index] = valeur
+       
+            }else{
+              checkedD[index] = ""
+            }
+          }
+  
+    ///fin des declarations
+  
+  ///Variable de recuperation des champs dans la base de donnée
+  const [typebienId, setTypebienId] = useState([]);
+  const [documentId, setDocumentId] = useState([]);
+  const [quartierId, setQuartierId] = useState([]);
+  const [bienId, setBienId] = useState([]);
+
+
+  ///Fin de la recuperation
+
+
+
+    ///variable pour Post
+    const [TypePoste, setTypePoste] = useState("1");
+    const [checkedD,setCheckedD] = useState([])//utiliser pour recuperer les documents cochés
+    const [checkedB,setCheckedB] = useState([])//utiliser pour recuperer les info additionelles sur les biens cochés
+    const [checkedQ,setCheckedQ] = useState([])//utiliser pour recuperer les info addictionnelle sur le quartier cochés
+    
+    
+    const [StypeBien, setStypeBien] = useState(0);
+    const [meuble, setMeuble] = useState("NON DEFINI");
+    //fin des declarations
       //fin des declarations
       useEffect(() => {
         setToken(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken);
@@ -66,6 +91,13 @@ export default function PrincipalePopup() {
         })
     
       }, [token]);
+
+const handleSubmit = () =>{
+  sessionStorage.setItem("typePoste",JSON.stringify(TypePoste))
+  sessionStorage.setItem("meuble",JSON.stringify(meuble))
+  sessionStorage.setItem("typeBien",JSON.stringify(parseInt(StypeBien)))
+  sessionStorage.setItem("typeDocument",JSON.stringify(checkedD))
+}
 
   return (
     <>
@@ -109,7 +141,7 @@ export default function PrincipalePopup() {
         <option value={"INFORMATION"}>INFORMATION</option>
         <option value={"VENTE"}>VENTE</option>
         <option value={"LOCATION"}>LOCATION</option>
-        <option value={"LOCATION-VENTE"}>LOCATION-VENTE</option>
+     
         <option value={"MEDIA"}>MEDIA</option>
       </Select>
     </Box>
@@ -118,16 +150,16 @@ export default function PrincipalePopup() {
         <Text>Type de bien</Text>
         <Select onChange={(e) => setStypeBien(e.target.value)}>
           {typebienId.map((data, index) => (
-            <option key={index} value={data.designation}>
+            <option key={index} value={parseInt(index+1)}>
               {data.designation}
             </option>
           ))}
         </Select>
       </Box>
     </Box>
-    {StypeBien.length > 2 ? (
+    {parseInt(StypeBien)<3 ? (
       <>
-        {StypeBien == "Habitation" || StypeBien == "Studio" ? (
+        {StypeBien == "1" || StypeBien == "2" ? (
           <Box  mt={2}>
             <Text>Meublé?</Text>
             <RadioGroup onChange={(e) => setMeuble(e)}>
@@ -166,7 +198,9 @@ export default function PrincipalePopup() {
           </ModalBody>
 
           <ModalFooter>
+            <Box onClick={()=>handleSubmit()}>
            <Secondaire/>
+           </Box>
             <Button variant="ghost" onClick={onClose}>Fermer</Button>
           </ModalFooter>
         </ModalContent>

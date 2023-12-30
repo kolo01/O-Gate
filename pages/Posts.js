@@ -89,15 +89,15 @@ console.log(valeur)
 
     ///variable pour Post
     const [TypePoste, setTypePoste] = useState("");
-    const [checkedD,setCheckedD] = useState([1,1,1])//utiliser pour recuperer les documents cochés
-    const [checkedB,setCheckedB] = useState([1,1,1])//utiliser pour recuperer les info additionelles sur les biens cochés
-    const [checkedQ,setCheckedQ] = useState([1,1,1])//utiliser pour recuperer les info addictionnelle sur le quartier cochés
+    const [checkedD,setCheckedD] = useState([])//utiliser pour recuperer les documents cochés
+    const [checkedB,setCheckedB] = useState([])//utiliser pour recuperer les info additionelles sur les biens cochés
+    const [checkedQ,setCheckedQ] = useState([])//utiliser pour recuperer les info addictionnelle sur le quartier cochés
     const [nbPiece,SetNbPiece] = useState(0)
     const [nbChambre,SetNbChambre] = useState(0)
     const [nbSbain,SetNbSbain] = useState(0)
     const [nbSalon,SetNbSalon] = useState(0)
     const [prix,SetPrix] = useState(0)
-    const [periodicite,SetPeriodicite ] = useState("jours")
+    const [periodicite,SetPeriodicite ] = useState("JOUR")
     const [apportInit,SetApportInit ] = useState(0)
     const [doctype, setDocType] = useState("IMAGE");
     const [accepted, setAccepted] = useState("image/*");
@@ -110,7 +110,7 @@ console.log(valeur)
     const [ville,setVille] = useState("none")
     const [desc,setDesc] = useState("none")
     
-    const [StypeBien, setStypeBien] = useState("");
+    const [StypeBien, setStypeBien] = useState(0);
     const [meuble, setMeuble] = useState("NON DEFINI");
     //fin des declarations
   
@@ -179,7 +179,7 @@ console.log(valeur)
         autreInfoSurQuartier: OtherQ,
         description: desc,
         fichierIds: fichiersId,
-        id: 0,
+        id: 1,
         informationAdditionnelleSurBienIds:checkedB,
         informationAdditionnelleSurQuartierIds: checkedQ,
         latitude: lat,
@@ -191,7 +191,7 @@ console.log(valeur)
         periodicite:periodicite,
         prix: prix,
         typeAppartement: meuble,
-        typeBienId: StypeBien,
+        typeBienId: parseInt(StypeBien),
         typeDocumentIds: checkedD,
         typeFichier: doctype,
         typePost: TypePoste,
@@ -236,7 +236,7 @@ console.log(valeur)
         <option value={"INFORMATION"}>INFORMATION</option>
         <option value={"VENTE"}>VENTE</option>
         <option value={"LOCATION"}>LOCATION</option>
-        <option value={"LOCATION-VENTE"}>LOCATION-VENTE</option>
+        
         <option value={"MEDIA"}>MEDIA</option>
       </Select>
     </Box>
@@ -245,16 +245,16 @@ console.log(valeur)
         <Text>Type de bien</Text>
         <Select onChange={(e) => setStypeBien(e.target.value)}>
           {typebienId.map((data, index) => (
-            <option key={index} value={data.designation}>
+            <option key={index}  onClick={()=>console.log(typeof(StypeBien))} value={parseInt(index+1)}>
               {data.designation}
             </option>
           ))}
         </Select>
       </Box>
     </Box>
-    {StypeBien.length > 2 ? (
+    {parseInt(StypeBien) > 0 ? (
       <>
-        {StypeBien == "Habitation" || StypeBien == "Studio" ? (
+        {StypeBien == "1" || StypeBien == "2" ? (
           <Box ml={5} mt={2}>
             <Text>Meublé?</Text>
             <RadioGroup onChange={(e) => setMeuble(e)}>
@@ -322,7 +322,7 @@ console.log(valeur)
               <option value={"ANNEE"}>Année</option>
           </Select>
           </Box> 
-          {TypePoste == "LOCATION-VENTE" ? <Box  mt={2} width={"100%"}>
+          {(TypePoste == "LOCATION"||TypePoste == "VENTE") ? <Box  mt={2} width={"100%"}>
           <Text fontWeight={600}>Apport initial</Text>
           <Input type='number'  width={"80%"}onChange={(e)=>SetApportInit(e.target.valueAsNumber)} placeholder="Apport initial" maxLength={12} />
           </Box>  :<></>}

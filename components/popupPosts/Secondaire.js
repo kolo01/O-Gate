@@ -15,7 +15,7 @@ import {
   Select,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Troisieme from "./troisieme";
 
 export default function Secondaire() {
@@ -32,9 +32,6 @@ export default function Secondaire() {
 
     ///variable pour Post
     const [TypePoste, setTypePoste] = useState("");
-    const [checkedD,setCheckedD] = useState([1,1,1])//utiliser pour recuperer les documents cochés
-    const [checkedB,setCheckedB] = useState([1,1,1])//utiliser pour recuperer les info additionelles sur les biens cochés
-    const [checkedQ,setCheckedQ] = useState([1,1,1])//utiliser pour recuperer les info addictionnelle sur le quartier cochés
     const [nbPiece,SetNbPiece] = useState(0)
     const [nbChambre,SetNbChambre] = useState(0)
     const [nbSbain,SetNbSbain] = useState(0)
@@ -42,19 +39,26 @@ export default function Secondaire() {
     const [prix,SetPrix] = useState(0)
     const [periodicite,SetPeriodicite ] = useState("jours")
     const [apportInit,SetApportInit ] = useState(0)
-    const [doctype, setDocType] = useState("IMAGE");
-    const [accepted, setAccepted] = useState("image/*");
-    const [fichiers, setFichiers] = useState([]); //utiliser pour recuperer les images dans post et Besoin
-    const [fichiersId, setFichiersId] = useState([]); //utiliser pour recuperer les id dans la bd
-    const [OtherB,setOtherB] = useState("")
-    const [OtherQ,setOtherQ] = useState("")
-    const [lat,setLat] = useState(0)
-    const [long,setLong] = useState(0)
-    const [ville,setVille] = useState("none")
-    const [desc,setDesc] = useState("none")
+
     
-    const [StypeBien, setStypeBien] = useState("");
-    const [meuble, setMeuble] = useState("NON DEFINI");
+  
+      const handle =()=>{
+        setTypePoste(JSON.parse(sessionStorage.getItem("typePoste")))
+      }
+
+      const handleSubmit=()=>{
+        sessionStorage.setItem("NPieces",JSON.stringify(nbPiece))
+        sessionStorage.setItem("NChambre",JSON.stringify(nbChambre))
+        sessionStorage.setItem("NBain",JSON.stringify(parseInt(nbSbain)))
+        sessionStorage.setItem("NSalon",JSON.stringify(nbSalon))
+        sessionStorage.setItem("Prix",JSON.stringify(prix))
+        sessionStorage.setItem("Periodicite",JSON.stringify(periodicite))
+        sessionStorage.setItem("Apport",JSON.stringify(apportInit))
+      }
+   
+    useEffect(()=>{
+      handle()
+    })
     //fin des declarations
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -145,7 +149,7 @@ export default function Secondaire() {
                   <option value={"ANNEE"}>Année</option>
                 </Select>
               </Box>
-              {/* {TypePoste == "LOCATION-VENTE" ? (
+              {(TypePoste == "LOCATION" || TypePoste == "VENTE") ? (
                 <Box mt={2} width={"100%"}>
                   <Text fontWeight={600}>Apport initial</Text>
                   <Input
@@ -158,12 +162,14 @@ export default function Secondaire() {
                 </Box>
               ) : (
                 <></>
-              )} */}
+              )}
             </SimpleGrid>
           </ModalBody>
 
           <ModalFooter>
+            <Box onClick={()=>handleSubmit()}>
            <Troisieme/>
+           </Box>
             <Button variant="ghost" onClick={onClose}>Revenir</Button>
           </ModalFooter>
         </ModalContent>
