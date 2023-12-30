@@ -15,7 +15,14 @@ export default function Messages(
   propio,
   date,
   message,
-  image,}
+  image,appart,
+  doc,
+  init,
+  prix,
+  periodicite,
+  ville,piece,
+  chambre,
+  salon}
   
 ) {
   const Imaged = ["./images/P1.jpeg","./images/P2.jpeg","./images/P3.jpeg","./images/p4.jpeg"]
@@ -52,10 +59,55 @@ export default function Messages(
           </Button>
         </Flex>
         <Flex>
-        <Text width={"90%"} my={5} noOfLines={5}>{message}</Text>
-        <Button mt={"110px"} onClick={()=>HandleDrawner()} bgColor={"transparent"} _hover={{
+        <Box ml={5}>
+        <Flex>
+            <Flex mr={5}>
+            <Text mr={2} fontWeight={600}>Ville : </Text>
+            <Text>{ville}</Text>
+            </Flex>
+            <Flex>
+            <Text mr={2} fontWeight={600}>Prix : </Text>
+            <Text>{prix}</Text>
+          </Flex>
+          </Flex>
+
+          <Flex>
+          <Flex mr={5}>
+            <Text mr={2} fontWeight={600}>Type : </Text>
+            <Text>{appart.designation}</Text>
+          </Flex>
+          <Flex>
+            <Text mr={2} fontWeight={600}>Apport initial : </Text>
+            <Text>{init}</Text>
+          </Flex>
+          </Flex>
+         
+          <Flex>
+          <Flex mr={5}>
+            <Text mr={2} fontWeight={600}>Periodicité : </Text>
+            <Text>{periodicite}</Text>
+          </Flex>
+          <Flex>
+            <Text mr={2} fontWeight={600}>N° Pièces : </Text>
+            <Text>{piece}</Text>
+          </Flex>
+          </Flex>
+
+          <Flex>
+          <Flex mr={5}>
+            <Text mr={2} fontWeight={600}>N° Chambre : </Text>
+            <Text>{chambre}</Text>
+          </Flex>
+          <Flex>
+            <Text mr={2} fontWeight={600}>N° Salon : </Text>
+            <Text>{salon}</Text>
+          </Flex>
+          </Flex>
+         
+        </Box>
+        {/* <Button mt={"110px"} onClick={()=>HandleDrawner()} bgColor={"transparent"} _hover={{
           bgColor:"transparent"
-        }}>Voir plus</Button>
+        }}>Voir plus</Button> */}
         </Flex>
         
         {/* <Text width={"50%"}>{"message"}</Text> */}
@@ -68,7 +120,7 @@ export default function Messages(
         bgSize={"contain"}
          mb={2}>
           <Carousel autoPlay infiniteLoop>
-            {Imaged.map((images,index)=><Box key={index} width="full"
+            {image.map((images,index)=><Box key={index} width="full"
               height={"349px"}
               bgRepeat={"no-repeat"}
               bgSize={"contain"}

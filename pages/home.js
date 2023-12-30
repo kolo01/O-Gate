@@ -9,12 +9,16 @@ import Suggestion from "@/components/src/AfterCo/suggestion";
 import Logo from "@/components/src/Logo";
 import { Search2Icon } from "@chakra-ui/icons";
 import { AspectRatio, Avatar, Box, Center, Flex, Icon, Image, Input, InputGroup, InputRightAddon, InputRightElement, Link, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
+import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 import { useStyleRegistry } from "styled-jsx";
 
 export default function Home(){
+    const [message,setMessage] = useState([])
+    const [token,setToken] = useState("")
+
     const message2=[
         {
             idM:"1",
@@ -137,20 +141,35 @@ export default function Home(){
   const [checker,setChecker] = useState(false)
 
     useEffect(()=>{
+      
+
         try{
             // console.log(secureLocalStorage.getItem("local"))
             if(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken.length >10){
                 setChecker(true)
+                setToken(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken);
+    
+                let config = {
+                  headers: { Authorization: `Bearer ${token}` },
+                };
+        
+                axios
+                .get(
+                  "http://185.98.139.246:9090/ogatemanagement-api/client/rechercherpublicationparpage?page=0&taille=10",
+                  config
+                )
+                .then((response) => setMessage(response.data.donnee.publications))
+                .catch((error) => {});
             }else{
                 router.push("/")
             }
         }catch (error){
-            // console.log(error)
-            router.push("/")
+            console.log(error)
+            // router.push("/")
         }
        
        
-    },[router])
+    },[router,token])
     if(checker){
         return(
             <Box  bgColor={"#F6F6F6"} mb={10} >
@@ -174,7 +193,9 @@ export default function Home(){
                         </AspectRatio>
                     
                   
-                    {message2.map((data,ind)=><Box key={ind} scr><Messages  idM={data.idM} propio={data.propio} date={data.date} image={data.image} message={data.message}/></Box>)}
+                    {message.map((data,ind)=><Box key={ind} scr><Messages  idM={data.id} propio={data.Client} date={data.datePublication} image={data.fichiers} message={data.description} appart={data.typeBien} doc={data.typeDocuments} init={data.apportInitial} prix={data.prix} periodicite={data.periodicite} ville={data.localisation} piece={data.nombrePieces}
+                    chambre={data.nombreChambres} salon={data.nombreSalon}
+                    /></Box>)}
                     
                 </Box>
                 <Box display={["none","none","none","grid","grid"]} >
