@@ -43,6 +43,10 @@ export default function Messages(
 ) {
   const Imaged = ["./images/P1.jpeg","./images/P2.jpeg","./images/P3.jpeg","./images/p4.jpeg"]
   const [commented,setCommented]=useState("")
+  const [commentaire,setCommentaire]=useState(0)
+  const [likes,setLikes]=useState(0)
+  const [share,setShare]=useState(0)
+  const [follow,setFollow]=useState(0)
 const toast = useToast()
   
   const [token, setToken] = useState("");
