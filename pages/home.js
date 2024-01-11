@@ -158,7 +158,7 @@ export default function Home(){
                   "http://185.98.139.246:9090/ogatemanagement-api/client/rechercherpublicationparpage?page=0&taille=10",
                   config
                 )
-                .then((response) => setMessage(response.data.donnee.publications))
+                .then((response) => {setMessage(response.data.donnee.publications),console.log("message",response.data.donnee.publications)})
                 .catch((error) => {});
             }else{
                 router.push("/")

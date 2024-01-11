@@ -6,9 +6,25 @@ import { Avatar, Box, Button, Flex, Image, Text,  Drawer,
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-  Center, } from "@chakra-ui/react";
+  Center,
+  useToast,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Input,
+  Textarea, } from "@chakra-ui/react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { FcLike } from "react-icons/fc";
+import { MdMessage, MdSaveAlt } from "react-icons/md";
+import { PiShareBold } from "react-icons/pi";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import secureLocalStorage from "react-secure-storage";
 
 export default function Messages(
 {  idM,
@@ -26,6 +42,68 @@ export default function Messages(
   
 ) {
   const Imaged = ["./images/P1.jpeg","./images/P2.jpeg","./images/P3.jpeg","./images/p4.jpeg"]
+  const [commented,setCommented]=useState("")
+const toast = useToast()
+  
+  const [token, setToken] = useState("");
+  let config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  //fin des declarations
+ 
+useEffect(() => {
+    setToken(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken);}
+    ,[])
+
+
+  const liked =async (id) => {
+    axios
+    .post(
+      `http://185.98.139.246:9090/ogatemanagement-api/client/likerpublication/${id}`,{"publicationId ":id},config,
+
+    )
+    .then((response) =>{toast({title:"Succès",duration:9000,status:"success",description:response.data.donnee})})
+    .catch((error) => {});
+   
+  }
+  
+  const Favoris =async (id) => {
+    axios
+    .post(
+      `http://185.98.139.246:9090/ogatemanagement-api/client/enregistrerfavoris/${id}`,{"publicationId ":id},config,
+
+    )
+    .then((response) =>{toast({title:"Succès, favoris ajouté",duration:9000,status:"success",description:response.data.donnee})})
+    .catch((error) => {});
+   
+  }
+
+  const Interesse =async (id) => {
+    axios
+    .post(
+      `http://185.98.139.246:9090/ogatemanagement-api/client/interesse/${id}`,{"publicationId ":id},config,
+
+    )
+    .then((response) =>{toast({title:"Succès, favoris ajouté",duration:9000,status:"success",description:response.data.donnee})})
+    .catch((error) => {});
+   
+  }
+  
+  const Comment =async (id) => {
+    axios
+    .post(
+      `http://185.98.139.246:9090/ogatemanagement-api/client/enregistrercommentaire`,{"publicationId ":id,"message":commented},config,
+
+    )
+    .then((response) =>{toast({title:"Succès",duration:9000,status:"success",description:response.data.donnee}),setCommented(""),onClose()})
+    .catch((error) => {});
+   
+  }
+
+
+
+
   const { isOpen, onOpen, onClose } = useDisclosure()
     const item =[{images:"./like.png",alte:"like"},{images:"./comment.png",alte:"comment"},{images:"./share.png",alte:"share"},{images:"./save.png",alte:"save"},]
     const HandleDrawner=()=>{
@@ -33,7 +111,7 @@ export default function Messages(
     }
   return (
     <>
-      <Box width={{base:"400px",lg:"542px"}} height={"fit-content"} py={2} mb={5} bgColor={"white"} borderRadius={25} p={5} >
+      <Box width={{base:"400px",lg:"542px"}} height={"fit-content"} py={5} mb={5} bgColor={"white"} borderRadius={25} p={5} >
         <Flex justifyContent={"space-between"} >
           <Flex mt={2} ml={5}>
             <Avatar />
@@ -49,6 +127,7 @@ export default function Messages(
             </Box>
           </Flex>
           <Button
+          onClick={()=>{Interesse(idM)}}
             bgColor={"white"}
             color={"#219EF9"}
             _hover={{
@@ -70,7 +149,6 @@ export default function Messages(
             <Text>{prix}</Text>
           </Flex>
           </Flex>
-
           <Flex>
           <Flex mr={5}>
             <Text mr={2} fontWeight={600}>Type : </Text>
@@ -80,8 +158,7 @@ export default function Messages(
             <Text mr={2} fontWeight={600}>Apport initial : </Text>
             <Text>{init}</Text>
           </Flex>
-          </Flex>
-         
+          </Flex>        
           <Flex>
           <Flex mr={5}>
             <Text mr={2} fontWeight={600}>Periodicité : </Text>
@@ -92,7 +169,6 @@ export default function Messages(
             <Text>{piece}</Text>
           </Flex>
           </Flex>
-
           <Flex>
           <Flex mr={5}>
             <Text mr={2} fontWeight={600}>N° Chambre : </Text>
@@ -103,14 +179,8 @@ export default function Messages(
             <Text>{salon}</Text>
           </Flex>
           </Flex>
-         
         </Box>
-        {/* <Button mt={"110px"} onClick={()=>HandleDrawner()} bgColor={"transparent"} _hover={{
-          bgColor:"transparent"
-        }}>Voir plus</Button> */}
         </Flex>
-        
-        {/* <Text width={"50%"}>{"message"}</Text> */}
         <Box
         width={"full"}
         // bgImage={image}
@@ -129,52 +199,33 @@ export default function Messages(
             />)}
           </Carousel>
         </Box>
+        {/* LES BUTTONS SOUS LA PUB */}
         <Flex width={"192px"} height={"36px"}>
-            {item.map((data,index)=><Image key={index} src={data.images} alt={data.alte}/>)}
+          <Flex cursor={"pointer"}mr={2} onClick={()=>liked(idM)}><FcLike size={30}/></Flex>
+          <Flex cursor={"pointer"}mr={2}><MdMessage onClick={onOpen} size={30}/></Flex>
+          <Flex cursor={"pointer"}mr={2}><PiShareBold size={30}/></Flex>
+          <Flex cursor={"pointer"}mr={2} onClick={()=>Favoris(idM)}><MdSaveAlt size={30}/></Flex>
         </Flex>
       </Box>
 
 
-      <Drawer onClose={onClose} isOpen={isOpen} size={"full"}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader><Center>{`Vente de maison`}</Center></DrawerHeader>
-          <DrawerBody mx={"20%"} display={"grid"}>
-            <Box mb={10}>
-           <Text fontWeight={600} fontSize={"15px"}>
-           {message}
-           </Text>
-           <Center width={"full"}>
-           <Box
-           cursor={"pointer"}
-           mt={5}
-        width={"450px"}
-        // bgImage={image}
-        // bgColor={"gray"}
-        height={"250px"}
-        bgRepeat={"no-repeat"}
-        bgSize={"contain"}
-         mb={2}>
-          <Carousel autoPlay infiniteLoop showIndicators={false}  >
-            {Imaged.map((images,index)=><Box key={index} width="400px"
-              height={"349px"}
-              bgRepeat={"no-repeat"}
-              bgSize={"cover"}
-        bgImage={images}
-              
-            />)}
-          </Carousel>
-        </Box>
-        </Center>
-        </Box>
-        <Box mt={[20,20,20,10,10]}>
-          <Text fontSize={"25px"} fontWeight={700}>Commentaires</Text>
-        </Box>
-        
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Commenter la publication de {propio} </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+           <Text mb={2} fontWeight={600}>Message : </Text>
+           <Textarea placeholder="Commentaires"  onChange={(e)=>setCommented(e.target.value)}/>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} isDisabled={commented.length<2} onClick={()=>Comment(idM)} >
+              Publier
+            </Button>
+            <Button variant='ghost' onClick={onClose}>Fermer</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 }

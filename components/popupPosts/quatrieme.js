@@ -142,7 +142,7 @@ import secureLocalStorage from "react-secure-storage";
          autreInfoSurQuartier: JSON.parse(sessionStorage.getItem("OAddQuart")),
          description: desc,
          fichierIds: fichiersId,
-         id: 1,
+         
          informationAdditionnelleSurBienIds:JSON.parse(sessionStorage.getItem("IAddBien")),
          informationAdditionnelleSurQuartierIds: JSON.parse(sessionStorage.getItem("IAddQuart")),
          latitude: lat,
