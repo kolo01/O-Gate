@@ -143,7 +143,7 @@ export default function Box2() {
   <AbsoluteCenter bg='white' px='4'>
     Ou
   </AbsoluteCenter>
-</Box>s
+</Box>
           <Button
             mt={5}
             bgColor="transparent"
