@@ -12,7 +12,7 @@ export default function Offers(){
     const router = useRouter()
 
   useEffect(()=>{
-      // setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
+      // setNom(JSON.parse(localStorage.getItem("local")).data.nom)
       setNom("Default user")
   },[nom])
     return(<Box bgColor={"#F6F6F6"} pb={10} h={"45em"}>

@@ -27,7 +27,7 @@ export default function Box2(){
             password : password
         }).then( (response)=>{
             // console.log(JSON.stringify(response))
-            secureLocalStorage.setItem("local",JSON.stringify(response))
+            localStorage.setItem("local",JSON.stringify(response))
             toast({
                 status:"success",duration: 3000,description:"Merci pour votre confiance",title:"Connexion Approuvé!"
             })

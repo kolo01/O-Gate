@@ -38,7 +38,8 @@ export default function Messages(
   periodicite,
   ville,piece,
   chambre,
-  salon}
+  salon,like,comment,
+  favoris}
   
 ) {
   const Imaged = ["./images/P1.jpeg","./images/P2.jpeg","./images/P3.jpeg","./images/p4.jpeg"]
@@ -57,8 +58,17 @@ const toast = useToast()
   //fin des declarations
  
 useEffect(() => {
-    setToken(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken);}
-    ,[])
+    setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
+    let config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios.get(
+                  `http://185.98.139.246:9090/ogatemanagement-api/client/recherchercommentairesparpublication/${idM}`,{page:0,taille:10,publicationId:idM},
+                  config
+                )
+                .then((response) => {console.log("responseeee",response.data.donnee.publications)})
+                .catch((error) => {});}
+    ,[token,idM])
 
 
   const liked =async (id) => {
@@ -205,10 +215,10 @@ useEffect(() => {
         </Box>
         {/* LES BUTTONS SOUS LA PUB */}
         <Flex width={"192px"} height={"36px"}>
-          <Flex cursor={"pointer"}mr={2} onClick={()=>liked(idM)}><FcLike size={30}/></Flex>
-          <Flex cursor={"pointer"}mr={2}><MdMessage onClick={onOpen} size={30}/></Flex>
+          <Flex cursor={"pointer"}mr={2} onClick={()=>liked(idM)}>{like}<FcLike size={30}/></Flex>
+          <Flex cursor={"pointer"}mr={2}>{comment}<MdMessage onClick={onOpen} size={30}/></Flex>
           <Flex cursor={"pointer"}mr={2}><PiShareBold size={30}/></Flex>
-          <Flex cursor={"pointer"}mr={2} onClick={()=>Favoris(idM)}><MdSaveAlt size={30}/></Flex>
+          <Flex cursor={"pointer"}mr={2} onClick={()=>Favoris(idM)}>{favoris}<FcLike size={30}/></Flex>
         </Flex>
       </Box>
 

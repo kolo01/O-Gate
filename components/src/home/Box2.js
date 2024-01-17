@@ -36,7 +36,7 @@ export default function Box2() {
       })
       .then(async (response) => {
         // console.log(JSON.stringify(response))
-        await secureLocalStorage.setItem("local", JSON.stringify(response));
+        await localStorage.setItem("local", JSON.stringify(response));
         toast({
           status: "success",
           duration: 3000,

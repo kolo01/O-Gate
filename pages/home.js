@@ -144,10 +144,10 @@ export default function Home(){
       
 
         try{
-            // console.log(secureLocalStorage.getItem("local"))
-            if(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken.length >10){
+            // console.log(localStorage.getItem("local"))
+            if(JSON.parse(localStorage.getItem("local")).data.accessToken.length >10){
                 setChecker(true)
-                setToken(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken);
+                setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
     
                 let config = {
                   headers: { Authorization: `Bearer ${token}` },
@@ -158,7 +158,7 @@ export default function Home(){
                   "http://185.98.139.246:9090/ogatemanagement-api/client/rechercherpublicationparpage?page=0&taille=10",
                   config
                 )
-                .then((response) => {setMessage(response.data.donnee.publications),console.log("message",response.data.donnee.publications)})
+                .then((response) => {setMessage(response.data.donnee.publications)})
                 .catch((error) => {});
             }else{
                 router.push("/")
@@ -169,7 +169,7 @@ export default function Home(){
         }
        
        
-    },[router,token])
+    },[router,token,message])
     if(checker){
         return(
             <Box  bgColor={"#F6F6F6"} mb={10} >
@@ -193,7 +193,7 @@ export default function Home(){
                         </AspectRatio>
                     
                   
-                    {message.map((data,ind)=><Box key={ind} scr><Messages  idM={data.id} propio={data.Client} date={data.datePublication} image={data.fichiers} message={data.description} appart={data.typeBien} doc={data.typeDocuments} init={data.apportInitial} prix={data.prix} periodicite={data.periodicite} ville={data.localisation} piece={data.nombrePieces}
+                    {message.map((data,ind)=><Box key={ind} scr><Messages like={data.nombrelike} comment={data.nombrecommentaire} favoris={data.nombrefavoris} idM={data.id} propio={data.Client} date={data.datePublication} image={data.fichiers} message={data.description} appart={data.typeBien} doc={data.typeDocuments} init={data.apportInitial} prix={data.prix} periodicite={data.periodicite} ville={data.localisation} piece={data.nombrePieces}
                     chambre={data.nombreChambres} salon={data.nombreSalon}
                     /></Box>)}
                     

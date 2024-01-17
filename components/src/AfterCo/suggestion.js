@@ -9,10 +9,10 @@ export default function Suggestion(){
     const router = useRouter()
     useEffect(()=>{
       try{
-          if(JSON.parse(secureLocalStorage.getItem("local")).data.nom == "NON DEFINI"){
+          if(JSON.parse(localStorage.getItem("local")).data.nom == "NON DEFINI"){
               setNom("NON DEFINI")
              }else{
-              setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
+              setNom(JSON.parse(localStorage.getItem("local")).data.nom)
              }
       }catch (error){
        

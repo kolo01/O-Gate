@@ -28,7 +28,7 @@ export default function Message() {
   const router = useRouter()
 
   useEffect(()=>{
-      // setNom(JSON.parse(secureLocalStorage.getItem("local")).data.nom)
+      // setNom(JSON.parse(localStorage.getItem("local")).data.nom)
       setNom("Default user")
   },[nom])
   

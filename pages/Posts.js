@@ -117,8 +117,8 @@ console.log(valeur)
     //variable pour Besoin
     //fin des declarations
     useEffect(() => {
-      setToken(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken);
-  
+      setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
+      console.log("token",token)
       let config = {
         headers: { Authorization: `Bearer ${token}` },
       };
@@ -195,6 +195,7 @@ console.log(valeur)
         typeDocumentIds: checkedD,
         typeFichier: doctype,
         typePost: TypePoste,
+        Client:JSON.parse(localStorage.getItem("local")).data.nom,
         typeRequete: "EXPRESSION_BESOIN"
 
        },config).then((response)=>{

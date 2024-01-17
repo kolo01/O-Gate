@@ -182,7 +182,7 @@ import secureLocalStorage from "react-secure-storage";
      }
    
      useEffect(() => {
-      setToken(JSON.parse(secureLocalStorage.getItem("local")).data.accessToken);
+      setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
   
     
       //Recuperation de la liste des type de bien
