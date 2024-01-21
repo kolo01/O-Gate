@@ -115,9 +115,9 @@ const handleSubmit = () =>{
           <Image
             src={"./all/Sell.png"}
             alt=""
-            width={"42px"}
-            height={"42px"}
-            fontSize={"42px"}
+            width={"30px"}
+            height={"30px"}
+            fontSize={"30px"}
           />
         </Box>
 

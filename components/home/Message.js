@@ -16,7 +16,9 @@ import { Avatar, Box, Button, Flex, Image, Text,  Drawer,
   ModalBody,
   ModalFooter,
   Input,
-  Textarea, } from "@chakra-ui/react";
+  Textarea,
+  Img,
+  SimpleGrid, } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FcLike } from "react-icons/fc";
@@ -58,6 +60,7 @@ const toast = useToast()
   //fin des declarations
  
 useEffect(() => {
+
     setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
     let config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -67,8 +70,19 @@ useEffect(() => {
                   config
                 )
                 .then((response) => {console.log("responseeee",response.data.donnee.publications)})
-                .catch((error) => {});}
-    ,[token,idM])
+                .catch((error) => {});
+              
+              
+    axios.get(
+                  `http://185.98.139.246:9090/ogatemanagement-api/fichier/78  `,
+                  config
+                )
+                .then((response) => {console.log("image retrouver",response)})
+                .catch((error) => {});
+              }
+
+    
+    ,[token,idM,image])
 
 
   const liked =async (id) => {
@@ -77,7 +91,7 @@ useEffect(() => {
       `http://185.98.139.246:9090/ogatemanagement-api/client/likerpublication/${id}`,{"publicationId ":id},config,
 
     )
-    .then((response) =>{toast({title:"Succès",duration:9000,status:"success",description:response.data.donnee})})
+    .then((response) =>{toast({title:"Succès",duration:9000,status:"success",description:response.data.donnee}),console.warn("like", response)})
     .catch((error) => {});
    
   }
@@ -125,14 +139,34 @@ useEffect(() => {
     }
   return (
     <>
-      <Box width={{base:"400px",lg:"542px"}} height={"fit-content"} py={5} mb={5} bgColor={"white"} borderRadius={25} p={5} >
+      <Box width={{base:"400px",lg:"542px"}} height={"fit-content"} py={5} mb={5} bgColor={"white"} borderRadius={"2%"} overflow={"visible"} transition={"all 83ms"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px"} p={5} >
+      <Box
+        width={"full"}
+        // bgImage={image}
+        // bgColor={"gray"}
+        height={"260px"}
+      
+      
+        bgRepeat={"no-repeat"}
+        bgSize={"contain"}
+         >
+          <Carousel interval={10000} showThumbs={false}  showIndicators={false} autoPlay infiniteLoop>
+            {image.map((images,index)=><Center  key={index}><Box width="full"
+              height={"250px"}
+              bgRepeat={"no-repeat"}
+              bgSize={"contain"}
+        bgImage={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
+              
+            /></Center>)}
+          </Carousel>
+        </Box>
         <Flex justifyContent={"space-between"} >
-          <Flex mt={2} ml={5}>
-            <Avatar />
-            <Box ml={2}>
+          <Flex mt={2} mb={2} >
+            {/* <Avatar /> */}
+            <Box >
               <Text fontWeight={700}>{propio}</Text>
         
-              <Text fontWeight={"hairline"} color={"#D9D9D9"} fontSize={"12px"}>
+              <Text fontWeight={"hairline"}  fontSize={"15px"}>
                 {date}
               </Text>
                {/* <Text fontWeight={"hairline"} color={"#D9D9D9"} fontSize={"12px"}>
@@ -152,73 +186,35 @@ useEffect(() => {
           </Button>
         </Flex>
         <Flex>
-        <Box ml={5}>
-        <Flex>
-            <Flex mr={5}>
-            <Text mr={2} fontWeight={600}>Ville : </Text>
-            <Text>{ville}</Text>
-            </Flex>
-            <Flex>
-            <Text mr={2} fontWeight={600}>Prix : </Text>
-            <Text>{prix}</Text>
-          </Flex>
-          </Flex>
-          <Flex>
-          <Flex mr={5}>
-            <Text mr={2} fontWeight={600}>Type : </Text>
-            <Text>{appart.designation}</Text>
-          </Flex>
-          <Flex>
-            <Text mr={2} fontWeight={600}>Apport initial : </Text>
-            <Text>{init}</Text>
-          </Flex>
-          </Flex>        
-          <Flex>
-          <Flex mr={5}>
-            <Text mr={2} fontWeight={600}>Periodicité : </Text>
-            <Text>{periodicite}</Text>
-          </Flex>
-          <Flex>
-            <Text mr={2} fontWeight={600}>N° Pièces : </Text>
-            <Text>{piece}</Text>
-          </Flex>
-          </Flex>
-          <Flex>
-          <Flex mr={5}>
-            <Text mr={2} fontWeight={600}>N° Chambre : </Text>
-            <Text>{chambre}</Text>
-          </Flex>
-          <Flex>
-            <Text mr={2} fontWeight={600}>N° Salon : </Text>
-            <Text>{salon}</Text>
-          </Flex>
-          </Flex>
+       <Box>
+        {message.length > 10? <Text  fontSize={"20px"}>{message}</Text>:   <Text ml={5}  fontSize={"20px"}>{appart.designation} disponible.</Text>}
+      
+        {console.warn(doc,init,)}
+        <Text  fontSize={"20px"}>Situé à {ville}, elle dispose de {piece} pièces recensé comme suit :</Text>
+        <Box ml={10}  fontSize={"20px"} fontWeight={600} textTransform={"uppercase"}>
+        <ul >
+          <li>{chambre} chambres</li>
+          <li>{salon} salons</li>
+          {/* <li>{salon} Salles de bain</li> */}
+        </ul>
         </Box>
+          <Text  fontSize={"20px"}> Disponible à seulement <b>{prix} FCFA </b> dans la ville de <b>{ville}</b> pour une durée {periodicite=="JOUR"? "journalière":periodicite=="MOIS"? "mensuelle":"annuelle"} </Text>
+          <Text  fontSize={"20px"}>Nous disposons des documents suivants : </Text>
+          <Box ml={10}  fontSize={"20px"} fontWeight={600} textTransform={"uppercase"}>
+        {doc.map((data,index)=>(
+          <Text key={index}>{data.designation}</Text>)
+        )}
+        </Box>
+        
+       </Box>
         </Flex>
-        <Box
-        width={"full"}
-        // bgImage={image}
-        // bgColor={"gray"}
-        height={"349px"}
-        bgRepeat={"no-repeat"}
-        bgSize={"contain"}
-         mb={2}>
-          <Carousel autoPlay infiniteLoop>
-            {image.map((images,index)=><Box key={index} width="full"
-              height={"349px"}
-              bgRepeat={"no-repeat"}
-              bgSize={"contain"}
-        bgImage={images}
-              
-            />)}
-          </Carousel>
-        </Box>
+       
         {/* LES BUTTONS SOUS LA PUB */}
-        <Flex width={"192px"} height={"36px"}>
-          <Flex cursor={"pointer"}mr={2} onClick={()=>liked(idM)}>{like}<FcLike size={30}/></Flex>
-          <Flex cursor={"pointer"}mr={2}>{comment}<MdMessage onClick={onOpen} size={30}/></Flex>
-          <Flex cursor={"pointer"}mr={2}><PiShareBold size={30}/></Flex>
-          <Flex cursor={"pointer"}mr={2} onClick={()=>Favoris(idM)}>{favoris}<FcLike size={30}/></Flex>
+        <Flex width={"full"} height={"36px"} justifyContent={"space-between"} borderTop={"1px solid black"}> 
+          <Flex cursor={"pointer"}mr={2} mt={5} onClick={()=>liked(idM)}>{like}<Image alt="like" src="./images/like-icon.svg" width={30} height={30} mt={-2}  ml={2}/></Flex>
+          <Flex cursor={"pointer"}mr={2} mt={5}>{comment}<MdMessage onClick={onOpen} size={30}/></Flex>
+          <Flex cursor={"pointer"}mr={2} mt={5}>0<PiShareBold  size={30}/></Flex>
+          <Flex cursor={"pointer"}mr={2}  mt={5}onClick={()=>Favoris(idM)}>{favoris}<FcLike size={30}/></Flex>
         </Flex>
       </Box>
 

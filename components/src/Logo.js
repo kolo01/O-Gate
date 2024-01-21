@@ -6,7 +6,7 @@ export default function Logo(){
     const router = useRouter()
     return(
         <>
-          <Box  width={"124px"} height={"41px"} ml={"10%"} cursor={"pointer"} onClick={()=>router.push("/")} mr={"10%"} marginTop={"20px"} >
+          <Box  width={"fit-content"} height={"41px"} ml={"12%"} cursor={"pointer"} onClick={()=>router.push("/")}  mr={2} marginTop={"20px"} >
             <Image src="./all/OGate.png"  alt={logo}/>
         </Box>
         </>

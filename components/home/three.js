@@ -51,22 +51,22 @@ export default function ThreeSec(){
         <Flex >
             <Box mt={2} mr={5} onClick={()=>router.push("/")} cursor={"pointer"}>
                    <Box ml={2}>
-                    <MdHome width={"42px"}  height={"42px"} fontSize={"42px"}/>
+                    <MdHome width={"42px"}  height={"42px"} fontSize={"30px"}/>
                    </Box>
                
                 <Text fontSize={"16px"} lineHeight={"16px"} >{"Accueil"}</Text>
                 </Box>
                 <Box mt={2} mr={5}  onClick={()=>router.push("/relation")} cursor={"pointer"}>
-                  <Center mb={-1}>
-                   <Box width={"45px"} height={"45px"} borderRadius={"50%"}>
-                    <PiUsers  width={"42px"}  height={"42px"} fontSize={"42px"}/>
+                  <Center >
+                   <Box borderRadius={"50%"}>
+                    <PiUsers  width={"42px"}  height={"42px"} fontSize={"30px"}/>
                    </Box>
                    </Center>
                 <Text fontSize={"16px"} lineHeight={"16px"} >{"Mes relations"}</Text>
                 </Box>
                 <Box mt={2} mr={5}  onClick={()=>router.push("/notifications")} cursor={"pointer"}>
                    <Box ml={5}>
-                    <IoIosNotifications  width={"42px"}  height={"42px"} fontSize={"42px"}/>
+                    <IoIosNotifications  width={"10px"}  height={"42px"} fontSize={"30px"}/>
                    </Box>
                
                 <Text fontSize={"16px"} lineHeight={"16px"} >{"Notifications"}</Text>
@@ -74,7 +74,7 @@ export default function ThreeSec(){
                 <PrincipalePopup/>
                 <Box mt={2} mr={5}  onClick={()=>router.push("/messages")} cursor={"pointer"}>
                    <Box ml={2}>
-                    <MdMessage  width={"42px"}  height={"42px"} fontSize={"42px"}/>
+                    <MdMessage  width={"42px"}  height={"42px"} fontSize={"30px"}/>
                    </Box>
                
                 <Text fontSize={"16px"} lineHeight={"16px"} >{"Message"}</Text>
@@ -85,7 +85,12 @@ export default function ThreeSec(){
            
             <Menu>
   <MenuButton >
-  <Avatar/>
+    <Box display={"grid"} textAlign={"center"}>
+  <Avatar fontSize={"30px"} height={"30px"} width={"30px"} ml={"30%"}/>
+  
+  {nom=="NON DEFINI"? "New user" : nom}
+ 
+  </Box>
   </MenuButton>
   <MenuList>
     <MenuItem>Mon profils</MenuItem>

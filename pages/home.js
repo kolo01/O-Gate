@@ -19,108 +19,7 @@ export default function Home(){
     const [message,setMessage] = useState([])
     const [token,setToken] = useState("")
 
-    const message2=[
-        {
-            idM:"1",
-            propio:"user1",
-            date:"18/10/2020",
-            message:`Nos maisons sont situées en bordure de voie bitumée et à 5mn de la lagune.
-            La Cité est également situé à 10 mn du projet d’état de 144 immeubles et du plus grand mall d’Afrique de l’ouest.
-            Nos maisons sont également situées à environ 600m de la lagune et l’Eau, l’électricité sont disponibles dans la zone .
-            
-            Caractéristiques des Villas Duplex 6 Pièces avec Piscine
-            Villas haut standing de 6 pièces sur 300m2.
-            ✓ grand Salon + Salle à Manger
-            ✓ 5 Grandes Chambres avec Douche Chacune.
-            ✓ Garage de 2 voitures + Grande Cours + Piscine + Clôture + jardin + Portails.
-            ✓ Villas déjà en construction et en attente de finition selon les gouts et couleurs de l’acquéreur.
-            ✓ Villas livrées complètement finies avec clôture, portails, décoration extérieure, gazon etc.
-            ✓ Route Bitumée Jusqu’à La Cité – Lagune à 5mn
-            
-            Condition d’accès
-            1. Apport initial : 40.millions pour réserver votre maison
-            2. Frais de dossier : 900.milles
-            3. Le reste 95 millions échelonnés sur 40 mois
-            
-            Document : ACD`,
-            image:"",
-        },
-        {
-            idM:"2",
-            propio:"user2",
-            date:"18/10/2020",
-            message:`Nos maisons sont situées en bordure de voie bitumée et à 5mn de la lagune.
-            La Cité est également situé à 10 mn du projet d’état de 144 immeubles et du plus grand mall d’Afrique de l’ouest.
-            Nos maisons sont également situées à environ 600m de la lagune et l’Eau, l’électricité sont disponibles dans la zone .
-            
-            Caractéristiques des Villas Duplex 6 Pièces avec Piscine
-            Villas haut standing de 6 pièces sur 300m2.
-            ✓ grand Salon + Salle à Manger
-            ✓ 5 Grandes Chambres avec Douche Chacune.
-            ✓ Garage de 2 voitures + Grande Cours + Piscine + Clôture + jardin + Portails.
-            ✓ Villas déjà en construction et en attente de finition selon les gouts et couleurs de l’acquéreur.
-            ✓ Villas livrées complètement finies avec clôture, portails, décoration extérieure, gazon etc.
-            ✓ Route Bitumée Jusqu’à La Cité – Lagune à 5mn
-            
-            Condition d’accès
-            1. Apport initial : 40.millions pour réserver votre maison
-            2. Frais de dossier : 900.milles
-            3. Le reste 95 millions échelonnés sur 40 mois
-            
-            Document : ACD`,
-            image:"",
-        },
-        {
-            idM:"3",
-            propio:"user3",
-            date:"18/10/2020",
-            message:`Nos maisons sont situées en bordure de voie bitumée et à 5mn de la lagune.
-            La Cité est également situé à 10 mn du projet d’état de 144 immeubles et du plus grand mall d’Afrique de l’ouest.
-            Nos maisons sont également situées à environ 600m de la lagune et l’Eau, l’électricité sont disponibles dans la zone .
-            
-            Caractéristiques des Villas Duplex 6 Pièces avec Piscine
-            Villas haut standing de 6 pièces sur 300m2.
-            ✓ grand Salon + Salle à Manger
-            ✓ 5 Grandes Chambres avec Douche Chacune.
-            ✓ Garage de 2 voitures + Grande Cours + Piscine + Clôture + jardin + Portails.
-            ✓ Villas déjà en construction et en attente de finition selon les gouts et couleurs de l’acquéreur.
-            ✓ Villas livrées complètement finies avec clôture, portails, décoration extérieure, gazon etc.
-            ✓ Route Bitumée Jusqu’à La Cité – Lagune à 5mn
-            
-            Condition d’accès
-            1. Apport initial : 40.millions pour réserver votre maison
-            2. Frais de dossier : 900.milles
-            3. Le reste 95 millions échelonnés sur 40 mois
-            
-            Document : ACD`,
-            image:"",
-        },
-        {
-            idM:"4",
-            propio:"user4",
-            date:"18/10/2020",
-            message:`Nos maisons sont situées en bordure de voie bitumée et à 5mn de la lagune.
-            La Cité est également situé à 10 mn du projet d’état de 144 immeubles et du plus grand mall d’Afrique de l’ouest.
-            Nos maisons sont également situées à environ 600m de la lagune et l’Eau, l’électricité sont disponibles dans la zone .
-            
-            Caractéristiques des Villas Duplex 6 Pièces avec Piscine
-            Villas haut standing de 6 pièces sur 300m2.
-            ✓ grand Salon + Salle à Manger
-            ✓ 5 Grandes Chambres avec Douche Chacune.
-            ✓ Garage de 2 voitures + Grande Cours + Piscine + Clôture + jardin + Portails.
-            ✓ Villas déjà en construction et en attente de finition selon les gouts et couleurs de l’acquéreur.
-            ✓ Villas livrées complètement finies avec clôture, portails, décoration extérieure, gazon etc.
-            ✓ Route Bitumée Jusqu’à La Cité – Lagune à 5mn
-            
-            Condition d’accès
-            1. Apport initial : 40.millions pour réserver votre maison
-            2. Frais de dossier : 900.milles
-            3. Le reste 95 millions échelonnés sur 40 mois
-            
-            Document : ACD`,
-            image:"",
-        }
-    ]
+   
     const [nom,setNom] = useState("")
     const all=[
         {
@@ -172,15 +71,15 @@ export default function Home(){
     },[router,token,message])
     if(checker){
         return(
-            <Box  bgColor={"#F6F6F6"} mb={10} >
+            <Box  bgColor={"##f4f2ee"} mb={10} >
            <NavbarCo/>
-            
-            <Flex  justifyContent={["normal","normal","normal","space-around","space-around"]} mt={5} mx={["2%","2%","2%","0","0"]}>
-            <Box display={["none","none","none","block","block"]} height={"fit-content"}>
+            <Center>
+            <Flex   mt={5} pb={10} >
+            <Box mr={5} display={["none","none","none","block","block"]} height={"fit-content"}>
                     <Profilers/>
                     <Stats/>
                 </Box>
-                <Box mb={50}   >
+                <Box  mr={5}   >
                    
                         <AspectRatio ratio={16 / 9} mb={10} borderRadius={25}>
                         <iframe
@@ -202,7 +101,7 @@ export default function Home(){
                     <Suggestion/>
                 </Box>
             </Flex>
-            
+            </Center>
             </Box>
             )
     }

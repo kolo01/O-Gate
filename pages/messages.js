@@ -47,7 +47,7 @@ export default function Message() {
           
             height={"144px"}
             boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
-            borderRadius={"25px"}
+            borderRadius={"10px"}
           >
             <Text fontWeight={700} fontSize={"25px"} p={2}>
               {" "}

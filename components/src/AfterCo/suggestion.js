@@ -4,32 +4,69 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 
-export default function Suggestion(){
-    const [nom,setNom] = useState("")
-    const router = useRouter()
-    useEffect(()=>{
-      try{
-          if(JSON.parse(localStorage.getItem("local")).data.nom == "NON DEFINI"){
-              setNom("NON DEFINI")
-             }else{
-              setNom(JSON.parse(localStorage.getItem("local")).data.nom)
-             }
-      }catch (error){
-       
-          router.push("/")
+export default function Suggestion() {
+  const [nom, setNom] = useState("");
+  const router = useRouter();
+  useEffect(() => {
+    try {
+      if (JSON.parse(localStorage.getItem("local")).data.nom == "NON DEFINI") {
+        setNom("NON DEFINI");
+      } else {
+        setNom(JSON.parse(localStorage.getItem("local")).data.nom);
       }
-    
-  },[nom,router])
-    return(<Box borderRadius={"25px"}  py={5}  width={"250px"} height={"fit-content"} display={{base:"none",lg:"grid"}}  boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}>
-    <Box>
-      <Text fontWeight={700} fontSize={"16px"} ml={2} mb={5}  width={"240px"}>Suggestions nouvelles relations</Text>
-      <Box width={"220px"} ml={5}>
-      <Flex fontSize={"12px"} mb={2} justifyContent={"space-between"}><Flex><Avatar width={"24px"} h={"24px"}/><Text ml={2}>Domé Carole</Text></Flex><Text color={"#219EF9"}>Suivre</Text></Flex>
-      <Flex fontSize={"12px"} mb={2} justifyContent={"space-between"}><Flex><Avatar width={"24px"} h={"24px"}/><Text ml={2}>Assita bintou</Text></Flex><Text color={"#219EF9"}>Suivre</Text></Flex>
-      <Flex fontSize={"12px"} justifyContent={"space-between"}><Flex><Avatar width={"24px"} h={"24px"}/><Text ml={2}>Blé Gérard</Text></Flex><Text color={"#219EF9"}>Suivre</Text></Flex>
+    } catch (error) {
+      router.push("/");
+    }
+  }, [nom, router]);
+  return (
+    <Box
+      borderRadius={"5%"}
+      py={5}
+      width={"250px"}
+      height={"fit-content"}
+      display={{ base: "none", lg: "grid" }}
+      boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
+    >
+      <Box>
+        <Text fontWeight={700} fontSize={"16px"} ml={2} mb={5} width={"240px"}>
+          Vous pourriez être interessé
+        </Text>
+        <Box width={"220px"} ml={5}>
+          <Flex fontSize={"12px"} display={"grid"} mb={2} justifyContent={"space-between"}>
+            <Flex>
+              <Text ml={2} fontWeight={700}>Terrain de 500 m<sup>2</sup></Text>
+            </Flex>
+            <Text ml={2} fontWeight={700}>700.000</Text>
+            <Button color={"#219EF9"}>Voir publication</Button>
+          </Flex>
+          <Flex fontSize={"12px"} display={"grid"} mb={2} justifyContent={"space-between"}>
+            <Flex>
+              <Text ml={2} fontWeight={700}>Duplex en location à Angré </Text>
+            </Flex>
+            <Text ml={2} fontWeight={700}>200.000</Text>
+            <Button color={"#219EF9"}>Voir publication</Button>
+          </Flex>
+          <Flex fontSize={"12px"} display={"grid"} mb={2} justifyContent={"space-between"}>
+            <Flex>
+              <Text ml={2} fontWeight={700}>Habitation a vendre 12 pièces </Text>
+            </Flex>
+            <Text ml={2} fontWeight={700}>5.000.000</Text>
+            <Button color={"#219EF9"}>Voir publication</Button>
+          </Flex>
+        </Box>
       </Box>
+      <Center>
+        <Button
+          
+          className="button-64"
+          // rightIcon={<ArrowRightIcon />}
+          
+        >
+          <span>
+          Toutes les suggestions
+          </span>
+        </Button>
+      </Center>
     </Box>
-    <Center><Button bgColor={"white"} _hover={{bgColor:"white"}} rightIcon={<ArrowRightIcon/>} fontSize={"12px"}>Toutes les suggestions</Button></Center>
-  
-    </Box>)
+  );
 }
