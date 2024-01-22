@@ -21,7 +21,9 @@ import {
 import Dernier from "./quatrieme";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
-  
+import {Select as Sl} from "react-dropdown-select";
+
+
   export default function Troisieme() {
    //variable globale
 
@@ -137,13 +139,13 @@ checkedQ[index] = valeur
         <Button colorScheme="blue" mr={3} onClick={onOpen}>
           Suivant
         </Button>
-        <Modal isOpen={isOpen} onClose={onClose} >
+        <Modal isOpen={isOpen} onClose={onClose} size={"5xl"} >
           <ModalOverlay />
-          <ModalContent width={"400px"} fontSize={["10px","10px","10px","15px","15px"]}>
+          <ModalContent bgColor={"#f0f1f2"} width={"full"} height={"fit-content"} pb={"40px"} ml={3} fontSize={["10px","10px","10px","15px","15px"]}>
             <ModalHeader>Informations additionelles</ModalHeader>
             <ModalCloseButton />
             <ModalBody width={"100%"}>
-            <Box>
+            <SimpleGrid columns={[1,1,1,2,2]} mb={20} spacingY={10}>
    
     
    <Box width={"300px"} ml={2} mt={2}>
@@ -151,42 +153,28 @@ checkedQ[index] = valeur
          <Box height={"fit-content"}  >
              
      
-<SimpleGrid columns={2} mt={1} spacingX={10}  >
-     {bienId.map((data,index)=><Checkbox  key={index}
- 
-   onChange={(e) => CheckedBien(index,data.id,e.target.checked)}
- >
-   {data.designation}
- </Checkbox>)}
-</SimpleGrid>
+<Sl    multi={true}   options={bienId} labelField="designation" valueField="id"  />
+    
 
          </Box>
          </Box>
          <Box  width={"300px"} ml={2} mt={2}>
          <Text  fontWeight={600}> Autre information sur le bien</Text>
-         <Textarea onChange={(e)=>{setOtherB(e.target.value)}}></Textarea>
+         <Textarea  border={"2px solid gray"} onChange={(e)=>{setOtherB(e.target.value)}}></Textarea>
          </Box>
          <Box width={"300px"} ml={2} mt={2}>
          <Text  fontWeight={600}>Information additionnelle sur le quartier</Text>
          <Box height={"fit-content"}  >
              
-     
-<SimpleGrid columns={2} mt={1} spacingX={"100px"} spacingY={2}  >
-{quartierId.map((data,index)=><Checkbox mr={10} key={index}
- //   isChecked={checkedItems[index]}
-   onChange={(e) =>{ CheckedQuartier(index,data.id,e.target.checked),console.log(data.id),console.log(checkedQ  )}}
- >
-   {data.designation}
- </Checkbox>)}
-</SimpleGrid>
+         <Sl   multi={true}   options={quartierId} labelField="designation" valueField="id"  />
 
          </Box>
          </Box>
          <Box  width={"300px"} ml={2} mt={2}>
          <Text  fontWeight={600}> Autre information sur le quartier</Text>
-         <Textarea onChange={(e)=>{setOtherQ(e.target.value)}}></Textarea>
+         <Textarea border={"2px solid gray"}  onChange={(e)=>{setOtherQ(e.target.value)}}></Textarea>
          </Box>
-   </Box>
+   </SimpleGrid>
             </ModalBody>
   
             <ModalFooter>

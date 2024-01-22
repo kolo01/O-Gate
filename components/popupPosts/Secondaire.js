@@ -66,20 +66,25 @@ export default function Secondaire() {
       <Button colorScheme="blue" mr={3} onClick={onOpen}>
         Suivant
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose} >
+
+      <Modal isOpen={isOpen}  onClose={onClose} size={"5xl"} >
         <ModalOverlay />
-        <ModalContent width={"400px"} fontSize={["10px","10px","10px","15px","15px"]}>
+        <ModalContent bgColor={"#e3f7f2"} width={"full"} ml={4} fontSize={["10px","10px","10px","15px","15px"]}>
           <ModalHeader>Informations sur le bien</ModalHeader>
           <ModalCloseButton />
-          <ModalBody width={"100%"}>
-            <SimpleGrid columns={[1, 1, 2, 2, 2]} mt={2}>
+          <ModalBody bgC width={"100%"}>
+            <SimpleGrid columns={[1, 1, 2, 2, 2]} mt={2} spacingY={5}>
               <Box mt={2} width={"100%"}>
                 <Text fontWeight={600}>N° de piéces</Text>
                 <Input
                   type="number"
                   width={"80%"}
                   onChange={(e) => SetNbPiece(e.target.valueAsNumber)}
-                  placeholder={"Nombre de piece"}
+                  placeholder={"120"}
+                  height={"50px"}
+                  border={"2px solid gray"}
+                  _placeholder={{
+                    color:"cyan.700"                  }}
                 />
               </Box>
               <Box mt={2} width={"100%"}>
@@ -92,7 +97,11 @@ export default function Secondaire() {
                   type="number"
                   width={"80%"}
                   onChange={(e) => SetNbChambre(e.target.valueAsNumber)}
-                  placeholder={"Nombre de chambre"}
+                  placeholder={"5"}
+                  height={"50px"}
+                  border={"2px solid gray"}
+                  _placeholder={{
+                    color:"cyan.700"                  }}
                 />
               </Box>
               <Box mt={2} width={"100%"}>
@@ -107,10 +116,14 @@ export default function Secondaire() {
                   type="number"
                   width={"80%"}
                   onChange={(e) => SetNbSbain(e.target.valueAsNumber)}
-                  placeholder={"Nombre de salle de bain "}
+                  placeholder={"3"}
+                  height={"50px"}
+                  border={"2px solid gray"}
+                  _placeholder={{
+                    color:"cyan.700"                  }}
                 />
               </Box>
-              <Box ml={2} mt={2} width={"100%"}>
+              <Box mt={2} width={"100%"}>
                 <Flex>
                   {" "}
                   <Text fontWeight={600}>N° de salon </Text>{" "}
@@ -122,7 +135,11 @@ export default function Secondaire() {
                   type="number"
                   width={"80%"}
                   onChange={(e) => SetNbSalon(e.target.valueAsNumber)}
-                  placeholder={"Nombre de salon "}
+                  placeholder={"2"}
+                  height={"50px"}
+                  border={"2px solid gray"}
+                  _placeholder={{
+                    color:"cyan.700"                  }}
                 />
               </Box>
               <Box width={"100%"}>
@@ -134,14 +151,22 @@ export default function Secondaire() {
                   type="number"
                   width={"80%"}
                   onChange={(e) => SetPrix(e.target.valueAsNumber)}
-                  placeholder={"Prix "}
+                  placeholder={"200000 "}
+                  height={"50px"}
+                  border={"2px solid gray"}
+                  _placeholder={{
+                    color:"cyan.700"                  }}
                 />
               </Box>
               <Box width={"100%"}>
                 <Text fontWeight={600}>Periodicité de paiements</Text>
                 <Select
+                 height={"50px"}
+                 border={"2px solid gray"}
+                 _placeholder={{
+                  color:"cyan.700"                  }}
                   width={"80%"}
-                  onChange={(e) => SetPeriodicite(e.target.value)}
+                  onChange={(e) => SetPeriodicite(e.target.value)} placeholder="Periodicité de paiement"
                 >
                   <option value={"JOUR"}>Jour</option>
 
@@ -153,10 +178,14 @@ export default function Secondaire() {
                 <Box mt={2} width={"100%"}>
                   <Text fontWeight={600}>Apport initial</Text>
                   <Input
+                   height={"50px"}
+                   border={"2px solid gray"}
+                   _placeholder={{
+                     color:"cyan.700"                  }}
                     type="number"
                     width={"80%"}
                     onChange={(e) => SetApportInit(e.target.valueAsNumber)}
-                    placeholder="Apport initial"
+                    placeholder="20000000"
                     maxLength={12}
                   />
                 </Box>

@@ -4,6 +4,7 @@ import {useRouter} from "next/router"
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import Secondaire from "./Secondaire";
+import {Select as Sl} from "react-dropdown-select";
 
 export default function PrincipalePopup() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -99,6 +100,7 @@ const handleSubmit = () =>{
   sessionStorage.setItem("typeDocument",JSON.stringify(checkedD))
 }
 
+
   return (
     <>
       <Box
@@ -126,7 +128,7 @@ const handleSubmit = () =>{
         </Text>
       </Box>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} size={"5xl"} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Informations de base</ModalHeader>
@@ -141,8 +143,8 @@ const handleSubmit = () =>{
         <option value={"INFORMATION"}>INFORMATION</option>
         <option value={"VENTE"}>VENTE</option>
         <option value={"LOCATION"}>LOCATION</option>
-     
-        <option value={"MEDIA"}>MEDIA</option>
+        <option value={"LOCATION_VENTE"}>LOCATION-VENTE</option>
+        {/* <option value={"MEDIA"}>MEDIA</option> */}
       </Select>
     </Box>
     <Box  width={"100%"}>
@@ -166,7 +168,7 @@ const handleSubmit = () =>{
               <Radio value="MEUBLE" mr={5}>
                 OUI
               </Radio>
-              <Radio value="NON-MEUBLE">NON</Radio>
+              <Radio value="NON_MEUBLE">NON</Radio>
             </RadioGroup>
           </Box>
         ) : (
@@ -178,18 +180,23 @@ const handleSubmit = () =>{
     )}
     <Box mt={2}>
           <Text  fontWeight={600}>Type de document</Text>
-          <Box height={"fit-content"}  py={2} px={4}>
+          <Box height={"fit-content"}  py={2} >
               
       
-<Box width={"100%"} mt={1} spacing={2} mx={4}>
-  <CheckboxGroup>
-      {documentId.map((data,index)=><Checkbox mr={2} key={index}
+<Box width={"100%"} mt={1} spacing={2} >
+  {/* <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+      {documentId.map((data,index)=><option mr={2} key={index}
   //   isChecked={checkedItems[index]}
-    onChange={(e) => {CheckedDoc(index,data.id,e.target.checked)}}
+    onSelect={(e) => {CheckedDoc(index,data.id,e.target.checked)}}
+    value={data.id}
   >
     {data.designation}
-  </Checkbox>)}
-  </CheckboxGroup>
+  </option>)}
+  </select> */}
+  {console.warn("Document id",documentId)}
+  <Sl   multi={true}   options={documentId} labelField="designation" valueField="id" />
+
+ 
 </Box >
           </Box>
           </Box>
@@ -205,6 +212,7 @@ const handleSubmit = () =>{
           </ModalFooter>
         </ModalContent>
       </Modal>
+      
     </>
   );
 }

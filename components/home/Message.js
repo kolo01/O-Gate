@@ -20,6 +20,8 @@ import { Avatar, Box, Button, Flex, Image, Text,  Drawer,
   Img,
   SimpleGrid, } from "@chakra-ui/react";
 import axios from "axios";
+import Head from "next/head";
+import Script from "next/script";
 import { useEffect, useState } from "react";
 import { FcLike } from "react-icons/fc";
 import { MdMessage, MdSaveAlt } from "react-icons/md";
@@ -72,17 +74,11 @@ useEffect(() => {
                 .then((response) => {console.log("responseeee",response.data.donnee.publications)})
                 .catch((error) => {});
               
-              
-    axios.get(
-                  `http://185.98.139.246:9090/ogatemanagement-api/fichier/78  `,
-                  config
-                )
-                .then((response) => {console.log("image retrouver",response)})
-                .catch((error) => {});
+    
               }
 
     
-    ,[token,idM,image])
+    ,[token,idM])
 
 
   const liked =async (id) => {
@@ -139,6 +135,7 @@ useEffect(() => {
     }
   return (
     <>
+ 
       <Box width={{base:"400px",lg:"542px"}} height={"fit-content"} py={5} mb={5} bgColor={"white"} borderRadius={"2%"} overflow={"visible"} transition={"all 83ms"} boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px"} p={5} >
       <Box
         width={"full"}
@@ -150,11 +147,11 @@ useEffect(() => {
         bgRepeat={"no-repeat"}
         bgSize={"contain"}
          >
-          <Carousel interval={10000} showThumbs={false}  showIndicators={false} autoPlay infiniteLoop>
+          <Carousel interval={5000} showThumbs={false}  showIndicators={false} autoPlay infiniteLoop>
             {image.map((images,index)=><Center  key={index}><Box width="full"
               height={"250px"}
               bgRepeat={"no-repeat"}
-              bgSize={"contain"}
+              bgSize={"cover"}
         bgImage={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
               
             /></Center>)}
@@ -164,7 +161,7 @@ useEffect(() => {
           <Flex mt={2} mb={2} >
             {/* <Avatar /> */}
             <Box >
-              <Text fontWeight={700}>{propio}</Text>
+              <Text fontWeight={700} fontSize={"20px"}>{propio}</Text>
         
               <Text fontWeight={"hairline"}  fontSize={"15px"}>
                 {date}
@@ -182,35 +179,35 @@ useEffect(() => {
               bgColor: "white",
             }}
           >
-            Suivre
+            Interesser
           </Button>
         </Flex>
-        <Flex>
-       <Box>
-        {message.length > 10? <Text  fontSize={"20px"}>{message}</Text>:   <Text ml={5}  fontSize={"20px"}>{appart.designation} disponible.</Text>}
+        <Flex >
+       <Box >
+       <Text  fontWeight={600} fontSize={"20px"}>{appart.designation},{ville}</Text>
+        {message.length > 10? <Text  fontSize={"20px"} fontWeight={600} mb={5}>{message}</Text>:  <></>}
       
-        {console.warn(doc,init,)}
-        <Text  fontSize={"20px"}>Situé à {ville}, elle dispose de {piece} pièces recensé comme suit :</Text>
-        <Box ml={10}  fontSize={"20px"} fontWeight={600} textTransform={"uppercase"}>
+       
+        <Text  fontSize={"20px"}>Situé à {ville}, elle dispose de {piece} pièces.</Text>
+        {/* <Box ml={10}  fontSize={"20px"} fontWeight={600} textTransform={"uppercase"}>
         <ul >
           <li>{chambre} chambres</li>
           <li>{salon} salons</li>
           {/* <li>{salon} Salles de bain</li> */}
-        </ul>
-        </Box>
-          <Text  fontSize={"20px"}> Disponible à seulement <b>{prix} FCFA </b> dans la ville de <b>{ville}</b> pour une durée {periodicite=="JOUR"? "journalière":periodicite=="MOIS"? "mensuelle":"annuelle"} </Text>
-          <Text  fontSize={"20px"}>Nous disposons des documents suivants : </Text>
-          <Box ml={10}  fontSize={"20px"} fontWeight={600} textTransform={"uppercase"}>
-        {doc.map((data,index)=>(
+      
+          <Text  fontSize={"20px"}> Disponible à seulement <b>{prix} FCFA </b> dans la ville de <b>{ville}</b> pour une durée {periodicite=="JOUR"? "journalière":periodicite=="MOIS"? "mensuelle":"annuelle"}. </Text>
+          {/* <Text  fontSize={"20px"}>Nous disposons des documents suivants : </Text> */}
+          <Box ml={10}   fontSize={"20px"} fontWeight={600} textTransform={"uppercase"}>
+        {/* {doc.map((data,index)=>(
           <Text key={index}>{data.designation}</Text>)
-        )}
+        )} */}
         </Box>
         
        </Box>
         </Flex>
        
         {/* LES BUTTONS SOUS LA PUB */}
-        <Flex width={"full"} height={"36px"} justifyContent={"space-between"} borderTop={"1px solid black"}> 
+        <Flex width={"full"} height={"36px"} mt={5} justifyContent={"space-between"} borderTop={"1px solid black"}> 
           <Flex cursor={"pointer"}mr={2} mt={5} onClick={()=>liked(idM)}>{like}<Image alt="like" src="./images/like-icon.svg" width={30} height={30} mt={-2}  ml={2}/></Flex>
           <Flex cursor={"pointer"}mr={2} mt={5}>{comment}<MdMessage onClick={onOpen} size={30}/></Flex>
           <Flex cursor={"pointer"}mr={2} mt={5}>0<PiShareBold  size={30}/></Flex>
