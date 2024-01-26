@@ -174,7 +174,7 @@ export default function Secondaire() {
                   <option value={"ANNEE"}>Année</option>
                 </Select>
               </Box>
-              {(TypePoste == "LOCATION" || TypePoste == "VENTE") ? (
+              {(TypePoste == "LOCATION" || TypePoste == "VENTE" || TypePoste == "LOCATION_VENTE") ? (
                 <Box mt={2} width={"100%"}>
                   <Text fontWeight={600}>Apport initial</Text>
                   <Input

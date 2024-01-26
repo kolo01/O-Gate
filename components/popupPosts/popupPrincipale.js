@@ -5,6 +5,7 @@ import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import Secondaire from "./Secondaire";
 import {Select as Sl} from "react-dropdown-select";
+import Dernier from "./quatrieme";
 
 export default function PrincipalePopup() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -45,14 +46,14 @@ export default function PrincipalePopup() {
 
 
     ///variable pour Post
-    const [TypePoste, setTypePoste] = useState("1");
+    const [TypePoste, setTypePoste] = useState("INFORMATION");
     const [checkedD,setCheckedD] = useState([])//utiliser pour recuperer les documents cochés
     const [checkedB,setCheckedB] = useState([])//utiliser pour recuperer les info additionelles sur les biens cochés
-    const [checkedQ,setCheckedQ] = useState([])//utiliser pour recuperer les info addictionnelle sur le quartier cochés
+    const [needDoc,setNeedDoc] = useState(false)//utiliser pour recuperer les info addictionnelle sur le type de bien
     
     
     const [StypeBien, setStypeBien] = useState(0);
-    const [meuble, setMeuble] = useState("NON DEFINI");
+    const [meuble, setMeuble] = useState("NON_MEUBLE");
     //fin des declarations
       //fin des declarations
       useEffect(() => {
@@ -67,7 +68,7 @@ export default function PrincipalePopup() {
             "http://185.98.139.246:9090/ogatemanagement-api/rechercherlistetypebiens",
             config
           )
-          .then((response) => setTypebienId(response.data.donnee))
+          .then((response) =>{ setTypebienId(response.data.donnee),console.log(response.data.donnee)})
           .catch((error) => {});
         ///Recuperation des types de document
         axios
@@ -147,12 +148,13 @@ const handleSubmit = () =>{
         {/* <option value={"MEDIA"}>MEDIA</option> */}
       </Select>
     </Box>
+    {TypePoste == "INFORMATION"? <></>: <>
     <Box  width={"100%"}>
       <Box>
         <Text>Type de bien</Text>
-        <Select onChange={(e) => setStypeBien(e.target.value)}>
+        <Select onChange={(e) => {setStypeBien(e.target.value)}} >
           {typebienId.map((data, index) => (
-            <option key={index} value={parseInt(index+1)}>
+            <option key={index}   value={parseInt(index+1)} >
               {data.designation}
             </option>
           ))}
@@ -178,7 +180,8 @@ const handleSubmit = () =>{
     ) : (
       <></>
     )}
-    <Box mt={2}>
+
+      {typebienId[parseInt(StypeBien)-1].documentIsAssocieted ? <Box mt={2}>
           <Text  fontWeight={600}>Type de document</Text>
           <Box height={"fit-content"}  py={2} >
               
@@ -193,20 +196,25 @@ const handleSubmit = () =>{
     {data.designation}
   </option>)}
   </select> */}
-  {console.warn("Document id",documentId)}
+  
   <Sl   multi={true}   options={documentId} labelField="designation" valueField="id" />
 
  
 </Box >
           </Box>
-          </Box>
+          </Box> : <></>}
+
+
+    
+    </> }
     </SimpleGrid>
     </Box>
           </ModalBody>
 
           <ModalFooter>
             <Box onClick={()=>handleSubmit()}>
-           <Secondaire/>
+              {TypePoste == "INFORMATION" ? <Dernier/> : <Secondaire/>}
+           
            </Box>
             <Button variant="ghost" onClick={onClose}>Fermer</Button>
           </ModalFooter>

@@ -78,7 +78,7 @@ export default function Dernier() {
   const [nbSbain, SetNbSbain] = useState(0);
   const [nbSalon, SetNbSalon] = useState(0);
   const [prix, SetPrix] = useState(0);
-  const [periodicite, SetPeriodicite] = useState("jours");
+  const [periodicite, SetPeriodicite] = useState("JOUR");
   const [apportInit, SetApportInit] = useState(0);
   const [doctype, setDocType] = useState("IMAGE");
   const [accepted, setAccepted] = useState("image/*");
@@ -92,7 +92,7 @@ export default function Dernier() {
   const [desc, setDesc] = useState("none");
 
   const [StypeBien, setStypeBien] = useState(0);
-  const [meuble, setMeuble] = useState("NON DEFINI");
+  const [meuble, setMeuble] = useState("NON_MEUBLE");
   //fin des declarations
   const [displayed1, setDisplayed1] = useState("block");
   const [displayed2, setDisplayed2] = useState("none");
@@ -130,29 +130,29 @@ export default function Dernier() {
       .post(
         "http://185.98.139.246:9090/ogatemanagement-api/client/enregistrerpublicationaveclistefichier",
         {
-          apportInitial: JSON.parse(sessionStorage.getItem("Apport")),
-          autreInfoSurBien: JSON.parse(sessionStorage.getItem("OAddBien")),
-          autreInfoSurQuartier: JSON.parse(sessionStorage.getItem("OAddQuart")),
+          apportInitial: JSON.parse(sessionStorage.getItem("Apport"))?? 0,
+          autreInfoSurBien: JSON.parse(sessionStorage.getItem("OAddBien")) ?? "" ,
+          autreInfoSurQuartier: JSON.parse(sessionStorage.getItem("OAddQuart")) ?? "",
           description: desc,
-          fichierIds: fichiersId,
+          fichierIds: fichiersId ?? [] ,
 
           informationAdditionnelleSurBienIds: JSON.parse(
             sessionStorage.getItem("IAddBien")
-          ),
+          )?? [null],
           informationAdditionnelleSurQuartierIds: JSON.parse(
             sessionStorage.getItem("IAddQuart")
-          ),
-          latitude: lat,
-          localisation: ville,
-          longitude: long,
-          nombreChambres: JSON.parse(sessionStorage.getItem("NChambre")),
-          nombrePieces: JSON.parse(sessionStorage.getItem("NPieces")),
-          nombreSalon: JSON.parse(sessionStorage.getItem("NSalon")),
-          periodicite: JSON.parse(sessionStorage.getItem("Periodicite")),
-          prix: JSON.parse(sessionStorage.getItem("Prix")),
-          typeAppartement: JSON.parse(sessionStorage.getItem("meuble")),
-          typeBienId: JSON.parse(sessionStorage.getItem("typeBien")),
-          typeDocumentIds: JSON.parse(sessionStorage.getItem("typeDocument")),
+          ) ?? [null],
+          latitude: lat?? 0,
+          localisation: ville ?? "Generalite",
+          longitude: long?? 0,
+          nombreChambres: JSON.parse(sessionStorage.getItem("NChambre"))??0,
+          nombrePieces: JSON.parse(sessionStorage.getItem("NPieces"))??0,
+          nombreSalon: JSON.parse(sessionStorage.getItem("NSalon"))??0,
+          periodicite: JSON.parse(sessionStorage.getItem("Periodicite"))??"JOUR",
+          prix: JSON.parse(sessionStorage.getItem("Prix"))??0,
+          typeAppartement: JSON.parse(sessionStorage.getItem("meuble"))??"NON_MEUBLE",
+          typeBienId: JSON.parse(sessionStorage.getItem("typeBien"))??0,
+          typeDocumentIds: JSON.parse(sessionStorage.getItem("typeDocument"))??[null],
           typeFichier: doctype,
           typePost: JSON.parse(sessionStorage.getItem("typePoste")),
           typeRequete: "EXPRESSION_BESOIN",

@@ -79,26 +79,26 @@ export default function Home(){
                     <Profilers/>
                     <Stats/>
                 </Box>
-                <Box  mr={5}   >
-                   
-                        <AspectRatio ratio={16 / 9} mb={10} borderRadius={25}>
-                        <iframe
-                          
-                          loading="lazy"
-                          allowFullScreen
-                          referrerPolicy="no-referrer-when-downgrade"
-                          src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyAoJQLE8uAbWnyPHCv-_udEUhH7HQooJlM&q={'DEUX PLATEAUX BLD LATRILLE ','angre 8eme tranche'}"}
-                        ></iframe>
-                        </AspectRatio>
-                    
-                  
-                  
-                    
-                </Box>
+            
                 <Box mr={5}>
-                {message.length >0 ?message.map((data,ind)=><Box key={ind} scr><Messages like={data.nombrelike} comment={data.nombrecommentaire} favoris={data.nombrefavoris} idM={data.id} propio={data.Client} date={data.datePublication} image={data.fichiers} message={data.description} appart={data.typeBien} doc={data.typeDocuments} init={data.apportInitial} prix={data.prix} periodicite={data.periodicite} ville={data.localisation} piece={data.nombrePieces}
+                {message.length >0 ?<>    <Box     >
+                   
+                   <AspectRatio ratio={16 / 9} mb={10} borderRadius={25}>
+                   <iframe
+                     
+                     loading="lazy"
+                     allowFullScreen
+                     referrerPolicy="no-referrer-when-downgrade"
+                     src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyAoJQLE8uAbWnyPHCv-_udEUhH7HQooJlM&q={'DEUX PLATEAUX BLD LATRILLE ','angre 8eme tranche'}"}
+                   ></iframe>
+                   </AspectRatio>
+               
+             
+             
+               
+           </Box>{message.map((data,ind)=><Box key={ind} scr><Messages like={data.nombrelike} isliked={data.isLiked} isInteressed={data.isInteresse} isFav={data.isFavoris} comment={data.nombrecommentaire} favoris={data.nombrefavoris} idM={data.id} propio={data.Client} date={data.datePublication} image={data.fichiers} message={data.description} appart={data.typeBien} doc={data.typeDocuments} init={data.apportInitial} prix={data.prix} periodicite={data.periodicite} ville={data.localisation} piece={data.nombrePieces}
                     chambre={data.nombreChambres} salon={data.nombreSalon}
-                    /></Box>) : 
+                    /></Box>)} </>: 
                    
                     <AspectRatio width={{base:"400px",lg:"542px"}} ratio={16 / 9} mb={10} borderRadius={25}>
                     <iframe
