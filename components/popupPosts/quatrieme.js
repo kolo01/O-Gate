@@ -18,6 +18,7 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 
@@ -25,6 +26,7 @@ export default function Dernier() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   //variable globale
   const toast = useToast();
+  const router = useRouter();
 
   //fin des variables globales
 
@@ -166,6 +168,7 @@ export default function Dernier() {
           description: "votre poste à bien été enregistré",
           duration: 7000,
         });
+        router.reload()
       })
       .catch((error) => {
         console.log(error),
