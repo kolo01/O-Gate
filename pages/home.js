@@ -68,7 +68,7 @@ export default function Home(){
         }
        
        
-    },[router,token,message])
+    },[router,token])
     if(checker){
         return(
             <Box  bgColor={"##f4f2ee"} mb={10} >

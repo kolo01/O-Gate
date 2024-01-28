@@ -52,7 +52,7 @@ export default function PrincipalePopup() {
     const [needDoc,setNeedDoc] = useState(false)//utiliser pour recuperer les info addictionnelle sur le type de bien
     
     
-    const [StypeBien, setStypeBien] = useState(0);
+    const [StypeBien, setStypeBien] = useState(1);
     const [meuble, setMeuble] = useState("NON_MEUBLE");
     //fin des declarations
       //fin des declarations
@@ -68,7 +68,7 @@ export default function PrincipalePopup() {
             "http://185.98.139.246:9090/ogatemanagement-api/rechercherlistetypebiens",
             config
           )
-          .then((response) =>{ setTypebienId(response.data.donnee),console.log(response.data.donnee)})
+          .then((response) =>{ setTypebienId(response.data.donnee),console.log("type bien id",(response.data.donnee))})
           .catch((error) => {});
         ///Recuperation des types de document
         axios
@@ -83,7 +83,7 @@ export default function PrincipalePopup() {
     
           //Info addition sur le bien
              
-          axios.get('http://185.98.139.246:9090/ogatemanagement-api/rechercherlisteinformationsadditionnellessurbien',config).then((response)=>{setBienId(response.data.donnee),console.log(response.data.donneex)}).catch((error)=>{
+          axios.get('http://185.98.139.246:9090/ogatemanagement-api/rechercherlisteinformationsadditionnellessurbien',config).then((response)=>{setBienId(response.data.donnee),console.log("other",response.data.donneex)}).catch((error)=>{
            
         })
     
@@ -180,8 +180,11 @@ const handleSubmit = () =>{
     ) : (
       <></>
     )}
+{/* 
 
-      {typebienId[parseInt(StypeBien)-1].documentIsAssocieted ? <Box mt={2}>
+{console.log(typeof(typebienId))}
+{console.log("object",Object.values(typebienId)[parseInt(StypeBien)-1].documentIsAssocieted)} */}
+      {Object.values(typebienId)[parseInt(StypeBien)-1].documentIsAssocieted ? <Box mt={2}>
           <Text  fontWeight={600}>Type de document</Text>
           <Box height={"fit-content"}  py={2} >
               
@@ -202,7 +205,7 @@ const handleSubmit = () =>{
  
 </Box >
           </Box>
-          </Box> : <></>}
+          </Box> : <></>} 
 
 
     
