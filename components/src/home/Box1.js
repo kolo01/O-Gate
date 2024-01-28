@@ -7,7 +7,7 @@ export default function Box1(){
             <Text fontWeight={700} fontSize={"48px"} color={" #219EF9"}  >Nous connectons les 
 acteurs du monde 
 immobilier</Text>
-<Text fontWeight={500} fontSize={"24px"} >{text}</Text>
+<Text fontWeight={500} fontSize={"24px"} color={"black"}>{text}</Text>
 
         </Box>
     )

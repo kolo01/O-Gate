@@ -59,6 +59,7 @@ export default function Box2() {
   return (
     <>
       <Center
+      color={"black"}
         display={{ base: "block", lg: "none" }}
         ml={["5%", "25%", "25%", "0%", "0%"]}
         width={"full"}
@@ -104,7 +105,7 @@ export default function Box2() {
             mt={5}
             fontWeight={700}
             onClick={() => handleConnect()}
-            isDisabled={email.length < 8 || password.length < 7}
+            isDisabled={email.length < 8 || password.length < 3}
             fontSize={"16px"}
             lineHeight={"19.5px"}
             borderRadius={"16px"}

@@ -187,6 +187,7 @@ export default function Messages({
         height={"fit-content"}
         py={5}
         mb={5}
+        color={"black"}
         bgColor={"white"}
         borderRadius={"2%"}
         overflow={"visible"}
