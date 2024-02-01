@@ -38,7 +38,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import secureLocalStorage from "react-secure-storage";
 
-export default function Messages(
+export default function InteretP(
   {
   idM,
   propio,
@@ -180,9 +180,10 @@ export default function Messages(
   return (
     <>
       <Box
-        width={{ base: "400px", lg: "542px" }}
+        width={{ base: "full", lg: "342px" }}
         height={"fit-content"}
         py={5}
+        position={'relative'}
         mb={5}
         color={"black"}
         bgColor={"white"}
@@ -196,7 +197,7 @@ export default function Messages(
           width={"full"}
           // bgImage={image}
           // bgColor={"gray"}
-          height={"400px"}
+          height={{ base: "400", lg: "342px" }}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
         >
@@ -209,7 +210,7 @@ export default function Messages(
           >
             {image.map((images, index) => (
              
-              <Image  key={index} width={'full'} height={'400px'} src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} alt={images.id}/>
+              <Image  key={index} width={'full'} height={{ base: "400", lg: "342px" }} src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} alt={images.id}/>
             ))}
           </Carousel>
         </Box>

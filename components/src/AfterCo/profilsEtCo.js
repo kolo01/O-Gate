@@ -1,4 +1,4 @@
-import { Avatar, Box, Center, Flex, Image, Text } from "@chakra-ui/react";
+import { Avatar, Box, Center, Flex, Image, Link, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
@@ -37,19 +37,27 @@ export default function Profilers(){
         <Text fontWeight={600}  fontSize={"15px"} >Statistiques globales</Text>
        </Flex>
        <Box mx={2} mb={2} fontSize={"15px"} fontWeight={600} mt={2}>
-       <Flex display={"flex"} justifyContent={"space-between"}>
+       <Flex as={Link} href="/Favoris" _hover={{
+        textDecoration:"none"
+       }} display={"flex"} justifyContent={"space-between"}>
         <Text>Publications favoris : </Text>
         <Text>12</Text>
        </Flex>
-       <Flex display={"flex"} justifyContent={"space-between"}>
+       <Flex as={Link} href="/Interet" _hover={{
+        textDecoration:"none"
+       }} display={"flex"} justifyContent={"space-between"}>
        <Text>Interessés par :</Text>
         <Text>5 articles</Text>
        </Flex>
-       <Flex display={"flex"} justifyContent={"space-between"}>
-       <Text>Partages :</Text>
+       <Flex  as={Link} href="/MesPublications" _hover={{
+        textDecoration:"none"
+       }} display={"flex"} justifyContent={"space-between"}>
+       <Text>Mes publications:</Text>
         <Text>55</Text>
        </Flex>
-       <Flex display={"flex"} justifyContent={"space-between"}>
+       <Flex as={Link} href="/Followers" _hover={{
+        textDecoration:"none"
+       }}   display={"flex"} justifyContent={"space-between"}>
        <Text>Suivis par :</Text>
         <Text>55</Text>
        </Flex>

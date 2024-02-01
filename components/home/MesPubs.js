@@ -38,7 +38,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import secureLocalStorage from "react-secure-storage";
 
-export default function Messages(
+export default function Mespub(
   {
   idM,
   propio,
@@ -180,9 +180,10 @@ export default function Messages(
   return (
     <>
       <Box
-        width={{ base: "400px", lg: "542px" }}
+        width={{ base: "full", lg: "342px" }}
         height={"fit-content"}
         py={5}
+        position={'relative'}
         mb={5}
         color={"black"}
         bgColor={"white"}
@@ -196,7 +197,7 @@ export default function Messages(
           width={"full"}
           // bgImage={image}
           // bgColor={"gray"}
-          height={"400px"}
+          height={{ base: "400", lg: "342px" }}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
         >
@@ -209,60 +210,34 @@ export default function Messages(
           >
             {image.map((images, index) => (
              
-              <Image  key={index} width={'full'} height={'400px'} src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} alt={images.id}/>
+              <Image  key={index} width={'full'} height={{ base: "400", lg: "342px" }} src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} alt={images.id}/>
             ))}
           </Carousel>
         </Box>
         <Flex justifyContent={"space-between"}>
           <Flex mt={2} mb={2}>
             {/* <Avatar /> */}
-            <Box>
-              <Text fontWeight={700} fontSize={"20px"}>
+            <Flex  >
+              <Text mr={20} fontWeight={700} fontSize={"20px"}>
                 {propio}
               </Text>
 
-              <Text fontWeight={"hairline"} fontSize={"15px"}>
+              <Text fontWeight={"medium"} fontSize={"15px"}>
                 {date}
               </Text>
               {/* <Text fontWeight={"hairline"} color={"#D9D9D9"} fontSize={"12px"}>
                 {"date"}
               </Text> */}
-            </Box>
+            </Flex >
           </Flex>
-          {interessed ? (
-            <Button
-              onClick={() => {
-                Interesse(idM);
-              }}
-              bgColor={"white"}
-              color={"#219EF9"}
-              _hover={{
-                bgColor: "white",
-              }}
-            >
-              Désintéresser
-            </Button>
-          ) : (
-            <Button
-              onClick={() => {
-                Interesse(idM);
-              }}
-              bgColor={"white"}
-              color={"#219EF9"}
-              _hover={{
-                bgColor: "white",
-              }}
-            >
-              intéresser
-            </Button>
-          )}
+          
         </Flex>
         <Flex>
           <Box>
             <Text fontWeight={600} fontSize={"20px"}>
               {appart.designation},{ville}
             </Text>
-            {message.length > 5 ? (
+            {message.length > 3 ? (
               <Text fontSize={"20px"} fontWeight={600} mb={5}>
                 {message}
               </Text>
@@ -274,85 +249,10 @@ export default function Messages(
           </Box>
         </Flex>
 
-        {/* LES BUTTONS SOUS LA PUB */}
-        <Flex
-          width={"full"}
-          height={"36px"}
-          mt={2}
-          pb={5}
-          justifyContent={"space-between"}
-          borderTop={"1px solid black"}
-        >
-          <Flex cursor={"pointer"} mr={2} mt={3} onClick={() => liked(idM)}>
-            {like}
-            {likes ? (
-              <Image
-                alt="like"
-                color={"red"}
-                src="./images/like-icon.svg"
-                width={30}
-                height={30}
-                mt={-2}
-                ml={2}
-              />
-            ) : (
-              <Image
-                width={30}
-                height={30}
-                mt={-2}
-                ml={2}
-                src="./images/liked.png"
-                alt="not_liked"
-              />
-            )}
-          </Flex>
-          <Flex cursor={"pointer"} mr={2}  mt={2}>
-            {commentaire}
-            <MdMessage onClick={onOpen} size={30} />
-          </Flex>
-          <Flex cursor={"pointer"} mr={2}   mt={[1,1,1,2,2]}>
-            0<PiShareBold size={30} />
-          </Flex>
-          <Flex cursor={"pointer"} mr={2}  mt={[1,1,1,2,2]} onClick={() => Favoris(idM)}>
-            {favoris}{" "}
-            {follow ? (
-              <FcLike color="blue" colorRendering={"blue"} size={30} />
-            ) : (
-              <FcLikePlaceholder size={30}></FcLikePlaceholder>
-            )}
-          </Flex>
-        </Flex>
       </Box>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Commenter la publication de {propio} </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text mb={2} fontWeight={600}>
-              Message :{" "}
-            </Text>
-            <Textarea
-              placeholder="Commentaires"
-              onChange={(e) => setCommented(e.target.value)}
-            />
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              colorScheme="blue"
-              mr={3}
-              isDisabled={commented.length < 2}
-              onClick={() => Comment(idM)}
-            >
-              Publier
-            </Button>
-            <Button variant="ghost" onClick={onClose}>
-              Fermer
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+    
+      
     </>
   );
 }
