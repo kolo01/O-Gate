@@ -244,7 +244,7 @@ export default function Messages(
            infiniteLoop
          >
          {image.map((images, index) => (
-          <Link download={true} key={index} width={'full'} height={'400px'}
+          <Link download={false} key={index} width={'full'} height={'400px'}
           //  href={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
           href="#"
             alt={images.id}>
