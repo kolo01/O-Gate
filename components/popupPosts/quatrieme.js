@@ -90,6 +90,7 @@ export default function Dernier() {
   const [OtherQ, setOtherQ] = useState("");
 
   const [lat, setLat] = useState(0);
+  const [load, setLoad] = useState(0);
   const [long, setLong] = useState(0);
   const [ville, setVille] = useState("none");
   const [desc, setDesc] = useState("none");
@@ -311,11 +312,13 @@ export default function Dernier() {
 
           <ModalFooter>
             <Button
+            isLoading={load}
               colorScheme="blue"
               mr={3}
               display={displayed1}
               onClick={() => {
                 HandleMedia(doctype, fichiers);
+                setLoad(true)
               }}
             >
               Terminer
