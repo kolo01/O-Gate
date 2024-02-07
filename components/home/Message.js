@@ -244,12 +244,15 @@ export default function Messages(
            infiniteLoop
          >
          {image.map((images, index) => (
-            <Box key={index} width={'full'} height={'400px'}>
-          <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-          <Viewer fileUrl={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} />
-</Worker>
-            {/* <Link   width={'full'} height={'400px'} href={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} alt={images.id}>{images.nom}</Link> */}
+          <Link download={true} key={index} width={'full'} height={'400px'}
+          //  href={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
+          href="#"
+            alt={images.id}>
+            <Box  bgImage={"images/doc.jpg"} bgRepeat={"no-repeat"} width={'full'} height={'400px'}>
+          
+          <b>Telecharger {images.nom} </b>
             </Box>
+            </Link>
           ))}
         </Carousel>
           }
