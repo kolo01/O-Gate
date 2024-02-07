@@ -214,7 +214,7 @@ export default function Box2() {
           mt={5}
           fontWeight={700}
           onClick={() => handleConnect()}
-          isDisabled={email.length < 8 || password.length < 7}
+          isDisabled={email.length < 8 || password.length < 5}
           fontSize={"16px"}
           lineHeight={"19.5px"}
           borderRadius={"16px"}

@@ -26,6 +26,7 @@ import {
   Textarea,
   Img,
   SimpleGrid,
+  Link,
 } from "@chakra-ui/react";
 import axios from "axios";
 import Head from "next/head";
@@ -37,6 +38,7 @@ import { PiShareBold } from "react-icons/pi";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import secureLocalStorage from "react-secure-storage";
+import { Viewer, Worker } from '@react-pdf-viewer/core';
 
 export default function Messages(
   {
@@ -59,19 +61,15 @@ export default function Messages(
   isliked,
   isInteressed,
   isFav,
-  favoris,
+  favoris,all
 }
 ) {
-  const Imaged = [
-    "./images/P1.jpeg",
-    "./images/P2.jpeg",
-    "./images/P3.jpeg",
-    "./images/p4.jpeg",
-  ];
+
   const [commented, setCommented] = useState("");
   const [commentaire, setCommentaire] = useState(0);
   const [likes, setLikes] = useState(isliked);
   const [share, setShare] = useState();
+  const [typed, setTyped] = useState("");
   const [interessed, setInteressed] = useState(isInteressed);
   const [follow, setFollow] = useState(isFav);
   const toast = useToast();
@@ -84,6 +82,12 @@ export default function Messages(
   //fin des declarations
 
   useEffect(() => {
+    if (image.length >0) {
+      setTyped(image[0].typeFichier)
+    } else{
+      setTyped("IMAGES")
+    }
+    console.log(all)
     setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
     let config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -200,18 +204,56 @@ export default function Messages(
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
         >
+          {typed == "IMAGE" ?
           <Carousel
-            interval={5000}
-            showThumbs={false}
-            showIndicators={false}
-            autoPlay
-            infiniteLoop
-          >
-            {image.map((images, index) => (
-             
-              <Image  key={index} width={'full'} height={'400px'} src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} alt={images.id}/>
-            ))}
-          </Carousel>
+          interval={5000}
+          showThumbs={false}
+          showIndicators={false}
+          autoPlay
+          infiniteLoop
+        >
+          {image.map((images, index) => (
+           
+            <Image  key={index} width={'full'} height={'400px'} src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} alt={images.id}/>
+          ))}
+        </Carousel> : typed == "VIDEO" ? 
+           <Carousel
+           interval={5000}
+           showThumbs={false}
+           showIndicators={false}
+           autoPlay
+           infiniteLoop
+         >
+           {image.map((images, index) => (
+            
+            <video controls  width={'full'} key={index}>
+
+
+  <source src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} />
+
+
+</video>
+
+            
+           ))}
+         </Carousel> :   <Carousel
+           interval={5000}
+           showThumbs={false}
+           showIndicators={false}
+           
+           infiniteLoop
+         >
+         {image.map((images, index) => (
+            <Box key={index} width={'full'} height={'400px'}>
+          <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+          <Viewer fileUrl={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} />
+</Worker>
+            {/* <Link   width={'full'} height={'400px'} href={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} alt={images.id}>{images.nom}</Link> */}
+            </Box>
+          ))}
+        </Carousel>
+          }
+          
         </Box>
         <Flex justifyContent={"space-between"}>
           <Flex mt={2} mb={2}>

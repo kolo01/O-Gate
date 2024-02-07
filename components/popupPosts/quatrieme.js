@@ -88,6 +88,7 @@ export default function Dernier() {
   const [fichiersId, setFichiersId] = useState([]); //utiliser pour recuperer les id dans la bd
   const [OtherB, setOtherB] = useState("");
   const [OtherQ, setOtherQ] = useState("");
+
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
   const [ville, setVille] = useState("none");
@@ -105,8 +106,9 @@ export default function Dernier() {
   //Fonction d'envoi basé sur le modele
 
   const HandleMedia = (doctype, fichiers) => {
-    setDisplayed1("none");
-    setDisplayed2("block");
+    
+    const total = fichiers[0].length;
+    var tester =0;
     fichiers.map(async (data, index) => {
       Object.values(data).map(async (donnees, index) => {
         let formdata = new FormData();
@@ -119,11 +121,16 @@ export default function Dernier() {
             config
           )
           .then((response) => {
-            console.log(response.data.donnee.id),
+            tester = tester+1
+            if (tester == total) {
+              setDisplayed1("none");
+            setDisplayed2("block");
+            }
               fichiersId.push(response.data.donnee.id);
           });
       });
     });
+   
   };
 
   const SavePost = async () => {
@@ -314,6 +321,7 @@ export default function Dernier() {
               Terminer
             </Button>
             <Button
+          
               colorScheme="green"
               display={displayed2}
               mr={3}

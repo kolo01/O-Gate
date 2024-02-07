@@ -151,6 +151,7 @@ export default function Home() {
                         piece={data.nombrePieces}
                         chambre={data.nombreChambres}
                         salon={data.nombreSalon}
+                        all = {data}
                       />
                     </Box>
                   ))}{" "}
