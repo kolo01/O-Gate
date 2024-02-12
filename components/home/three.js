@@ -58,11 +58,11 @@ export default function ThreeSec(){
                 </Box>
                 <Box mt={2} mr={5}  onClick={()=>router.push("/relation")} cursor={"pointer"}>
                   <Center >
-                   <Box borderRadius={"50%"}>
+                   <Box >
                     <PiUsers  width={"42px"}  height={"42px"} fontSize={"30px"}/>
                    </Box>
                    </Center>
-                <Text fontSize={"16px"} lineHeight={"16px"} >{"Mes relations"}</Text>
+                <Text fontSize={"16px"} lineHeight={"16px"}     width={"95px"}>{"Mes relations"}</Text>
                 </Box>
                 <Box mt={2} mr={5}  onClick={()=>router.push("/notifications")} cursor={"pointer"}>
                    <Box ml={5}>

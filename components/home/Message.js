@@ -214,7 +214,7 @@ export default function Messages(
         >
           {image.map((images, index) => (
            
-            <Image  key={index} width={'full'} height={'400px'} src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} alt={images.id}/>
+            <Image  key={index} width={'full'} height={'400px'} src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} alt={images.nom}/>
           ))}
         </Carousel> : typed == "VIDEO" ? 
            <Carousel
@@ -244,14 +244,17 @@ export default function Messages(
            infiniteLoop
          >
          {image.map((images, index) => (
-          <Link download={false} key={index} width={'full'} height={'400px'}
-          //  href={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
-          href="#"
+          <Link download={true}  key={index} width={'full'} height={'400px'}
+           href={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
+          
             alt={images.id}>
             <Box  bgImage={"images/doc.jpg"} bgRepeat={"no-repeat"} width={'full'} height={'400px'}>
           
           <b>Telecharger {images.nom} </b>
             </Box>
+            {/* <div style={{overflow:'scroll',height:600}}>
+            <MobilePDFReader url="http://localhost:3000/test.pdf"/>
+           </div> */}
             </Link>
           ))}
         </Carousel>

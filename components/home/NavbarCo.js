@@ -9,7 +9,7 @@ export default function NavbarCo(){
     const { isOpen, onOpen, onClose } = useDisclosure()
     return(
         <>
-        <Flex display={{base:"none", lg: "flex"}} bgColor={"whiteAlpha.700"} pb={5} ml={60}>
+        <Flex display={{base:"none", lg: "flex"}} bgColor={"whiteAlpha.700"} pb={5} ml={[30,30,30,10,60]}>
          <Logo/>
          <InputGroup width={"335px"} height={"34px"} mt={5}  mr={10}>
          <Input placeholder="Rechercher" type="search"border={"1px solid black"}  />
