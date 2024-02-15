@@ -59,6 +59,7 @@ export default function Box2() {
   return (
     <>
       <Center
+      fontFamily={"-apple-system"}
       color={"black"}
         display={{ base: "block", lg: "none" }}
         ml={["5%", "25%", "25%", "0%", "0%"]}
@@ -173,7 +174,7 @@ export default function Box2() {
           </Button>
         </Box>
       </Center>
-      <Box display={{ base: "none", lg: "block" }}>
+      <Box display={{ base: "none", lg: "block" }} fontFamily={"-apple-system"}>
         <Text color={" #219EF9"} fontWeight={700} fontSize={"48px"}>
           Connexion
         </Text>

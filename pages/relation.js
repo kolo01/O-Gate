@@ -32,7 +32,7 @@ export default function Relation(){
       setNom("Default user")
   },[nom])
     return(
-    <Box bgColor={"#F6F6F6"} pb={10} h={"45em"} color={"black"}>
+    <Box fontFamily={"-apple-system"} bgColor={"#F6F6F6"} pb={10} h={"45em"} color={"black"}>
      <NavbarCo/>
     
     <Center display={"flex"}>

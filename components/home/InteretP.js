@@ -216,13 +216,13 @@ export default function InteretP(
         </Box>
         <Flex justifyContent={"space-between"}>
           <Flex mt={2} mb={2}>
-            {/* <Avatar /> */}
-            <Box>
-              <Text fontWeight={700} fontSize={"20px"}>
+            <Avatar />
+            <Box ml={2} mt={2}>
+              <Text fontWeight={700}  fontSize={'16px'} fontFamily={"-apple-system"}>
                 {propio}
               </Text>
 
-              <Text fontWeight={"hairline"} fontSize={"15px"}>
+              <Text fontWeight={"hairline"}   fontSize={'14px'} fontFamily={"-apple-system"}>
                 {date}
               </Text>
               {/* <Text fontWeight={"hairline"} color={"#D9D9D9"} fontSize={"12px"}>
@@ -260,11 +260,11 @@ export default function InteretP(
         </Flex>
         <Flex>
           <Box>
-            <Text fontWeight={600} fontSize={"20px"}>
+            <Text    fontSize={'16px'} fontFamily={"-apple-system"}>
               {appart.designation},{ville}
             </Text>
             {message.length > 5 ? (
-              <Text fontSize={"20px"} fontWeight={600} mb={5}>
+              <Text  fontSize={'16px'} fontFamily={"-apple-system"} mb={5}>
                 {message}
               </Text>
             ) : (

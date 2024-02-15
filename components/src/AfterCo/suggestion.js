@@ -37,6 +37,8 @@ export default function Suggestion() {
   }, [nom, router,token]);
   return (
     <Box
+    bgColor={"white"}
+    fontFamily={"-apple-system"}
       borderRadius={"5%"}
       py={5}
       width={"250px"}

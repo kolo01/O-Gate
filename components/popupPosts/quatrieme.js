@@ -204,7 +204,7 @@ export default function Dernier() {
     //Recuperation de la liste des type de bien
   }, [token]);
   return (
-    <>
+    <Box Box   fontSize={'16px'} fontFamily={"-apple-system"}>
       <Button colorScheme="blue" mr={3} onClick={onOpen}>
         Suivant
       </Button>
@@ -340,6 +340,6 @@ export default function Dernier() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>
+    </Box>
   );
 }

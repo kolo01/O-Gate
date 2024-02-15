@@ -80,7 +80,7 @@ export default function Publication() {
   return (
     <>
       {plength > 5 ? (
-        <Box>
+        <Box fontFamily={"-apple-system"}>
           <NavbarCo />
           <Box bgColor={"black"} width={"full"} height={"fit-content"} p={5}>
             {type == "IMAGE" ? (
@@ -284,7 +284,7 @@ export default function Publication() {
           </Center>
         </Box>
       ) : (
-        <Box>
+        <Box fontFamily={"-apple-system"}>
           <NavbarCo />
           <Box textAlign="center" py={10} px={6}>
             <Heading

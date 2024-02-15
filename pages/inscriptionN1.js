@@ -18,7 +18,7 @@ export default function Insc1() {
   return (
     <>
       <Navbar />
-      <Center display={"grid"} my={10}>
+      <Center display={"grid"} fontFamily={"-apple-system"} my={10}>
         <Flex>
             <Box fontSize={40}   w={"66px"} color={"white"} bgColor={"#219EF9"}height={"66px"} textAlign={"center"} borderRadius={"50%"}>1</Box>
             <Image src="./trait.png" alt="divider" height={1} width={"98px"} mt={"30px"}/>

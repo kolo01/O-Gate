@@ -15,7 +15,7 @@ export default function Offers(){
       // setNom(JSON.parse(localStorage.getItem("local")).data.nom)
       setNom("Default user")
   },[nom])
-    return(<Box bgColor={"#F6F6F6"} pb={10} h={"45em"}>
+    return(<Box bgColor={"#F6F6F6"} fontFamily={"-apple-system"} pb={10} h={"45em"}>
      <NavbarCo/>
     <Center>
         <Box width={"788px"} pt={10} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"} height={"fit-content"} pb={10} mt={"96px"}   borderRadius={"25px"} bgColor={"white"}>

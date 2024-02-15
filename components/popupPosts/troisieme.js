@@ -135,7 +135,7 @@ checkedQ[index] = valeur
       }
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-      <>
+      <Box   fontSize={'16px'} fontFamily={"-apple-system"}>
         <Button colorScheme="blue" mr={3} onClick={onOpen}>
           Suivant
         </Button>
@@ -185,7 +185,7 @@ checkedQ[index] = valeur
             </ModalFooter>
           </ModalContent>
         </Modal>
-      </>
+      </Box>
     );
   }
   

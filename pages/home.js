@@ -97,10 +97,10 @@ export default function Home() {
       console.log(error);
       // router.push("/")
     }
-  }, [router, token]);
+  }, [router, token,message]);
   if (checker) {
     return (
-      <Box bgColor={"##f4f2ee"} mb={10}>
+      <Box bgColor={"#f3f3f3 "} mb={10}>
         <NavbarCo />
         <Center>
           <Flex mt={5} pb={10}>
@@ -116,8 +116,8 @@ export default function Home() {
               {message.length > 0 ? (
                 <>
                   {" "}
-                  <Box>
-                    <AspectRatio ratio={16 / 9} mb={10} borderRadius={25}>
+                  <Box  bgColor={"white"} p={2} borderRadius={"xl"}>
+                    <AspectRatio ratio={16 / 9} mb={10} bgColor={"white"} borderRadius={25}>
                       <iframe
                         loading="lazy"
                         allowFullScreen
@@ -158,12 +158,14 @@ export default function Home() {
                 </>
               ) : (
                 <AspectRatio
+                bgColor={"white"}
                   width={{ base: "400px", lg: "542px" }}
                   ratio={16 / 9}
                   mb={10}
                   borderRadius={25}
                 >
                   <iframe
+                 
                     loading="lazy"
                     allowFullScreen
                     referrerPolicy="no-referrer-when-downgrade"

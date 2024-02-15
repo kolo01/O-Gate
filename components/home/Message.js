@@ -27,6 +27,9 @@ import {
   Img,
   SimpleGrid,
   Link,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
 } from "@chakra-ui/react";
 import axios from "axios";
 import Head from "next/head";
@@ -34,14 +37,15 @@ import Script from "next/script";
 import { useEffect, useState } from "react";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { MdMessage, MdSaveAlt } from "react-icons/md";
-import { PiShareBold } from "react-icons/pi";
+import { PiShareBold, PiSwap, PiSwapFill } from "react-icons/pi";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import secureLocalStorage from "react-secure-storage";
-import { Viewer, Worker } from '@react-pdf-viewer/core';
 
-export default function Messages(
-  {
+import PhotoAlbum from "react-photo-album";
+import Images from "./Affichages/Images";
+
+export default function Messages({
   idM,
   propio,
   date,
@@ -61,14 +65,14 @@ export default function Messages(
   isliked,
   isInteressed,
   isFav,
-  favoris,all
-}
-) {
-
+  favoris,
+  all,
+}) {
   const [commented, setCommented] = useState("");
   const [commentaire, setCommentaire] = useState(0);
   const [likes, setLikes] = useState(isliked);
-  const [share, setShare] = useState();
+  const [images, setImages] = useState([]);
+  const [iLength, setILength] = useState(0);
   const [typed, setTyped] = useState("");
   const [interessed, setInteressed] = useState(isInteressed);
   const [follow, setFollow] = useState(isFav);
@@ -82,12 +86,17 @@ export default function Messages(
   //fin des declarations
 
   useEffect(() => {
-    if (image.length >0) {
-      setTyped(image[0].typeFichier)
-    } else{
-      setTyped("IMAGES")
+    if (image.length > 0) {
+      if (image.length > 5) {
+        setILength(image.length);
+      } else {
+        setILength(5);
+      }
+      setTyped(image[0].typeFichier);
+    } else {
+      setTyped("IMAGES");
     }
-    console.log(all)
+
     setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
     let config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -106,7 +115,18 @@ export default function Messages(
     setLikes(isliked);
     setInteressed(isInteressed);
     setFollow(isFav);
-  }, [token, idM, like, follow, interessed, isliked, isInteressed, isFav]);
+  }, [
+    token,
+    idM,
+    like,
+    follow,
+    interessed,
+    isliked,
+    isInteressed,
+    isFav,
+    all,
+    image,
+  ]);
 
   const liked = async (id) => {
     axios
@@ -181,10 +201,14 @@ export default function Messages(
   const HandleDrawner = () => {
     onOpen();
   };
+
+  const [index, setIndex] = useState(-1);
+
   return (
     <>
       <Box
-        width={{ base: "400px", lg: "542px" }}
+      fontSize={'16px'} fontFamily={"-apple-system"}
+        width={{ base: "400px", lg: "555px" }}
         height={"fit-content"}
         py={5}
         mb={5}
@@ -196,80 +220,15 @@ export default function Messages(
         boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px"}
         p={2}
       >
-        <Box
-          width={"full"}
-          // bgImage={image}
-          // bgColor={"gray"}
-          height={"400px"}
-          bgRepeat={"no-repeat"}
-          bgSize={"cover"}
-        >
-          {typed == "IMAGE" ?
-          <Carousel
-          interval={5000}
-          showThumbs={false}
-          showIndicators={false}
-          autoPlay
-          infiniteLoop
-        >
-          {image.map((images, index) => (
-           
-            <Image  key={index} width={'full'} height={'400px'} src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} alt={images.nom}/>
-          ))}
-        </Carousel> : typed == "VIDEO" ? 
-           <Carousel
-           interval={5000}
-           showThumbs={false}
-           showIndicators={false}
-           autoPlay
-           infiniteLoop
-         >
-           {image.map((images, index) => (
-            
-            <video controls  width={'full'} key={index}>
-
-
-  <source src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`} />
-
-
-</video>
-
-            
-           ))}
-         </Carousel> :   <Carousel
-           interval={5000}
-           showThumbs={false}
-           showIndicators={false}
-           
-           infiniteLoop
-         >
-         {image.map((images, index) => (
-          <Link download={true}  key={index} width={'full'} height={'400px'}
-           href={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
-          
-            alt={images.id}>
-            <Box  bgImage={"images/doc.jpg"} bgRepeat={"no-repeat"} width={'full'} height={'400px'}>
-          
-          <b>Telecharger {images.nom} </b>
-            </Box>
-            {/* <div style={{overflow:'scroll',height:600}}>
-            <MobilePDFReader url="http://localhost:3000/test.pdf"/>
-           </div> */}
-            </Link>
-          ))}
-        </Carousel>
-          }
-          
-        </Box>
         <Flex justifyContent={"space-between"}>
           <Flex mt={2} mb={2}>
-            {/* <Avatar /> */}
-            <Box>
-              <Text fontWeight={700} fontSize={"20px"}>
+            <Avatar />
+            <Box ml={2} mt={2}>
+              <Text fontWeight={700} fontSize={"16px"}>
                 {propio}
               </Text>
 
-              <Text fontWeight={"hairline"} fontSize={"15px"}>
+              <Text fontWeight={"hairline"} fontSize={"14px"}>
                 {date}
               </Text>
               {/* <Text fontWeight={"hairline"} color={"#D9D9D9"} fontSize={"12px"}>
@@ -307,33 +266,134 @@ export default function Messages(
         </Flex>
         <Flex>
           <Box>
-            <Text fontWeight={600} fontSize={"20px"}>
+            <Text >
               {appart.designation},{ville}
             </Text>
             {message.length > 5 ? (
-              <Text fontSize={"20px"} fontWeight={600} mb={5}>
+              <Text   mb={5}>
                 {message}
               </Text>
             ) : (
               <></>
             )}
-
-           
           </Box>
         </Flex>
+        <Box
+          width={"555px"}
+         
+          height={"400px"}
+        
+          
+        >
+          {typed == "IMAGE" ? (
+           <>
+           <Box onClick={onOpen}>
+              <Images images={image} />
+              </Box>
+              <Modal isOpen={isOpen} onClose={onClose} size={"5xl"} >
+              <ModalOverlay />
+        <ModalContent>
+          {/* <ModalHeader>Modal Title</ModalHeader> */}
+          <ModalCloseButton />
+          <ModalBody display={"flex"} >
+          <Box width={"50%"} height={"2xl"}  bgColor={"black"} >
+                  <Carousel
+                  showArrows={true}
+                    interval={5000}
+                    showThumbs={false}
+                    showIndicators={false}
+                    autoPlay
+                    infiniteLoop
+                  >
+                   
+                    {image.map((images, index) => (
+                      <Image
+                      px={5}
+                      alt="test"
+                      mt={10}
+                        key={index}
+                        width={"full"}
+                        height={"xl"}
+                        src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
+                      />
+                    ))}
+                    
+                  </Carousel>
+                </Box>
+                <Box width={"50%"}  bgColor={"white"}  overflowY={"auto"}>
+                <Flex ml={5} justifyContent={"space-between"}>
+          <Flex mt={2} mb={2}>
+            {/* <Avatar /> */}
+            <Box>
+              <Text fontWeight={700}  fontSize={'16px'} fontFamily={"-apple-system"}>
+                {propio}
+              </Text>
 
-        {/* LES BUTTONS SOUS LA PUB */}
-        <Flex
+              <Text fontWeight={"hairline"}  fontSize={'14px'} fontFamily={"-apple-system"}>
+                {date}
+              </Text>
+              {/* <Text fontWeight={"hairline"} color={"#D9D9D9"} fontSize={"12px"}>
+                {"date"}
+              </Text> */}
+            </Box>
+          </Flex>
+          {interessed ? (
+            <Button
+              onClick={() => {
+                Interesse(idM);
+              }}
+              bgColor={"white"}
+              color={"#219EF9"}
+              _hover={{
+                bgColor: "white",
+              }}
+            >
+              Désintéresser
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                Interesse(idM);
+              }}
+              bgColor={"white"}
+              color={"#219EF9"}
+              _hover={{
+                bgColor: "white",
+              }}
+            >
+              intéresser
+            </Button>
+          )}
+        </Flex>
+        <Flex ml={10}   fontSize={'16px'} fontFamily={"-apple-system"}>
+          <Box>
+            <Text >
+              {appart.designation},{ville}
+            </Text>
+            {message.length > 5 ? (
+              <Text   fontSize={'16px'} fontFamily={"-apple-system"}  mb={5}>
+                {message}
+              </Text>
+            ) : (
+              <></>
+            )}
+          </Box>
+        </Flex>
+         {/* LES BUTTONS SOUS LA PUB */}
+         <Flex
           width={"full"}
           height={"36px"}
           mt={2}
-          pb={5}
+          mb={5}
+          pb={10}
           justifyContent={"space-between"}
           borderTop={"1px solid black"}
         >
           <Flex cursor={"pointer"} mr={2} mt={3} onClick={() => liked(idM)}>
-            {like}
+           
             {likes ? (
+              <Box ml={5}>
+<Box >
               <Image
                 alt="like"
                 color={"red"}
@@ -343,7 +403,12 @@ export default function Messages(
                 mt={-2}
                 ml={2}
               />
+              </Box>
+              <Text>J'aime</Text>
+              </Box>
             ) : (
+            <Box ml={5}>
+<Box >
               <Image
                 width={30}
                 height={30}
@@ -352,27 +417,224 @@ export default function Messages(
                 src="./images/liked.png"
                 alt="not_liked"
               />
+               </Box>
+               <Text>J'aime</Text>
+              </Box>
             )}
           </Flex>
-          <Flex cursor={"pointer"} mr={2}  mt={2}>
-            {commentaire}
-            <MdMessage onClick={onOpen} size={30} />
-          </Flex>
-          <Flex cursor={"pointer"} mr={2}   mt={[1,1,1,2,2]}>
-            0<PiShareBold size={30} />
-          </Flex>
-          <Flex cursor={"pointer"} mr={2}  mt={[1,1,1,2,2]} onClick={() => Favoris(idM)}>
-            {favoris}{" "}
+          <Box cursor={"pointer"} mr={2} mt={2}>
+           <Box ml={5}>
+            <MdMessage  size={30} />
+            </Box>
+            <Text>Commentaires</Text>
+          </Box>
+          <Box cursor={"pointer"} mr={2} mt={[1, 1, 1, 2, 2]}>
+            <Box ml={3}>
+            <PiShareBold size={30}  />
+            </Box>
+          
+            <Text>Partager</Text>
+          </Box>
+          <Flex
+            cursor={"pointer"}
+            mr={2}
+            mt={[1, 1, 1, 2, 2]}
+            onClick={() => Favoris(idM)}
+          >
+           
             {follow ? (
-              <FcLike color="blue" colorRendering={"blue"} size={30} />
+              <Box>
+                <Box ml={3}>
+                 <FcLike color="blue" colorRendering={"blue"} size={30} />
+                 </Box>
+                 <Text>Favoris</Text>
+              </Box>
+             
             ) : (
+              <Box>
+<Box ml={3}>
               <FcLikePlaceholder size={30}></FcLikePlaceholder>
+             </Box>
+              <Text>Favoris</Text>
+              </Box>
+            )}
+          </Flex>
+        </Flex>
+        <Flex mt={10}>
+          <Avatar/>
+          <InputGroup ml={2}>
+          <InputRightElement><Button bgColor={"transparent"} mt={2} mr={6}>Envoyez</Button></InputRightElement>
+          <Input height={10}  placeholder="Commenter" borderRadius={'full'} mt={2}/>
+          </InputGroup>
+              
+        </Flex>
+        <Box mt={5}>
+          <Center>
+            <Text fontSize={'16px'} fontFamily={"system-ui"}>Aucun commentaire</Text>
+          </Center>
+        </Box>
+                </Box>
+                
+          </ModalBody>
+
+          {/* <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant='ghost'>Secondary Action</Button>
+          </ModalFooter> */}
+        </ModalContent>
+               
+              </Modal>
+              </>
+          ) : typed == "VIDEO" ? (
+            <Carousel
+              interval={5000}
+              showStatus={false}
+              showThumbs={false}
+              showIndicators={false}
+              autoPlay
+              infiniteLoop
+            >
+              {image.map((images, index) => (
+                <video controls width={"555px"} height={"312px"}  key={index}>
+                  <source
+                    src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
+                  />
+                </video>
+              ))}
+            </Carousel>
+          ) : (
+            <Carousel
+              interval={5000}
+              showThumbs={false}
+              showIndicators={false}
+              infiniteLoop
+            >
+              {image.map((images, index) => (
+                <Link
+                  download={true}
+                  key={index}
+                  width={"full"}
+                  height={"400px"}
+                  href={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
+                  alt={images.id}
+                >
+                  <Box
+                    bgImage={"images/doc.jpg"}
+                    bgRepeat={"no-repeat"}
+                    width={"full"}
+                    height={"400px"}
+                  >
+                    <b>Telecharger {images.nom} </b>
+                  </Box>
+                  {/* <div style={{overflow:'scroll',height:600}}>
+            <MobilePDFReader url="http://localhost:3000/test.pdf"/>
+           </div> */}
+                </Link>
+              ))}
+            </Carousel>
+          )}
+        </Box>
+
+        {/* LES BUTTONS SOUS LA PUB */}
+           <Flex justifyContent={"space-between"} width={"500px"} fontSize={"12px"} color={"gray"}>
+            <Flex>
+            
+            <Image
+                alt="like"
+                color={"red"}
+                src="./images/like-icon.svg"
+                width={30}
+                height={30}
+                mt={-2}
+                mx={2}
+              /> 
+              <Text>{like} personnes </Text>
+              </Flex>
+              <Flex>
+             <Text>     {commentaire} Commentaires </Text>
+             <Text fontSize={"25px"} mt={-4} mx={2}>.</Text>
+             <Text>     {favoris} Reactionns </Text>
+           
+             
+              </Flex>
+              
+           </Flex>
+
+
+
+
+        <Flex
+          width={"full"}
+          height={"36px"}
+          mt={2}
+          pb={5}
+          justifyContent={"space-between"}
+          borderTop={"0.025em solid gray"}
+        >
+          <Flex cursor={"pointer"} mr={2} mt={3} onClick={() => liked(idM)}>
+            
+            {likes ? (
+              <Flex>
+                  <Image
+                alt="like"
+                color={"red"}
+                src="./images/like-icon.svg"
+                width={"20px"}
+                height={"20px"}
+                mt={-2}
+                mx={2}
+              /> <Text mt={-2}>J'aime</Text>
+              </Flex>
+            
+            ) : (
+              <Flex>
+
+             
+              <Image
+                width={"20px"}
+                height={"20px"}
+                mt={-2}
+                mx={2}
+                src="./images/liked.png"
+                alt="not_liked"
+              /><Text mt={-2}>J'aime</Text>
+               </Flex>
+            )}
+          </Flex>
+          <Flex cursor={"pointer"}  mt={2}>
+     
+            <MdMessage onClick={onOpen} size={20} />
+            <Text>Commenter</Text>
+          </Flex>
+          <Flex cursor={"pointer"}  mt={[1, 1, 1, 2, 2]}>
+            <PiSwapFill size={20} />
+            <Text>Republier</Text>
+          </Flex>
+          <Flex
+            cursor={"pointer"}
+            
+            mt={[1, 1, 1, 2, 2]}
+            onClick={() => Favoris(idM)}
+          >
+            
+            {follow ? (
+              <Flex>
+              <FcLike  color="blue" colorRendering={"blue"} size={20} />
+              <Text>Favoris</Text>
+              </Flex>
+            ) : (
+            <Flex>
+              <FcLikePlaceholder size={20}></FcLikePlaceholder>
+              <Text>Favoris</Text>
+              </Flex>
             )}
           </Flex>
         </Flex>
       </Box>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      {/* <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Commenter la publication de {propio} </ModalHeader>
@@ -400,7 +662,7 @@ export default function Messages(
             </Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
+      </Modal> */}
     </>
   );
 }

@@ -6,7 +6,7 @@ export default function Last(){
     const insc = "S’incrire"
     const { isOpen, onOpen, onClose } = useDisclosure()
     return(
-        <>
+        <Box   fontSize={'16px'} fontFamily={"-apple-system"}>
         <Flex  marginTop={"20px"} display={{base:"none",lg:"flex"}}>
         <Button width={"126px"} height={"48px"} borderRadius={"16px"}
         fontSize={"16px"}
@@ -97,6 +97,6 @@ export default function Last(){
 
         </Box>
         
-        </>
+        </Box>
     )
 }

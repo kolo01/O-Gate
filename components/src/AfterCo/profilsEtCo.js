@@ -19,13 +19,15 @@ export default function Profilers(){
         }
       
     },[nom,router])
-    return(<Box display={{base:"none",lg:"grid"}}>
-    <Box borderRadius={"5%"} width={"240px"} height={"fit-content"}  boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"} >
+    return(
+    <Box pb={5}  display={{base:"none",lg:"grid"}} width={"225px"} fontFamily={"-apple-system"} bgColor={"white"}  borderBottomRadius={"xl"}  borderTopRadius={"xl"} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}>
+        <Box bgColor={"red"} width={"225px"} borderTopRadius={"xl"} height={"50px"} ></Box>
+    <Box borderBottomRadius={"xl"} mt={-5} width={"225px"} height={"fit-content"}  >
         <Center><Avatar/></Center>
         <Text textAlign={"center"} fontSize={"15px"}  fontWeight={600}>Bonjour  {nom}</Text>
         <Flex textAlign={"center"} fontSize={"15px"} fontWeight={700}>
             
-           <Center mx={"30%"} display={"flex"}> <Box  w={4} h={4} bg= 'green.300' border= '2px solid white' rounded='full'/><Text >Actif</Text></Center>
+           {/* <Center mx={"30%"} display={"flex"}> <Box  w={4} h={4} bg= 'green.300' border= '2px solid white' rounded='full'/><Text >Actif</Text></Center> */}
         </Flex>
 
         {/* Debut 2eme elements */}

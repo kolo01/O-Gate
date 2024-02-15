@@ -42,7 +42,7 @@ export default function Insc3() {
   return (
     <>
       <Navbar />
-      <Center display={"grid"} mt={10}>
+      <Center fontFamily={"-apple-system"} display={"grid"} mt={10}>
         <Flex>
           <Box
             fontSize={40}

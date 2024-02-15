@@ -62,7 +62,7 @@ export default function Secondaire() {
     //fin des declarations
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <>
+    <Box   fontSize={'16px'} fontFamily={"-apple-system"}>
       <Button colorScheme="blue" mr={3} onClick={onOpen}>
         Suivant
       </Button>
@@ -203,6 +203,6 @@ export default function Secondaire() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>
+    </Box>
   );
 }

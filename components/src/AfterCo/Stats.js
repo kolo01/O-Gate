@@ -5,7 +5,7 @@ import secureLocalStorage from "react-secure-storage";
 export default function Stats(){
    
     return(<>
-    <Box  borderRadius={"25px"} display={"none"} py={5} width={"240px"} px={2} height={"144px"} mt={10} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"} >
+    <Box fontFamily={"-apple-system"} borderRadius={"25px"} display={"none"} py={5} width={"240px"} px={2} height={"144px"} mt={10} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"} >
        <Flex >
         <Image src="./Stats.png" alt="stats" w={"24px"} h={"24px"}/>
         <Text fontWeight={700} width={"163px"} fontSize={"16px"} >Statistiques globales</Text>

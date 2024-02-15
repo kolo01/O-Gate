@@ -14,7 +14,7 @@ export default function SecondSec(){
                 text:"Offres immobilières", l:10},
     ]
     return(
-        <Flex>
+        <Flex   fontSize={'16px'} fontFamily={"-apple-system"}>
             {all.map((data,index)=>(
                 <Box key={index} maxW={"107px"} maxH={"56px"} mt={"12px"} mr={"20px"}  textAlign={"center"}>
                     <Image ml={data.l}alt={data.text} src={data.image}/>

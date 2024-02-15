@@ -103,7 +103,7 @@ const handleSubmit = () =>{
 
 
   return (
-    <>
+    <Box   fontSize={'16px'} fontFamily={"-apple-system"}>
       <Box
         onClick={onOpen}
         mt={2}
@@ -224,6 +224,6 @@ const handleSubmit = () =>{
         </ModalContent>
       </Modal>
       
-    </>
+    </Box>
   );
 }

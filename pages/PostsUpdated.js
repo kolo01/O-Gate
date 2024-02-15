@@ -126,7 +126,7 @@ const CheckedQuartier = (index,valeur)=>[
 
   return (
     <>
-      <Box ml={20}>
+      <Box ml={20} fontFamily={"-apple-system"}>
         <Text>Choissisez votre catègorie</Text>
         <RadioGroup
           onChange={(e) => setInitial(e)}
@@ -149,6 +149,7 @@ const CheckedQuartier = (index,valeur)=>[
 
       {initial == "TEXTE" ? (
         <Box
+        fontFamily={"-apple-system"}
           ml={20}
           width={["300px", "300px", "300px", "500px", "500px"]}
           display={"grid"}
@@ -172,6 +173,7 @@ const CheckedQuartier = (index,valeur)=>[
       ) : initial == "MEDIA" ? (
         <>
           <Box
+          fontFamily={"-apple-system"}
             mt={5}
             ml={20}
             width={["300px", "300px", "300px", "500px", "500px"]}
@@ -194,7 +196,7 @@ const CheckedQuartier = (index,valeur)=>[
       ) : initial == "BESOIN" ? (
         <></>
       ) : initial == "VENTE/LOCATION" ? (
-        <SimpleGrid columns={[1,1,1,2,3]} mt={5}>
+        <SimpleGrid fontFamily={"-apple-system"} columns={[1,1,1,2,3]} mt={5}>
           <Box ml={20} width={"50%"}>
             <Text>Type de postes</Text>
             <Select onChange={(e) => setTypePoste(e.target.value)}>

@@ -46,7 +46,7 @@ export default function Box2(){
     return(
         <>
         <Navbar/>
-        <Center >
+        <Center fontFamily={"-apple-system"} >
         <Box  boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px;"} p={5} borderRadius={"25px"} my={10}>
         <Text color={" #219EF9"} fontWeight={700} fontSize={"48px"}>
             Connexion

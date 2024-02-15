@@ -48,7 +48,7 @@ export default function ThreeSec(){
 
 
     return(
-        <Flex >
+        <Flex   fontSize={'16px'} fontFamily={"-apple-system"} >
             <Box mt={2} mr={5} onClick={()=>router.push("/")} cursor={"pointer"}>
                    <Box ml={2}>
                     <MdHome width={"42px"}  height={"42px"} fontSize={"30px"}/>

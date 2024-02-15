@@ -33,7 +33,7 @@ export default function Message() {
   },[nom])
   
   return (
-    <Box bgColor={"#F6F6F6"} pb={10}>
+    <Box bgColor={"#F6F6F6"} pb={10} fontFamily={"-apple-system"}>
       <NavbarCo/>
       <Flex mt={10}   display={{base:"grid",lg:"flex"}}>
         <Box  mx={20}>

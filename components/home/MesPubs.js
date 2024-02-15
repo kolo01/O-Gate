@@ -218,11 +218,11 @@ export default function Mespub(
           <Flex mt={2} mb={2}>
             {/* <Avatar /> */}
             <Flex  >
-              <Text mr={20} fontWeight={700} fontSize={"20px"}>
+              <Text mr={20}  fontSize={'16px'} fontFamily={"-apple-system"}>
                 {propio}
               </Text>
 
-              <Text fontWeight={"medium"} fontSize={"15px"}>
+              <Text   fontSize={'14px'} fontFamily={"-apple-system"}>
                 {date}
               </Text>
               {/* <Text fontWeight={"hairline"} color={"#D9D9D9"} fontSize={"12px"}>
@@ -234,11 +234,11 @@ export default function Mespub(
         </Flex>
         <Flex>
           <Box>
-            <Text fontWeight={600} fontSize={"20px"}>
+            <Text   fontSize={'16px'} fontFamily={"-apple-system"}>
               {appart.designation},{ville}
             </Text>
             {message.length > 3 ? (
-              <Text fontSize={"20px"} fontWeight={600} mb={5}>
+              <Text   fontSize={'16px'} fontFamily={"-apple-system"} mb={5}>
                 {message}
               </Text>
             ) : (

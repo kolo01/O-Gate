@@ -15,6 +15,16 @@ const nextConfig = {
   //     }
   //   ]
   // }
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: '185.98.139.246',
+        port: '9090',
+        pathname: '/ogatemanagement-api/fichier/**',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig

@@ -222,7 +222,7 @@ console.log(valeur)
     return (
       <>
       <NavbarCo/>
-      <Box mt={2} mb={20}>
+      <Box mt={2} mb={20} fontFamily={"-apple-system"}>
          <Box  mx={10} >
         
   

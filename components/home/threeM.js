@@ -47,7 +47,7 @@ export default function ThreeSecM(){
 
 
     return(
-        <Flex display={"grid"} >
+        <Flex display={"grid"}   fontSize={'16px'} fontFamily={"-apple-system"} >
             <Box _hover={{
                         bgColor:"transparent",
                         textAlign:"center",
