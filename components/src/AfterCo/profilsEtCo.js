@@ -20,7 +20,7 @@ export default function Profilers(){
       
     },[nom,router])
     return(
-    <Box pb={5}  display={{base:"none",lg:"grid"}} width={"250px"} fontFamily={"-apple-system"} bgColor={"white"}  borderBottomRadius={"xl"}  borderTopRadius={"xl"} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}>
+    <Box pb={5}  display={{base:"none",lg:"grid"}} width={"250px"} fontFamily={"-apple-system"} bgColor={"white"}  borderBottomRadius={"xl"}  borderTopRadius={"xl"}   boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"}>
         <Box bgColor={"#7a1317"} width={"full"} borderTopRadius={"xl"} height={"50px"} ></Box>
     <Box borderBottomRadius={"xl"} mt={-5} width={"full"} height={"fit-content"}  >
         <Center><Avatar/></Center>
