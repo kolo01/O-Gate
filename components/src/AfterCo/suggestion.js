@@ -37,14 +37,15 @@ export default function Suggestion() {
   }, [nom, router,token]);
   return (
     <Box
+  
     bgColor={"white"}
     fontFamily={"-apple-system"}
       borderRadius={"5%"}
       py={5}
-      width={"250px"}
+      width={"300px"}
       height={"fit-content"}
       display={{ base: "none", lg: "grid" }}
-      boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
+      boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"}
     >
       <Box>
         <Text fontWeight={700} fontSize={"16px"} ml={2} mb={5} width={"240px"}>

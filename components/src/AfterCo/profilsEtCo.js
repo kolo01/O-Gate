@@ -20,9 +20,9 @@ export default function Profilers(){
       
     },[nom,router])
     return(
-    <Box pb={5}  display={{base:"none",lg:"grid"}} width={"225px"} fontFamily={"-apple-system"} bgColor={"white"}  borderBottomRadius={"xl"}  borderTopRadius={"xl"} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}>
-        <Box bgColor={"red"} width={"225px"} borderTopRadius={"xl"} height={"50px"} ></Box>
-    <Box borderBottomRadius={"xl"} mt={-5} width={"225px"} height={"fit-content"}  >
+    <Box pb={5}  display={{base:"none",lg:"grid"}} width={"250px"} fontFamily={"-apple-system"} bgColor={"white"}  borderBottomRadius={"xl"}  borderTopRadius={"xl"} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}>
+        <Box bgColor={"#7a1317"} width={"full"} borderTopRadius={"xl"} height={"50px"} ></Box>
+    <Box borderBottomRadius={"xl"} mt={-5} width={"full"} height={"fit-content"}  >
         <Center><Avatar/></Center>
         <Text textAlign={"center"} fontSize={"15px"}  fontWeight={600}>Bonjour  {nom}</Text>
         <Flex textAlign={"center"} fontSize={"15px"} fontWeight={700}>
@@ -31,35 +31,35 @@ export default function Profilers(){
         </Flex>
 
         {/* Debut 2eme elements */}
-        <Flex borderTop={"1px solid gray"} my={5} >
+        <Flex borderTop={"1px solid gray"} my={5} pt={5} >
         <Image ml={2}  src="./Stats.png" alt="stats" w={"24px"} h={"24px"}/>
 
 
     
         <Text fontWeight={600}  fontSize={"15px"} >Statistiques globales</Text>
        </Flex>
-       <Box mx={2} mb={2} fontSize={"15px"} fontWeight={600} mt={2}>
+       <Box mx={2} mb={2} fontSize={"15px"} fontWeight={600} mt={2} >
        <Flex as={Link} href="/Favoris" _hover={{
         textDecoration:"none"
-       }} display={"flex"} justifyContent={"space-between"}>
+       }} display={"flex"} justifyContent={"space-between"} pb={2}>
         <Text>Publications favoris : </Text>
         <Text>12</Text>
        </Flex>
        <Flex as={Link} href="/Interet" _hover={{
         textDecoration:"none"
-       }} display={"flex"} justifyContent={"space-between"}>
+       }} display={"flex"} justifyContent={"space-between"} pb={2}>
        <Text>Interessés par :</Text>
         <Text>5 articles</Text>
        </Flex>
        <Flex  as={Link} href="/MesPublications" _hover={{
         textDecoration:"none"
-       }} display={"flex"} justifyContent={"space-between"}>
+       }} display={"flex"} justifyContent={"space-between"} pb={2}>
        <Text>Mes publications:</Text>
         <Text>55</Text>
        </Flex>
        <Flex as={Link} href="/Followers" _hover={{
         textDecoration:"none"
-       }}   display={"flex"} justifyContent={"space-between"}>
+       }}   display={"flex"} justifyContent={"space-between"} pb={2}>
        <Text>Suivis par :</Text>
         <Text>55</Text>
        </Flex>

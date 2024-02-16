@@ -16,11 +16,12 @@ function Images({images}) {
 
 if (iLength<5 || iLength > 1) {
     return (
-        <SimpleGrid columns={iLength} width={["350px", "350px", "350px", "500px", "500px"]}
+        <SimpleGrid columns={iLength} width={["350px", "350px", "350px", "545px", "545px"]}
               >
            {images.map((data,index)=>{
             return (
-            <AspectRatio key={index} maxW='400px' ratio={1}>
+            <AspectRatio key={index} maxW='540px' maxH={'380px'} ratio={1}>
+                
             <Image src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${data.id}`} alt={`${data.nom}`} objectFit='cover' />
           </AspectRatio>
           )

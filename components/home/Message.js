@@ -211,7 +211,7 @@ export default function Messages({
         width={{ base: "400px", lg: "555px" }}
         height={"fit-content"}
         py={5}
-        mb={5}
+        my={5}
         color={"black"}
         bgColor={"white"}
         borderRadius={"2%"}
@@ -220,7 +220,7 @@ export default function Messages({
         boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px"}
         p={2}
       >
-        <Flex justifyContent={"space-between"}>
+        <Flex justifyContent={"space-between"} >
           <Flex mt={2} mb={2}>
             <Avatar />
             <Box ml={2} mt={2}>
@@ -279,7 +279,7 @@ export default function Messages({
           </Box>
         </Flex>
         <Box
-          width={"555px"}
+           width={{ base: "390px", lg: "555px" }}
          
           height={"400px"}
         
@@ -287,7 +287,7 @@ export default function Messages({
         >
           {typed == "IMAGE" ? (
            <>
-           <Box onClick={onOpen}>
+           <Box onClick={onOpen} width={"90%"}>
               <Images images={image} />
               </Box>
               <Modal isOpen={isOpen} onClose={onClose} size={"5xl"} >
@@ -295,7 +295,7 @@ export default function Messages({
         <ModalContent>
           {/* <ModalHeader>Modal Title</ModalHeader> */}
           <ModalCloseButton />
-          <ModalBody display={"flex"} >
+          <ModalBody display={"flex"} px={0} py={0} >
           <Box width={"50%"} height={"2xl"}  bgColor={"black"} >
                   <Carousel
                   showArrows={true}
@@ -309,7 +309,7 @@ export default function Messages({
                     {image.map((images, index) => (
                       <Image
                       px={5}
-                      alt="test"
+                      alt={`${images.nom}`}
                       mt={10}
                         key={index}
                         width={"full"}
@@ -460,10 +460,10 @@ export default function Messages({
             )}
           </Flex>
         </Flex>
-        <Flex mt={10}>
+        <Flex mt={10} mx={5}>
           <Avatar/>
           <InputGroup ml={2}>
-          <InputRightElement><Button bgColor={"transparent"} mt={2} mr={6}>Envoyez</Button></InputRightElement>
+          <InputRightElement><Button bgColor={"transparent"} mt={3} mr={6}>Envoyez</Button></InputRightElement>
           <Input height={10}  placeholder="Commenter" borderRadius={'full'} mt={2}/>
           </InputGroup>
               
@@ -477,12 +477,7 @@ export default function Messages({
                 
           </ModalBody>
 
-          {/* <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant='ghost'>Secondary Action</Button>
-          </ModalFooter> */}
+        
         </ModalContent>
                
               </Modal>
@@ -515,7 +510,7 @@ export default function Messages({
                 <Link
                   download={true}
                   key={index}
-                  width={"full"}
+                  width={"390px"}
                   height={"400px"}
                   href={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
                   alt={images.id}
@@ -523,7 +518,7 @@ export default function Messages({
                   <Box
                     bgImage={"images/doc.jpg"}
                     bgRepeat={"no-repeat"}
-                    width={"full"}
+                    width={"390px"}
                     height={"400px"}
                   >
                     <b>Telecharger {images.nom} </b>
@@ -538,7 +533,7 @@ export default function Messages({
         </Box>
 
         {/* LES BUTTONS SOUS LA PUB */}
-           <Flex justifyContent={"space-between"} width={"500px"} fontSize={"12px"} color={"gray"}>
+           <Flex justifyContent={"space-between"}  width={{ base: "390px", lg: "555px" }} fontSize={"12px"} color={"gray"}>
             <Flex>
             
             <Image
