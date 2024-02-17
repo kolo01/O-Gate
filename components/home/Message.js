@@ -44,6 +44,7 @@ import secureLocalStorage from "react-secure-storage";
 
 import PhotoAlbum from "react-photo-album";
 import Images from "./Affichages/Images";
+import { IoMdSend } from "react-icons/io";
 
 export default function Messages({
   idM,
@@ -423,16 +424,19 @@ export default function Messages({
             )}
           </Flex>
           <Box cursor={"pointer"} mr={2} mt={2}>
-           <Box ml={5}>
+            <Center>
+           <Box >
             <MdMessage  size={30} />
             </Box>
+            </Center>
             <Text>Commentaires</Text>
           </Box>
           <Box cursor={"pointer"} mr={2} mt={[1, 1, 1, 2, 2]}>
-            <Box ml={3}>
+            <Center>
+            <Box>
             <PiShareBold size={30}  />
             </Box>
-          
+            </Center>
             <Text>Partager</Text>
           </Box>
           <Flex
@@ -463,7 +467,7 @@ export default function Messages({
         <Flex mt={10} mx={5}>
           <Avatar/>
           <InputGroup ml={2}>
-          <InputRightElement><Button bgColor={"transparent"} mt={3} mr={6}>Envoyez</Button></InputRightElement>
+          <InputRightElement mt={2}><IoMdSend fontSize={'30px'}/></InputRightElement>
           <Input height={10}  placeholder="Commenter" borderRadius={'full'} mt={2}/>
           </InputGroup>
               
@@ -492,7 +496,7 @@ export default function Messages({
               infiniteLoop
             >
               {image.map((images, index) => (
-                <video controls width={"555px"} height={"312px"}  key={index}>
+                <video controls width={"545px"} height={"312px"}  key={index}>
                   <source
                     src={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
                   />
@@ -510,7 +514,7 @@ export default function Messages({
                 <Link
                   download={true}
                   key={index}
-                  width={"390px"}
+                  width={"545px"}
                   height={"400px"}
                   href={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
                   alt={images.id}
@@ -518,7 +522,7 @@ export default function Messages({
                   <Box
                     bgImage={"images/doc.jpg"}
                     bgRepeat={"no-repeat"}
-                    width={"390px"}
+                    width={"545px"}
                     height={"400px"}
                   >
                     <b>Telecharger {images.nom} </b>
@@ -533,7 +537,7 @@ export default function Messages({
         </Box>
 
         {/* LES BUTTONS SOUS LA PUB */}
-           <Flex justifyContent={"space-between"}  width={{ base: "390px", lg: "555px" }} fontSize={"12px"} color={"gray"}>
+           <Flex justifyContent={"space-between"}  width={{ base: "390px", lg: "545px" }} fontSize={"12px"} color={"gray"}>
             <Flex>
             
             <Image
@@ -571,7 +575,7 @@ export default function Messages({
           <Flex cursor={"pointer"} mr={2} mt={3} onClick={() => liked(idM)}>
             
             {likes ? (
-              <Flex>
+              <Flex p={2}>
                   <Image
                 alt="like"
                 color={"red"}
@@ -580,11 +584,11 @@ export default function Messages({
                 height={"20px"}
                 mt={-2}
                 mx={2}
-              /> <Text mt={-2}>J'aime</Text>
+              /> <Text mt={-2} >J'aime</Text>
               </Flex>
             
             ) : (
-              <Flex>
+              <Flex pX={2}>
 
              
               <Image
@@ -594,35 +598,35 @@ export default function Messages({
                 mx={2}
                 src="./images/liked.png"
                 alt="not_liked"
-              /><Text mt={-2}>J'aime</Text>
+              /><Text mt={-2}  >J'aime</Text>
                </Flex>
             )}
           </Flex>
-          <Flex cursor={"pointer"}  mt={2}>
+          <Flex cursor={"pointer"}  mt={2} pX={2}>
      
             <MdMessage onClick={onOpen} size={20} />
-            <Text>Commenter</Text>
+            <Text ml={2} mt={-1}>Commenter</Text>
           </Flex>
-          <Flex cursor={"pointer"}  mt={[1, 1, 1, 2, 2]}>
-            <PiSwapFill size={20} />
-            <Text>Republier</Text>
+          <Flex cursor={"pointer"}  mt={[1, 1, 1, 2, 2]} px={2}>
+            <PiSwapFill size={20}  />
+            <Text ml={2} mt={-1}>Republier</Text>
           </Flex>
           <Flex
             cursor={"pointer"}
-            
+            pX={2}
             mt={[1, 1, 1, 2, 2]}
             onClick={() => Favoris(idM)}
           >
             
             {follow ? (
               <Flex>
-              <FcLike  color="blue" colorRendering={"blue"} size={20} />
-              <Text>Favoris</Text>
+              <FcLike   size={20} />
+              <Text ml={2} >Favoris</Text>
               </Flex>
             ) : (
             <Flex>
-              <FcLikePlaceholder size={20}></FcLikePlaceholder>
-              <Text>Favoris</Text>
+              <FcLikePlaceholder   size={20}></FcLikePlaceholder>
+              <Text ml={2} mt={-1}>Favoris</Text>
               </Flex>
             )}
           </Flex>

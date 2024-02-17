@@ -103,10 +103,10 @@ const handleSubmit = () =>{
 
 
   return (
-    <Box   fontSize={'16px'} fontFamily={"-apple-system"}>
+    <Box   fontSize={'12px'} fontFamily={"-apple-system"}>
       <Box
         onClick={onOpen}
-        mt={2}
+        mt={5}
         mr={5}
         maxW={"107px"}
         maxH={"56px"}
@@ -118,13 +118,13 @@ const handleSubmit = () =>{
           <Image
             src={"./all/Sell.png"}
             alt=""
-            width={"30px"}
-            height={"30px"}
-            fontSize={"30px"}
+            width={"24px"}
+            height={"24px"}
+            fontSize={"24px"}
           />
         </Box>
 
-        <Text fontSize={"16px"} lineHeight={"16px"}>
+        <Text fontSize={"12px"} lineHeight={"16px"}>
           {"Postes"}
         </Text>
       </Box>

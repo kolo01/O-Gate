@@ -48,53 +48,57 @@ export default function ThreeSec(){
 
 
     return(
-        <Flex   fontSize={'16px'} fontFamily={"-apple-system"} >
-            <Box mt={2} mr={5} onClick={()=>router.push("/")} cursor={"pointer"}>
+        <Flex   fontSize={'12px'} fontFamily={"-apple-system"} >
+            <Box mt={5} mr={5} onClick={()=>router.push("/")} cursor={"pointer"}>
                    <Box ml={2}>
-                    <MdHome width={"42px"}  height={"42px"} fontSize={"30px"}/>
+                    <MdHome  width={"24px"} height={"24px"} fontSize={"24px"}/>
                    </Box>
                
-                <Text fontSize={"16px"} lineHeight={"16px"} >{"Accueil"}</Text>
+                <Text fontSize={"12px"} lineHeight={"16px"} >{"Accueil"}</Text>
                 </Box>
-                <Box mt={2} mr={5}  onClick={()=>router.push("/relation")} cursor={"pointer"}>
+                <Box mt={5} mr={5}  onClick={()=>router.push("/relation")} cursor={"pointer"} textAlign={"center"}>
                   <Center >
-                   <Box >
-                    <PiUsers  width={"42px"}  height={"42px"} fontSize={"30px"}/>
-                   </Box>
+                    <PiUsers   width={"24px"} height={"24px"} fontSize={"24px"}/>
                    </Center>
-                <Text fontSize={"16px"} lineHeight={"16px"}     width={"95px"}>{"Mes relations"}</Text>
+                <Text fontSize={"12px"} lineHeight={"16px"} minW={"95px"}     width={"95px"}>{"Mes relations"}</Text>
                 </Box>
-                <Box mt={2} mr={5}  onClick={()=>router.push("/notifications")} cursor={"pointer"}>
+                <Box mt={5} mr={5}  onClick={()=>router.push("/notifications")} cursor={"pointer"}>
                    <Box ml={5}>
-                    <IoIosNotifications  width={"10px"}  height={"42px"} fontSize={"30px"}/>
+                    <IoIosNotifications  width={"24px"} height={"24px"} fontSize={"24px"} />
                    </Box>
                
-                <Text fontSize={"16px"} lineHeight={"16px"} >{"Notifications"}</Text>
+                <Text fontSize={"12px"} lineHeight={"16px"} >{"Notifications"}</Text>
                 </Box>
                 <PrincipalePopup/>
-                <Box mt={2} mr={5}  onClick={()=>router.push("/messages")} cursor={"pointer"}>
+                <Box mt={5} mr={5}  onClick={()=>router.push("/messages")} cursor={"pointer"}>
                    <Box ml={2}>
-                    <MdMessage  width={"42px"}  height={"42px"} fontSize={"30px"}/>
+                    <MdMessage   width={"24px"} height={"24px"} fontSize={"24px"}/>
                    </Box>
                
-                <Text fontSize={"16px"} lineHeight={"16px"} >{"Message"}</Text>
+                <Text fontSize={"12px"} lineHeight={"16px"} >{"Message"}</Text>
                 </Box>
                 
                   
                 
            
-            <Menu>
+            <Menu >
   <MenuButton >
-    <Box display={"grid"} textAlign={"center"}>
-  <Avatar fontSize={"30px"} height={"30px"} width={"30px"} ml={"30%"}/>
+    <Box display={"grid"} mt={5} textAlign={"center"}>
+  <Avatar  width={"24px"} height={"24px"} fontSize={"24px"} ml={"30%"}/>
   
-  {nom=="NON DEFINI"? "New user" : nom}
+  <Text fontSize={'12px'} fontFamily={'-apple-system'}>{nom=="NON DEFINI"? "New user" : nom} </Text>
  
   </Box>
   </MenuButton>
   <MenuList>
-    <MenuItem>Mon profils</MenuItem>
-    <MenuItem onClick={()=>{Logout()}}>Deconnexion de {nom=="NON DEFINI"? "New user" : nom}</MenuItem>
+    <MenuItem _hover={{
+        bgColor:'white',
+        textDecoration:"underline"
+    }}>Mon profils</MenuItem>
+    <MenuItem _hover={{
+        bgColor:'white',
+        textDecoration:"underline"
+    }} onClick={()=>{Logout()}}>Deconnexion de {nom=="NON DEFINI"? "New user" : nom}</MenuItem>
    {/* <Text mx={5}> {nom=="NON DEFINI"? "Veuillez mettre à jour votre profil" : nom}</Text> */}
   </MenuList>
 </Menu>
