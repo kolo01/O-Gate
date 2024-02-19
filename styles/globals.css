@@ -68,7 +68,7 @@ body {
 }
 
 .button-64:hover span {
-  background:  rgb(5, 6, 242);
+  background: #7a1317;
 }
 
 @media (min-width: 768px) {

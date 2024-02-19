@@ -36,8 +36,8 @@ import Head from "next/head";
 import Script from "next/script";
 import { useEffect, useState } from "react";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
-import { MdMessage, MdSaveAlt } from "react-icons/md";
-import { PiShareBold, PiSwap, PiSwapFill } from "react-icons/pi";
+import { MdMessage, MdOutlineMessage, MdSaveAlt } from "react-icons/md";
+import { PiHeart, PiShareBold, PiSwap, PiSwapFill } from "react-icons/pi";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import secureLocalStorage from "react-secure-storage";
@@ -366,7 +366,7 @@ export default function Messages({
             </Button>
           )}
         </Flex>
-        <Flex ml={10}   fontSize={'16px'} fontFamily={"-apple-system"}>
+        <Flex  ml={5}   fontSize={'16px'} fontFamily={"-apple-system"}>
           <Box>
             <Text >
               {appart.designation},{ville}
@@ -388,7 +388,7 @@ export default function Messages({
           mb={5}
           pb={10}
           justifyContent={"space-between"}
-          borderTop={"1px solid black"}
+          borderTop={"0.025em solid gray"}
         >
           <Flex cursor={"pointer"} mr={2} mt={3} onClick={() => liked(idM)}>
            
@@ -399,8 +399,8 @@ export default function Messages({
                 alt="like"
                 color={"red"}
                 src="./images/like-icon.svg"
-                width={20}
-                height={20}
+                width={"20px"}
+                height={"20px"}
                 mt={-2}
                 ml={2}
               />
@@ -411,8 +411,8 @@ export default function Messages({
             <Box ml={5}>
 <Box >
               <Image
-                width={20}
-                height={20}
+                 width={"20px"}
+                 height={"20px"}
                 mt={-2}
                 ml={2}
                 src="./images/liked.png"
@@ -426,7 +426,7 @@ export default function Messages({
           <Box cursor={"pointer"} mr={2} mt={2}>
             <Center>
            <Box >
-            <MdMessage  size={20} />
+            <MdOutlineMessage size={20} />
             </Box>
             </Center>
             <Text>Commentaires</Text>
@@ -457,7 +457,7 @@ export default function Messages({
             ) : (
               <Box>
 <Box ml={3}>
-              <FcLikePlaceholder size={20}></FcLikePlaceholder>
+              <PiHeart size={20}></PiHeart>
              </Box>
               <Text>Favoris</Text>
               </Box>
@@ -509,12 +509,13 @@ export default function Messages({
               showThumbs={false}
               showIndicators={false}
               infiniteLoop
+              showStatus={false}
             >
               {image.map((images, index) => (
                 <Link
                   download={true}
                   key={index}
-                  width={"545px"}
+                  width={"540px"}
                   height={"400px"}
                   href={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
                   alt={images.id}
@@ -522,7 +523,7 @@ export default function Messages({
                   <Box
                     bgImage={"images/doc.jpg"}
                     bgRepeat={"no-repeat"}
-                    width={"545px"}
+                    width={"540px"}
                     height={"400px"}
                   >
                     <b>Telecharger {images.nom} </b>
@@ -604,8 +605,8 @@ export default function Messages({
           </Flex>
           <Flex cursor={"pointer"}  mt={2} pX={2}>
      
-            <MdMessage onClick={onOpen} size={20} />
-            <Text ml={2} mt={-1} color={'#6a6a6a'}>Commenter</Text>
+            <MdOutlineMessage onClick={onOpen} size={20} />
+            <Text ml={2} mt={-1} color={'#6a6a6a'}  fontWeight={500}>Commenter</Text>
           </Flex>
           <Flex cursor={"pointer"}  mt={[1, 1, 1, 2, 2]} px={2}>
             <PiSwapFill size={20}  />
@@ -625,7 +626,7 @@ export default function Messages({
               </Flex>
             ) : (
             <Flex>
-              <FcLikePlaceholder   size={20}></FcLikePlaceholder>
+              <PiHeart size={20}></PiHeart>
               <Text ml={2} mt={-1} color={'#6a6a6a'}>Favoris</Text>
               </Flex>
             )}

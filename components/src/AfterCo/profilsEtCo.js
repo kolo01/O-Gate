@@ -49,7 +49,7 @@ export default function Profilers(){
         textDecoration:"none"
        }} display={"flex"} justifyContent={"space-between"} pb={2}>
        <Text>Interessés par :</Text>
-        <Text>5 articles</Text>
+        <Text>5 </Text>
        </Flex>
        <Flex  as={Link} href="/MesPublications" _hover={{
         textDecoration:"none"
