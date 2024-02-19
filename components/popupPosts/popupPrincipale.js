@@ -140,7 +140,7 @@ const handleSubmit = () =>{
     <SimpleGrid columns={[1,1,2,2,2]} mt={2} spacingX={10} mx={5}>
     <Box  width={"100%"}>
       <Text>Type de postes</Text>
-      <Select onChange={(e) => setTypePoste(e.target.value)}>
+      <Select width={'fit-content'} onChange={(e) => setTypePoste(e.target.value)}>
         <option value={"INFORMATION"}>INFORMATION</option>
         <option value={"VENTE"}>VENTE</option>
         <option value={"LOCATION"}>LOCATION</option>
@@ -152,7 +152,7 @@ const handleSubmit = () =>{
     <Box  width={"100%"}>
       <Box>
         <Text>Type de bien</Text>
-        <Select onChange={(e) => {setStypeBien(e.target.value)}} >
+        <Select width={'fit-content'} onChange={(e) => {setStypeBien(e.target.value)}} >
           {typebienId.map((data, index) => (
             <option key={index}   value={parseInt(index+1)} >
               {data.designation}

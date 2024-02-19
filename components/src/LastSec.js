@@ -11,27 +11,27 @@ export default function Last(){
         <Button width={"126px"} height={"48px"} borderRadius={"16px"}
         fontSize={"16px"}
         fontWeight={700} bgColor={"white"}
-        color={"#219EF9"}
+        color={"#7a1317"}
         _hover={{
             bgColor:"white",
-            color:"#219EF9",
-            border:"2px solid #219EF9",
+            color:"#7a1317",
+            border:"2px solid #7a1317",
             borderRadius:"16px",
             textDecoration:"none"
-        }} border={"2px solid #219EF9"} as={Link} href={"/Inscription"}>
+        }} border={"2px solid #7a1317"} as={Link} href={"/Inscription"}>
         {insc}
         </Button>
         <Button ml={5} width={"126px"} height={"48px"} borderRadius={"16px"}
         fontSize={"16px"}
-        fontWeight={700} bgColor={"#219EF9"}
+        fontWeight={700} bgColor={"#7a1317"}
         color={"#FDFDFD"}
         _hover={{
-            bgColor:"#219EF9",
+            bgColor:"#7a1317",
             color:"#FDFDFD",
-            border:"2px solid #219EF9",
+            border:"2px solid #7a1317",
             borderRadius:"16px",
             textDecoration:"none"
-        }} border={"2px solid #219EF9"}  as={Link} href={"/Connexion"}>
+        }} border={"2px solid #7a1317"}  as={Link} href={"/Connexion"}>
         Connexion
         </Button>
         </Flex>
@@ -76,16 +76,16 @@ export default function Last(){
         </Button>
         <Button width={"126px"} height={"48px"} borderRadius={"16px"}
         fontSize={"16px"}
-        fontWeight={700} bgColor={"#219EF9"}
+        fontWeight={700} bgColor={"#7a1317"}
         color={"#FDFDFD"}
         mt={5}
         _hover={{
-            bgColor:"#219EF9",
+            bgColor:"#7a1317",
             color:"#FDFDFD",
-            border:"2px solid #219EF9",
+            border:"2px solid #7a1317",
             borderRadius:"16px",
             textDecoration:"none"
-        }} border={"2px solid #219EF9"}  as={Link} href={"/Connexion"}>
+        }} border={"2px solid #7a1317"}  as={Link} href={"/Connexion"}>
         Se Connecter
         </Button>
 

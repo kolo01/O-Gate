@@ -66,7 +66,7 @@ export default function Box2() {
         width={"full"}
       >
         <Box>
-          <Text color={" #219EF9"} fontWeight={700} fontSize={"48px"}>
+          <Text color={" #7a1317"} fontWeight={700} fontSize={"48px"}>
             Connexion
           </Text>
           <Box mt={5}>
@@ -112,10 +112,10 @@ export default function Box2() {
             borderRadius={"16px"}
             width={"408px"}
             height={"55px"}
-            bgColor={"#219EF9"}
+            bgColor={"#7a1317"}
             color={"white"}
             _hover={{
-              bgColor: "#219EF9",
+              bgColor: "#7a1317",
             }}
             isLoading={clicked}
           >
@@ -175,7 +175,7 @@ export default function Box2() {
         </Box>
       </Center>
       <Box display={{ base: "none", lg: "block" }} fontFamily={"-apple-system"}>
-        <Text color={" #219EF9"} fontWeight={700} fontSize={"48px"}>
+        <Text color={" #7a1317"} fontWeight={700} fontSize={"48px"}>
           Connexion
         </Text>
         <Box mt={5}>
@@ -221,10 +221,10 @@ export default function Box2() {
           borderRadius={"16px"}
           width={"408px"}
           height={"55px"}
-          bgColor={"#219EF9"}
+          bgColor={"#7a1317"}
           color={"white"}
           _hover={{
-            bgColor: "#219EF9",
+            bgColor: "#7a1317",
           }}
           isLoading={clicked}
         >
@@ -281,10 +281,10 @@ export default function Box2() {
             Démarrer{av} en{" "}
             <Text
               ml={2}
-              color="#219EF9"
+              color="#7a1317"
               as={Link}
               href={"/Inscription"}
-              _hover={{ textDecoration: "none", color: "#219EF9" }}
+              _hover={{ textDecoration: "none", color: "#7a1317" }}
             >
               {insc}
             </Text>{" "}

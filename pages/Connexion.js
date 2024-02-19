@@ -48,7 +48,7 @@ export default function Box2(){
         <Navbar/>
         <Center fontFamily={"-apple-system"} >
         <Box  boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px;"} p={5} borderRadius={"25px"} my={10}>
-        <Text color={" #219EF9"} fontWeight={700} fontSize={"48px"}>
+        <Text color={" #7a1317"} fontWeight={700} fontSize={"48px"}>
             Connexion
         </Text>
         <Box mt={5}>
@@ -65,8 +65,8 @@ export default function Box2(){
         </Box>
         <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"} mt={5}> Mot de passe oublié ?</Text>
         <Box display={"grid"}>
-        <Button mt={5}fontWeight={700} onClick={()=>handleConnect()}isDisabled={email.length<7 || password.length<3} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#219EF9"} color={"white"} _hover={{
-            bgColor:"#219EF9"
+        <Button mt={5}fontWeight={700} onClick={()=>handleConnect()}isDisabled={email.length<7 || password.length<3} fontSize={"16px"} lineHeight={"19.5px"} borderRadius={"16px"} width={"408px"} height={"55px"} bgColor={"#7a1317"} color={"white"} _hover={{
+            bgColor:"#7a1317"
         }} isLoading={clicked}> Se connecter</Button>
         <Button mt={5}  bgColor="transparent" border="1px solid black"fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} leftIcon={<FcGoogle/>} _hover={{
             bgColor:"transparent"
@@ -77,7 +77,7 @@ export default function Box2(){
         </Center>
         <Button mt={5} bgColor="transparent" border="1px solid black" fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}borderRadius={"16px"} width={"408px"} height={"55px"} _hover={{
             bgColor:"transparent"
-        }}> Démarrer{av} en <Text ml={2} color="#219EF9" as={Link} href={"/Inscription"} _hover={{textDecoration:"none",color:"#219EF9"}}>{insc}</Text> </Button>
+        }}> Démarrer{av} en <Text ml={2} color="#7a1317" as={Link} href={"/Inscription"} _hover={{textDecoration:"none",color:"#7a1317"}}>{insc}</Text> </Button>
         </Box>
         </Center>
         </>

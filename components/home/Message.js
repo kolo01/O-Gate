@@ -399,8 +399,8 @@ export default function Messages({
                 alt="like"
                 color={"red"}
                 src="./images/like-icon.svg"
-                width={30}
-                height={30}
+                width={20}
+                height={20}
                 mt={-2}
                 ml={2}
               />
@@ -411,8 +411,8 @@ export default function Messages({
             <Box ml={5}>
 <Box >
               <Image
-                width={30}
-                height={30}
+                width={20}
+                height={20}
                 mt={-2}
                 ml={2}
                 src="./images/liked.png"
@@ -426,7 +426,7 @@ export default function Messages({
           <Box cursor={"pointer"} mr={2} mt={2}>
             <Center>
            <Box >
-            <MdMessage  size={30} />
+            <MdMessage  size={20} />
             </Box>
             </Center>
             <Text>Commentaires</Text>
@@ -434,7 +434,7 @@ export default function Messages({
           <Box cursor={"pointer"} mr={2} mt={[1, 1, 1, 2, 2]}>
             <Center>
             <Box>
-            <PiShareBold size={30}  />
+            <PiShareBold size={20}  />
             </Box>
             </Center>
             <Text>Partager</Text>
@@ -449,7 +449,7 @@ export default function Messages({
             {follow ? (
               <Box>
                 <Box ml={3}>
-                 <FcLike color="blue" colorRendering={"blue"} size={30} />
+                 <FcLike color="blue" colorRendering={"blue"} size={20} />
                  </Box>
                  <Text>Favoris</Text>
               </Box>
@@ -457,7 +457,7 @@ export default function Messages({
             ) : (
               <Box>
 <Box ml={3}>
-              <FcLikePlaceholder size={30}></FcLikePlaceholder>
+              <FcLikePlaceholder size={20}></FcLikePlaceholder>
              </Box>
               <Text>Favoris</Text>
               </Box>
@@ -467,7 +467,7 @@ export default function Messages({
         <Flex mt={10} mx={5}>
           <Avatar/>
           <InputGroup ml={2}>
-          <InputRightElement mt={2}><IoMdSend fontSize={'30px'}/></InputRightElement>
+          <InputRightElement mt={2}><IoMdSend fontSize={'20px'}/></InputRightElement>
           <Input height={10}  placeholder="Commenter" borderRadius={'full'} mt={2}/>
           </InputGroup>
               
@@ -544,9 +544,9 @@ export default function Messages({
                 alt="like"
                 color={"red"}
                 src="./images/like-icon.svg"
-                width={30}
-                height={30}
-                mt={-2}
+                width={5}
+                height={5}
+              
                 mx={2}
               /> 
               <Text>{like} personnes </Text>
@@ -584,7 +584,7 @@ export default function Messages({
                 height={"20px"}
                 mt={-2}
                 mx={2}
-              /> <Text mt={-2} >J'aime</Text>
+              /> <Text mt={-2}  color={'#6a6a6a'}>J'aime</Text>
               </Flex>
             
             ) : (
@@ -598,18 +598,18 @@ export default function Messages({
                 mx={2}
                 src="./images/liked.png"
                 alt="not_liked"
-              /><Text mt={-2}  >J'aime</Text>
+              /><Text mt={-2}  color={'#6a6a6a'} >J'aime</Text>
                </Flex>
             )}
           </Flex>
           <Flex cursor={"pointer"}  mt={2} pX={2}>
      
             <MdMessage onClick={onOpen} size={20} />
-            <Text ml={2} mt={-1}>Commenter</Text>
+            <Text ml={2} mt={-1} color={'#6a6a6a'}>Commenter</Text>
           </Flex>
           <Flex cursor={"pointer"}  mt={[1, 1, 1, 2, 2]} px={2}>
             <PiSwapFill size={20}  />
-            <Text ml={2} mt={-1}>Republier</Text>
+            <Text ml={2} mt={-1} color={'#6a6a6a'}>Republier</Text>
           </Flex>
           <Flex
             cursor={"pointer"}
@@ -621,12 +621,12 @@ export default function Messages({
             {follow ? (
               <Flex>
               <FcLike   size={20} />
-              <Text ml={2} >Favoris</Text>
+              <Text ml={2}  color={'#6a6a6a'}>Favoris</Text>
               </Flex>
             ) : (
             <Flex>
               <FcLikePlaceholder   size={20}></FcLikePlaceholder>
-              <Text ml={2} mt={-1}>Favoris</Text>
+              <Text ml={2} mt={-1} color={'#6a6a6a'}>Favoris</Text>
               </Flex>
             )}
           </Flex>

@@ -93,11 +93,11 @@ export default function ThreeSec(){
   <MenuList>
     <MenuItem _hover={{
         bgColor:'white',
-        textDecoration:"underline"
+        textDecoration:"none"
     }}>Mon profils</MenuItem>
     <MenuItem _hover={{
         bgColor:'white',
-        textDecoration:"underline"
+        textDecoration:"none"
     }} onClick={()=>{Logout()}}>Deconnexion de {nom=="NON DEFINI"? "New user" : nom}</MenuItem>
    {/* <Text mx={5}> {nom=="NON DEFINI"? "Veuillez mettre à jour votre profil" : nom}</Text> */}
   </MenuList>

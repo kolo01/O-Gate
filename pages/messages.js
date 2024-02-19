@@ -35,8 +35,9 @@ export default function Message() {
   return (
     <Box bgColor={"#F6F6F6"} pb={10} fontFamily={"-apple-system"}>
       <NavbarCo/>
+      <Center>
       <Flex mt={10}   display={{base:"grid",lg:"flex"}}>
-        <Box  mx={20}>
+        <Box  mx={20} width={"300px"}>
           <Profilers />
           <Box
          
@@ -74,7 +75,7 @@ export default function Message() {
             </Flex>
           </Box>
         </Box>
-        <Box bgColor={"white"}    width={{base:"90%",lg:"542px"}}  ml={{base:"5%",lg:"0"}}   borderRadius={"20px"} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}>
+        <Box bgColor={"white"}    width={{base:"90%",lg:"600px"}}  ml={{base:"5%",lg:"0"}}   borderRadius={"20px"} boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}>
           <Flex p={2} ml={10}>
             <Avatar w={"42px"} h={"42px"} mr={2} />
             <Box>
@@ -143,6 +144,7 @@ export default function Message() {
           </Center>
         </Box>
       </Flex>
+      </Center>
     </Box>
   );
 }
