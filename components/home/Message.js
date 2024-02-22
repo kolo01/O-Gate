@@ -515,19 +515,14 @@ export default function Messages({
                 <Link
                   download={true}
                   key={index}
-                  width={"540px"}
+                  width={"200px"}
                   height={"400px"}
                   href={`http://185.98.139.246:9090/ogatemanagement-api/fichier/${images.id}`}
                   alt={images.id}
                 >
-                  <Box
-                    bgImage={"images/doc.jpg"}
-                    bgRepeat={"no-repeat"}
-                    width={"540px"}
-                    height={"400px"}
-                  >
+                  
                     <b>Telecharger {images.nom} </b>
-                  </Box>
+              
                   {/* <div style={{overflow:'scroll',height:600}}>
             <MobilePDFReader url="http://localhost:3000/test.pdf"/>
            </div> */}
@@ -585,7 +580,7 @@ export default function Messages({
                 height={"20px"}
                 mt={-2}
                 mx={2}
-              /> <Text mt={-2}  color={'#6a6a6a'}>J'aime</Text>
+              /> <Text mt={-2}  color={'#6a6a6a'} fontSize={"12px"}>J'aime</Text>
               </Flex>
             
             ) : (
@@ -599,18 +594,18 @@ export default function Messages({
                 mx={2}
                 src="./images/liked.png"
                 alt="not_liked"
-              /><Text mt={-2}  color={'#6a6a6a'} >J'aime</Text>
+              /><Text mt={-2}  color={'#6a6a6a'} fontSize={"12px"}>J'aime</Text>
                </Flex>
             )}
           </Flex>
           <Flex cursor={"pointer"}  mt={2} pX={2}>
      
             <MdOutlineMessage onClick={onOpen} size={20} />
-            <Text ml={2} mt={-1} color={'#6a6a6a'}  fontWeight={500}>Commenter</Text>
+            <Text ml={2} mt={-1} color={'#6a6a6a'} fontSize={"12px"}  fontWeight={500}>Commenter</Text>
           </Flex>
           <Flex cursor={"pointer"}  mt={[1, 1, 1, 2, 2]} px={2}>
             <PiSwapFill size={20}  />
-            <Text ml={2} mt={-1} color={'#6a6a6a'}>Republier</Text>
+            <Text ml={2} mt={-1} color={'#6a6a6a'} fontSize={"12px"}>Republier</Text>
           </Flex>
           <Flex
             cursor={"pointer"}
@@ -622,12 +617,12 @@ export default function Messages({
             {follow ? (
               <Flex>
               <FcLike   size={20} />
-              <Text ml={2}  color={'#6a6a6a'}>Favoris</Text>
+              <Text ml={2}  color={'#6a6a6a'} fontSize={"12px"}>Favoris</Text>
               </Flex>
             ) : (
             <Flex>
               <PiHeart size={20}></PiHeart>
-              <Text ml={2} mt={-1} color={'#6a6a6a'}>Favoris</Text>
+              <Text ml={2} mt={-1} color={'#6a6a6a'} fontSize={"12px"}>Favoris</Text>
               </Flex>
             )}
           </Flex>

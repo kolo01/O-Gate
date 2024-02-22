@@ -79,7 +79,7 @@ export default function Publication() {
 
   return (
     <>
-      {plength > 5 ? (
+     {plength > 5 ? (
         <Box fontFamily={"-apple-system"}>
           <NavbarCo />
           <Box bgColor={"black"} width={"full"} height={"fit-content"} p={5}>
@@ -142,7 +142,7 @@ export default function Publication() {
                   return (
                     // console.log("data.id",data.id)
                     <Carousel.Item key={index}>
-                      <Text textAlign={"center"} color={"white"}>
+                      <Text noOfLines={1} textAlign={"center"} color={"white"}>
                         {data.nom}
                       </Text>
                       <Center width={"full"} height={"400px"}>

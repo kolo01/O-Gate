@@ -61,7 +61,9 @@ export default function Suggestion() {
                   <Text noOfLines={1} ml={2} fontWeight={700}>{data.description}</Text>
                 </Flex>
                 <Text ml={2} fontWeight={700}>{data.prix}</Text>
-                <Button color={"#219EF9"} as={Link} href={`/Publication?id=${data.id}`}>Voir publication</Button>
+                <Button color={"#219EF9"} as={Link} href={`/Publication?id=${data.id}`} _hover={{
+                  textDecoration:'none'
+                }}>Voir publication</Button>
               </Flex>
               )
             })

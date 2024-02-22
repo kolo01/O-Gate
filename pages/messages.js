@@ -50,15 +50,15 @@ export default function Message() {
             boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
             borderRadius={"10px"}
           >
-            <Text fontWeight={700} fontSize={"25px"} p={2}>
+            <Text fontWeight={700}  fontSize={'16px'} fontFamily={"-apple-system"} p={2}>
               {" "}
               Relations actives{" "}
             </Text>
             <Box width={"full"} height={"1px"} bgColor={"#CDCDCD"} />
-            <Flex p={2}>
+            <Flex p={2} fontSize={'14px'} fontFamily={"-apple-system"}>
               <Avatar w={"42px"} h={"42px"} mr={2} />
               <Box>
-                <Text fontWeight={700}>Onomo franck</Text>
+                <Text fontWeight={700} fontSize={'16px'} fontFamily={"-apple-system"}>Onomo franck</Text>
                 <Flex>
                   <Box
                     w={4}
@@ -67,7 +67,7 @@ export default function Message() {
                     border="2px solid white"
                     rounded="full"
                   />
-                  <Text fontWeight={700} fontSize={"15px"}>
+                  <Text fontWeight={700} fontSize={'14px'} fontFamily={"-apple-system"}>
                     Actif
                   </Text>
                 </Flex>
@@ -79,7 +79,7 @@ export default function Message() {
           <Flex p={2} ml={10}>
             <Avatar w={"42px"} h={"42px"} mr={2} />
             <Box>
-              <Text fontWeight={700}>Onomo franck</Text>
+              <Text fontWeight={700} fontSize={'16px'} fontFamily={"-apple-system"}>Onomo franck</Text>
               <Flex>
                 <Box
                   w={4}
@@ -103,31 +103,31 @@ export default function Message() {
               <Flex w={"full"}>
                 <Avatar w={"42px"} h={"42px"} mr={2} />
                 <Flex justifyContent={"space-between"} w={"80%"}>
-                  <Text fontWeight={700} fontSize={"25px"}>
+                  <Text fontWeight={700}  fontSize={'15px'} fontFamily={"-apple-system"}>
                     {" "}
                     Kouakou Serge
                   </Text>
-                  <Text fontWeight={300} fontSize={"20px"}>
+                  <Text fontWeight={300} fontSize={'14px'} fontFamily={"-apple-system"}>
                     11h34
                   </Text>
                 </Flex>
               </Flex>
-              <Text ml={"50px"} w={["300px","300px","300px","494px","494px"]} fontWeight={400} mt={-2}>Bonjour Mr Onomo, Je suis très intéressé par votre offre.</Text>
+              <Text ml={"50px"} w={["300px","300px","300px","494px","494px"]} fontSize={'14px'} fontFamily={"-apple-system"} fontWeight={400} mt={-2}>Bonjour Mr Onomo, Je suis très intéressé par votre offre.</Text>
             </Box>
             <Box mt={2}>
               <Flex w={"full"}>
                 <Avatar w={"42px"} h={"42px"} mr={2} />
                 <Flex justifyContent={"space-between"} w={"80%"}>
-                  <Text fontWeight={700} fontSize={"25px"}>
+                  <Text fontWeight={700}  fontSize={'15px'} fontFamily={"-apple-system"}>
                     {" "}
                     Onomo Franck
                   </Text>
-                  <Text fontWeight={300} fontSize={"20px"}>
+                  <Text fontWeight={300}  fontSize={'14px'} fontFamily={"-apple-system"}>
                   15h45
                   </Text>
                 </Flex>
               </Flex>
-              <Text ml={"50px"} w={["300px","300px","300px","494px","494px"]} fontWeight={400} mt={-2}>Bonsoir Mr Kouakou. Vous pouvez me contacter au 0584515492 pour plus d’informations</Text>
+              <Text ml={"50px"} w={["300px","300px","300px","494px","494px"]}  fontSize={'14px'} fontFamily={"-apple-system"} fontWeight={400} mt={-2}>Bonsoir Mr Kouakou. Vous pouvez me contacter au 0584515492 pour plus d’informations</Text>
             </Box>
           </Box>
           <Center mt={20} mb={10} w={["400px","400px","400px","494px","494px"]} display={"grid"}>

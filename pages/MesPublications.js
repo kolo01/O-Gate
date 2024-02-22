@@ -38,7 +38,7 @@ function MesPub() {
   return (
     <>
       <NavbarCo />
-      <Flex mt={5} pb={10}>
+      <Flex mt={5} pb={10} fontSize={"16px"} fontFamily={"-apple-system"}>
         <Box
           ml={80}
           display={["none", "none", "none", "block", "block"]}

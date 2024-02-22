@@ -180,6 +180,7 @@ export default function InteretP(
   return (
     <>
       <Box
+      fontSize={"16px"} fontFamily={"-apple-system"}
         width={{ base: "full", lg: "342px" }}
         height={"fit-content"}
         py={5}
@@ -218,11 +219,11 @@ export default function InteretP(
           <Flex mt={2} mb={2}>
             <Avatar />
             <Box ml={2} mt={2}>
-              <Text fontWeight={700}  fontSize={'16px'} fontFamily={"-apple-system"}>
+              <Text fontWeight={700} noOfLines={1}  fontSize={'16px'} fontFamily={"-apple-system"}>
                 {propio}
               </Text>
 
-              <Text fontWeight={"hairline"}   fontSize={'14px'} fontFamily={"-apple-system"}>
+              <Text fontWeight={"hairline"} noOfLines={1}  fontSize={'14px'} fontFamily={"-apple-system"}>
                 {date}
               </Text>
               {/* <Text fontWeight={"hairline"} color={"#D9D9D9"} fontSize={"12px"}>
@@ -260,11 +261,11 @@ export default function InteretP(
         </Flex>
         <Flex>
           <Box>
-            <Text    fontSize={'16px'} fontFamily={"-apple-system"}>
+            <Text   noOfLines={1} fontSize={'16px'} fontFamily={"-apple-system"}>
               {appart.designation},{ville}
             </Text>
             {message.length > 5 ? (
-              <Text  fontSize={'16px'} fontFamily={"-apple-system"} mb={5}>
+              <Text noOfLines={1} fontSize={'16px'} fontFamily={"-apple-system"} mb={5}>
                 {message}
               </Text>
             ) : (

@@ -31,6 +31,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 import { useStyleRegistry } from "styled-jsx";
+import MyComponent from "./testMap";
 
 export default function Home() {
   const [message, setMessage] = useState([]);
@@ -117,7 +118,7 @@ export default function Home() {
                 <>
                   {" "}
                   <Box  bgColor={"white"} p={2} borderRadius={"xl"}>
-                    <AspectRatio ratio={16 / 9} mb={10} bgColor={"white"} borderRadius={25}>
+                    {/* <AspectRatio ratio={16 / 9} mb={10} bgColor={"white"} borderRadius={25}>
                       <iframe
                         loading="lazy"
                         allowFullScreen
@@ -126,7 +127,8 @@ export default function Home() {
                           "https://www.google.com/maps/embed/v1/place?key=AIzaSyAoJQLE8uAbWnyPHCv-_udEUhH7HQooJlM&q={'DEUX PLATEAUX BLD LATRILLE ','angre 8eme tranche'}"
                         }
                       ></iframe>
-                    </AspectRatio>
+                    </AspectRatio> */}
+                    <MyComponent/>
                   </Box>
                   {message.map((data, ind) => (
                     <Box key={ind} >

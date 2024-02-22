@@ -55,6 +55,8 @@ function Favoris() {
               color={"white"}
               px={4}
               py={2}
+              fontWeight={700}
+              fontSize={"16px"} fontFamily={"-apple-system"}
             >
               VOS FAVORIS
             </Text>

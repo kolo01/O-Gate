@@ -60,7 +60,7 @@ export default function Relation(){
                     <Flex>
                         <Avatar w={"85px"} h={"85px"} mr={2}/>
                         
-                            <Text mt={5} fontWeight={700} fontSize={"25px"}>Onomo franck</Text>
+                            <Text mt={5} fontWeight={700} fontSize={"25px"}  fontFamily={"-apple-system"}>Onomo franck</Text>
                            
                         
                     </Flex>

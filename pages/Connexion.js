@@ -52,7 +52,7 @@ export default function Box2(){
             Connexion
         </Text>
         <Box mt={5}>
-        <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
+        <Text fontWeight={700} fontSize={"16px"} fontFamily={"-apple-system"} lineHeight={"19.5px"}> 
            Téléphone
         </Text>
         <Input borderRadius={"16px"} onChange={(e)=>{setEmail(e.target.value)}} width={"408px"} height={"55px"}  border={"1px solid black"}/>

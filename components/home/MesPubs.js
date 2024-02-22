@@ -191,6 +191,7 @@ export default function Mespub(
         overflow={"visible"}
         transition={"all 83ms"}
         boxShadow={"rgba(0, 0, 0, 0.16) 0px 1px 4px"}
+        fontSize={"16px"} fontFamily={"-apple-system"}
         p={2}
       >
         <Box
@@ -218,11 +219,11 @@ export default function Mespub(
           <Flex mt={2} mb={2}>
             {/* <Avatar /> */}
             <Flex  >
-              <Text mr={20}  fontSize={'16px'} fontFamily={"-apple-system"}>
+              <Text mr={20} noOfLines={1}  fontSize={'16px'} fontFamily={"-apple-system"}>
                 {propio}
               </Text>
 
-              <Text   fontSize={'14px'} fontFamily={"-apple-system"}>
+              <Text noOfLines={1}  fontSize={'14px'} fontFamily={"-apple-system"}>
                 {date}
               </Text>
               {/* <Text fontWeight={"hairline"} color={"#D9D9D9"} fontSize={"12px"}>
@@ -234,7 +235,7 @@ export default function Mespub(
         </Flex>
         <Flex>
           <Box>
-            <Text   fontSize={'16px'} fontFamily={"-apple-system"}>
+            <Text noOfLines={1}  fontSize={'16px'} fontFamily={"-apple-system"}>
               {appart.designation},{ville}
             </Text>
             {message.length > 3 ? (
