@@ -405,7 +405,7 @@ export default function Messages({
                 ml={2}
               />
               </Box>
-              <Text>J'aime</Text>
+              <Text>J{`'`}aime</Text>
               </Box>
             ) : (
             <Box ml={5}>
@@ -419,7 +419,7 @@ export default function Messages({
                 alt="not_liked"
               />
                </Box>
-               <Text>J'aime</Text>
+               <Text>J{`'`}aime</Text>
               </Box>
             )}
           </Flex>
@@ -580,7 +580,7 @@ export default function Messages({
                 height={"20px"}
                 mt={-2}
                 mx={2}
-              /> <Text mt={-2}  color={'#6a6a6a'} fontSize={"12px"}>J'aime</Text>
+              /> <Text mt={-2}  color={'#6a6a6a'} fontSize={"12px"}>J{`'`}aime</Text>
               </Flex>
             
             ) : (
@@ -594,7 +594,7 @@ export default function Messages({
                 mx={2}
                 src="./images/liked.png"
                 alt="not_liked"
-              /><Text mt={-2}  color={'#6a6a6a'} fontSize={"12px"}>J'aime</Text>
+              /><Text mt={-2}  color={'#6a6a6a'} fontSize={"12px"}>J{`'`}aime</Text>
                </Flex>
             )}
           </Flex>
