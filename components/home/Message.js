@@ -209,7 +209,7 @@ export default function Messages({
     <>
       <Box
       fontSize={'16px'} fontFamily={"-apple-system"}
-        width={{ base: "400px", lg: "555px" }}
+        width={{ base: "full", lg: "555px" }}
         height={"fit-content"}
         py={5}
         my={5}

@@ -2,10 +2,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import { GoogleMap, InfoBoxF, InfoWindow, InfoWindowF, Marker, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import axios from "axios";
 import { FcHome } from "react-icons/fc";
+import { Button, Center } from "@chakra-ui/react";
 
 function MyComponent() {
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
+  const [zoom, setZoom] = useState(3);
+  const [all, setAll] = useState("none");
   const [mark, setMark] = useState([]);
   const [selected,setSelected] = useState(null)
 
@@ -78,21 +81,34 @@ function MyComponent() {
   const onLoad = React.useCallback(function callback(map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
     const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
+   
 
+    map.fitBounds(bounds);
+    setAll("grid")
+  
     setMap(map);
+    // setZoom(3)
   }, [center]);
 
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null);
   }, []);
 
+  
+  const handleZoom = React.useCallback(function callback() {
+    setZoom(5)
+   setAll("none")
+  }, []);
+
   return isLoaded ? (
+    <>
+    <Center><Button display={all} bgColor={"#7a1317"} color={"white"} _hover={{
+      bgColor:"#7a1317", color:"white"
+    }} px={2} py={1} mb={2} onClick={handleZoom}>View all on map</Button></Center>
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={center}
-
-      zoom={5}
+      mapTypeId="hybrid"
+      zoom={zoom}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
@@ -105,7 +121,7 @@ function MyComponent() {
         <MarkerF position={{lat:place.latitude,lng:place.longitude}}  />
         {selected &&(
 
-          <InfoBoxF  position={{lat:selected.latitude,lng:selected.longitude}} zIndex={1} options={{
+          <InfoWindowF anchor={{lat:selected.latitude,lng:selected.longitude}}   position={{lat:selected.latitude,lng:selected.longitude}} zIndex={1} options={{
           pixelOffset:{
             width:0,
             height:-40,
@@ -117,6 +133,7 @@ function MyComponent() {
         </>
       ))}
     </GoogleMap>
+    </>
   ) : (
     <></>
   );

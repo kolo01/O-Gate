@@ -16,7 +16,7 @@ function Images({images}) {
 
 if (iLength<5 || iLength > 1) {
     return (
-        <SimpleGrid columns={iLength} width={["390px", "390px", "390px", "545px", "545px"]}
+        <SimpleGrid columns={iLength} width={["450px", "450px", "500px", "545px", "545px"]}
               >
            {images.map((data,index)=>{
             return (
