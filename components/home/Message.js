@@ -288,7 +288,7 @@ export default function Messages({
         >
           {typed == "IMAGE" ? (
            <>
-           <Box onClick={onOpen} width={"90%"}>
+           <Box onClick={onOpen} cursor={'pointer'} width={"95%"}>
               <Images images={image} />
               </Box>
               <Modal isOpen={isOpen} onClose={onClose} size={"5xl"} >

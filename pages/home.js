@@ -98,7 +98,7 @@ export default function Home() {
       console.log(error);
       // router.push("/")
     }
-  }, [router, token,message]);
+  }, [router, token]);
   if (checker) {
     return (
       <Box bgColor={"#f3f3f3 "} mb={10}>
