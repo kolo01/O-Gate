@@ -51,20 +51,20 @@ export default function ThreeSec(){
         <Flex   fontSize={'12px'} fontFamily={"-apple-system"} >
             <Box mt={5} mr={5} onClick={()=>router.push("/")} cursor={"pointer"}>
                    <Box ml={2}>
-                    <MdHome  width={"24px"} height={"24px"} fontSize={"24px"}/>
+                    <MdHome className="Home"   width={"24px"} height={"24px"} fontSize={"24px"}/>
                    </Box>
                
                 <Text fontSize={"12px"} lineHeight={"16px"} >{"Accueil"}</Text>
                 </Box>
                 <Box mt={5} mr={5}  onClick={()=>router.push("/relation")} cursor={"pointer"} textAlign={"center"}>
                   <Center >
-                    <PiUsers   width={"24px"} height={"24px"} fontSize={"24px"}/>
+                    <PiUsers  className="Users"  width={"24px"} height={"24px"} fontSize={"24px"}/>
                    </Center>
                 <Text fontSize={"12px"} lineHeight={"16px"} minW={"95px"}     width={"95px"}>{"Mes relations"}</Text>
                 </Box>
                 <Box mt={5} mr={5}  onClick={()=>router.push("/notifications")} cursor={"pointer"}>
                    <Box ml={5}>
-                    <IoIosNotifications  width={"24px"} height={"24px"} fontSize={"24px"} />
+                    <IoIosNotifications className="Notif" width={"24px"} height={"24px"} fontSize={"24px"} />
                    </Box>
                
                 <Text fontSize={"12px"} lineHeight={"16px"} >{"Notifications"}</Text>
@@ -72,7 +72,7 @@ export default function ThreeSec(){
                 <PrincipalePopup/>
                 <Box mt={5} mr={5}  onClick={()=>router.push("/messages")} cursor={"pointer"}>
                    <Box ml={2}>
-                    <MdMessage   width={"24px"} height={"24px"} fontSize={"24px"}/>
+                    <MdMessage className="Message"   width={"24px"} height={"24px"} fontSize={"24px"}/>
                    </Box>
                
                 <Text fontSize={"12px"} lineHeight={"16px"} >{"Message"}</Text>

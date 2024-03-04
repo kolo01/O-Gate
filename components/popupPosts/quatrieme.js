@@ -90,7 +90,7 @@ export default function Dernier() {
   const [OtherQ, setOtherQ] = useState("");
 
   const [lat, setLat] = useState(0);
-  const [load, setLoad] = useState(0);
+  const [load, setLoad] = useState(false);
   const [long, setLong] = useState(0);
   const [ville, setVille] = useState("none");
   const [desc, setDesc] = useState("none");
@@ -107,30 +107,35 @@ export default function Dernier() {
   //Fonction d'envoi basé sur le modele
 
   const HandleMedia = (doctype, fichiers) => {
-    
-    const total = fichiers[0].length;
-    var tester =0;
-    fichiers.map(async (data, index) => {
-      Object.values(data).map(async (donnees, index) => {
-        let formdata = new FormData();
-        formdata.append("fichier", donnees);
-        formdata.append("typeFichier", doctype);
-        await axios
-          .post(
-            "http://185.98.139.246:9090/ogatemanagement-api/ajouterfichier",
-            formdata,
-            config
-          )
-          .then((response) => {
-            tester = tester+1
-            if (tester == total) {
-              setDisplayed1("none");
-            setDisplayed2("block");
-            }
-              fichiersId.push(response.data.donnee.id);
-          });
+    try {
+      const total = fichiers[0].length;
+      var tester =0;
+      fichiers.map(async (data, index) => {
+        Object.values(data).map(async (donnees, index) => {
+          let formdata = new FormData();
+          formdata.append("fichier", donnees);
+          formdata.append("typeFichier", doctype);
+          await axios
+            .post(
+              "http://185.98.139.246:9090/ogatemanagement-api/ajouterfichier",
+              formdata,
+              config
+            )
+            .then((response) => {
+              tester = tester+1
+              if (tester == total) {
+                setDisplayed1("none");
+              setDisplayed2("block");
+              }
+                fichiersId.push(response.data.donnee.id);
+            });
+        });
       });
-    });
+    } catch (error) {
+      setDisplayed1("none");
+      setDisplayed2("block");
+    }0
+   
    
   };
 
@@ -221,7 +226,7 @@ export default function Dernier() {
           <ModalBody width={"100%"}>
             <SimpleGrid columns={[1, 1, 1, 2, 2]} spacingX={20} mb={20}>
               <Box width={"300px"} mt={2}>
-                <Text fontWeight={600}>Image(s)</Text>
+                <Text fontWeight={600}>Type de Fichier</Text>
                 <Select
                   height={"50px"}
                   border={"2px solid gray"}
@@ -238,7 +243,7 @@ export default function Dernier() {
                 </Select>
               </Box>
               <Box width={"300px"} mt={2}>
-                <Text fontWeight={600}>Image(s)</Text>
+                <Text fontWeight={600}>Fichier(s)</Text>
                 <Input
                   border={"2px solid gray"}
                   _placeholder={{

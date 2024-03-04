@@ -379,7 +379,7 @@ console.log(valeur)
     <SimpleGrid columns={[1,1,1,2,2]} spacingX={20}>
       
     <Box width={"300px"}  mt={2}>
-          <Text  fontWeight={600} >Image(s)</Text>
+          <Text  fontWeight={600} >Type de fichier</Text>
         <Select onChange={(e)=>{handleDocType(e.target.value)}}>
           <option value={"IMAGE"}>IMAGE</option>
           <option value={"DOCUMENT"}>DOCUMENT</option>
@@ -387,7 +387,7 @@ console.log(valeur)
         </Select>
           </Box> 
           <Box width={"300px"}  mt={2}>
-          <Text  fontWeight={600} >Image(s)</Text>
+          <Text  fontWeight={600} >Fichier(s)</Text>
           <Input type='file' accept={`${accepted}`} multiple={true} onChange={(e)=>setFichiers([e.target.files])} />
           </Box> 
           <Box width={"300px"}  mt={2}>

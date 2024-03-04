@@ -24,7 +24,13 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+  RangeSliderTrack,
+  SimpleGrid,
   Text,
+  Tooltip,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -32,10 +38,12 @@ import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 import { useStyleRegistry } from "styled-jsx";
 import MyComponent from "./testMap";
+import { MdGraphicEq } from "react-icons/md";
 
 export default function Home() {
   const [message, setMessage] = useState([]);
   const [token, setToken] = useState("");
+  const [sliderValue, setSliderValue] = useState([0,0]);
 
   const [nom, setNom] = useState("");
   const all = [
@@ -114,6 +122,64 @@ export default function Home() {
             </Box>
 
             <Box mr={5}>
+              <Box bgColor={"whiteAlpha.600"} mb={2} fontFamily={'-apple-system'}>
+                <Text>Filtres</Text>
+                <SimpleGrid columns={2} p={5}>
+                  <Box>
+                    <Text fontSize={"16px"} fontWeight={"bold"}>Type de poste</Text>
+                    <select >
+                      <option>Choisir un type</option>
+                      <option>Information</option>
+                      <option>Achat</option>
+                      <option>Vente</option>
+                      <option>Location</option>
+                    </select>
+                  </Box>
+                  <Box >
+                    <Text fontSize={"16px"} fontWeight={"bold"}>Type d{"'"}appartement</Text>
+                    <select >
+                      <option>Choisir un type</option>
+                      <option>Studio</option>
+                      <option>2 Pièces</option>
+                      <option>3 Pièces</option>
+                      <option> Duplex</option>
+                      <option>Triplex</option>
+                    </select>
+                  </Box>
+                  <Box>
+                    <Text fontSize={"16px"} fontWeight={"bold"}>Meublé?</Text>
+                    <select >
+                      <option>Choisir un type</option>
+                      <option>Oui</option>
+                      <option>Non</option>                     
+                    </select>
+                  </Box>
+                  <Box  width={"100%"}>
+                    <Text fontSize={"16px"} fontWeight={"bold"}>Prix</Text>
+                    <RangeSlider aria-label={['min', 'max']} max={300} defaultValue={[0, 300]} onChange={(val)=>setSliderValue(val)}>
+  <RangeSliderTrack bg='red.100'>
+    <RangeSliderFilledTrack bg='tomato' />
+  </RangeSliderTrack>
+  <RangeSliderThumb boxSize={6} index={0}>
+    <Box color='tomato' as={MdGraphicEq} />
+  </RangeSliderThumb>
+  {/* <RangeSliderThumb boxSize={6} index={1}>
+    <Box color='tomato' as={MdGraphicEq} />
+  </RangeSliderThumb> */}
+  <Tooltip
+        hasArrow
+        bg='teal.500'
+        color='white'
+        placement='top'
+        isOpen={true}
+        label={`${sliderValue}`}
+      >
+        <RangeSliderThumb  index={1}/>
+      </Tooltip>
+</RangeSlider>
+                  </Box>
+                </SimpleGrid>
+              </Box>
               {message.length > 0 ? (
                 <>
                   {" "}

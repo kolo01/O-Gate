@@ -325,7 +325,7 @@ const CheckedQuartier = (index,valeur)=>[
                 <Textarea width={"300px"} height={"150px"} />
                 </Box> 
                 <Box width={"300px"} ml={20} mt={2}>
-                <Text  fontWeight={600} >Image(s)</Text>
+                <Text  fontWeight={600} >Fichier(s)</Text>
                 <Input type='file' multiple={true} onChange={(e)=>setFichiers([e.target.files])} />
                 </Box> 
                 <Box width={"300px"} ml={20} mt={2}>
