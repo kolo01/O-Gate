@@ -10,7 +10,7 @@ import {
 } from "@react-google-maps/api";
 import axios from "axios";
 import { FcHome } from "react-icons/fc";
-import { Button, Center, Flex, Heading } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Heading, Link, Text } from "@chakra-ui/react";
 
 function MyComponent() {
   const [lat, setLat] = useState(0);
@@ -168,9 +168,13 @@ function MyComponent() {
                 zIndex={place.id}
                 onCloseClick={()=>setSelected("")}
               >
-                <Flex>
+                <Box>
                   <Heading fontWeight={600} fontSize={"15px"}>{place.typeBien.designation}</Heading>
-                </Flex>
+                  <Link href={`/Publication?id=${place.id}`}><Button bgColor={"#7a1317"} color={"white"} _hover={{
+                     bgColor:"#7a1317"
+                  }} mt={2}>plus d{"'"}info</Button></Link>
+                 
+                </Box>
               </InfoWindowF>}  
           
             </MarkerF>

@@ -123,10 +123,14 @@ export default function Home() {
 
             <Box mr={5}>
               <Box bgColor={"whiteAlpha.600"} mb={2} fontFamily={'-apple-system'}>
-                <Text>Filtres</Text>
+                <Flex>
+                <img width="30" height="30" src="https://img.icons8.com/arcade/64/generic-sorting.png" alt="generic-sorting"/>
+                <Text  fontWeight={"bold"}>Filtres</Text>
+                </Flex>
+              
                 <SimpleGrid columns={2} p={5}>
                   <Box>
-                    <Text fontSize={"16px"} fontWeight={"bold"}>Type de poste</Text>
+                    <Text fontSize={"16px"}   fontWeight={"bold"}>Type de poste</Text>
                     <select >
                       <option>Choisir un type</option>
                       <option>Information</option>

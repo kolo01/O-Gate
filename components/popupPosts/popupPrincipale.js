@@ -105,6 +105,12 @@ const handleSubmit = () =>{
   return (
     <Box   fontSize={'12px'} fontFamily={"-apple-system"}>
       <Box
+      _hover={{
+        bgColor:"red",
+        borderRadius:"xl",
+        paddingLeft:5,
+        paddingRight:5
+    }}
         onClick={onOpen}
         mt={5}
         mr={5}

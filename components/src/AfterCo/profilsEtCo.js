@@ -32,37 +32,49 @@ export default function Profilers(){
 
         {/* Debut 2eme elements */}
         <Flex borderTop={"1px solid gray"} my={5} pt={5} >
-        <Image ml={2}  src="./Stats.png" alt="stats" w={"24px"} h={"24px"}/>
-
+        {/* <Image ml={2}  src="./Stats.png" alt="stats" w={"24px"} h={"24px"}/> */}
+        <img width="24" height="24" src="https://img.icons8.com/external-wanicon-flat-wanicon/64/external-stats-online-shopping-wanicon-flat-wanicon.png" alt="external-stats-online-shopping-wanicon-flat-wanicon"/>
 
     
-        <Text fontWeight={600}  fontSize={"15px"} >Statistiques globales</Text>
+        <Text fontWeight={600}  fontSize={"20px"} >Statistiques globales</Text>
        </Flex>
        <Box mx={2} mb={2} fontSize={"15px"} fontWeight={600} mt={2} >
        <Flex as={Link} href="/Favoris" _hover={{
         textDecoration:"none"
        }} display={"flex"} justifyContent={"space-between"} pb={2}>
+        <Flex>
+        <img width="24" height="24" src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-publication-resume-flaticons-flat-flat-icons.png" alt="external-publication-resume-flaticons-flat-flat-icons"/>
         <Text>Publications favoris : </Text>
+        </Flex>
+        
         <Text>12</Text>
        </Flex>
        <Flex as={Link} href="/Interet" _hover={{
         textDecoration:"none"
        }} display={"flex"} justifyContent={"space-between"} pb={2}>
-       <Text>Interessés par :</Text>
+        <Flex>
+        <img width="24" height="24" src="https://img.icons8.com/color/48/bookmark-ribbon--v1.png" alt="bookmark-ribbon--v1"/>
+        <Text>Interessés par :</Text>
+        </Flex>
+      
         <Text>5 </Text>
        </Flex>
        <Flex  as={Link} href="/MesPublications" _hover={{
         textDecoration:"none"
        }} display={"flex"} justifyContent={"space-between"} pb={2}>
-       <Text>Mes publications:</Text>
+        <Flex>
+        <img width="24" height="24" src="https://img.icons8.com/nolan/64/us-news.png" alt="us-news"/>
+        <Text>Mes publications:</Text>
+        </Flex>
+       
         <Text>55</Text>
        </Flex>
-       <Flex as={Link} href="/Followers" _hover={{
+       {/* <Flex as={Link} href="/Followers" _hover={{
         textDecoration:"none"
        }}   display={"flex"} justifyContent={"space-between"} pb={2}>
        <Text>Suivis par :</Text>
         <Text>55</Text>
-       </Flex>
+       </Flex> */}
        </Box>
     </Box>
     {/* <Text textAlign={"center"}  fontWeight={400}> {nom=="NON DEFINI"? "Veuillez mettre à jour votre profil" : nom}</Text> */}

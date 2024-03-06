@@ -4,7 +4,7 @@ import secureLocalStorage from "react-secure-storage";
 import { MdHome } from "react-icons/md";
 import { IoIosNotifications } from "react-icons/io"; 
 import { MdMessage } from "react-icons/md";
-import { PiUsers } from "react-icons/pi";
+import { PiUsers, PiUsersBold } from "react-icons/pi";
 import { useRouter } from "next/router";
 import PrincipalePopup from "../popupPosts/popupPrincipale";
 export default function ThreeSec(){
@@ -19,7 +19,7 @@ export default function ThreeSec(){
             image:"./all/partenaire.png",
             text:"Mes relations", l:5},
             {
-                image:"./all/notifications.png",
+                image:"https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/96/external-public-relation-advertisement-tanah-basah-glyph-tanah-basah.png",
                 text:"Notifications", l:10},,
                 {
                     image:"./all/mesasge.png",
@@ -49,20 +49,36 @@ export default function ThreeSec(){
 
     return(
         <Flex   fontSize={'12px'} fontFamily={"-apple-system"} >
-            <Box mt={5} mr={5} onClick={()=>router.push("/")} cursor={"pointer"}>
+            <Box _hover={{
+                bgColor:"red",
+                borderRadius:"xl",
+                paddingLeft:5,
+                paddingRight:5
+            }} mt={5} mr={5} onClick={()=>router.push("/")} cursor={"pointer"}>
                    <Box ml={2}>
                     <MdHome className="Home"   width={"24px"} height={"24px"} fontSize={"24px"}/>
                    </Box>
                
                 <Text fontSize={"12px"} lineHeight={"16px"} >{"Accueil"}</Text>
                 </Box>
-                <Box mt={5} mr={5}  onClick={()=>router.push("/relation")} cursor={"pointer"} textAlign={"center"}>
+                <Box _hover={{
+                    bgColor:"red",
+                    borderRadius:"xl",
+                    paddingLeft:5,
+                    paddingRight:5
+                }} mt={5} mr={5}  onClick={()=>router.push("/relation")} cursor={"pointer"} textAlign={"center"}>
                   <Center >
-                    <PiUsers  className="Users"  width={"24px"} height={"24px"} fontSize={"24px"}/>
+                    {/* <PiUsersBold  className="Users"  width={"24px"} height={"24px"} fontSize={"24px"}/> */}
+                    <img width="24" height="24" src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/96/external-public-relation-advertisement-tanah-basah-glyph-tanah-basah.png" alt="external-public-relation-advertisement-tanah-basah-glyph-tanah-basah"/>
                    </Center>
                 <Text fontSize={"12px"} lineHeight={"16px"} minW={"95px"}     width={"95px"}>{"Mes relations"}</Text>
                 </Box>
-                <Box mt={5} mr={5}  onClick={()=>router.push("/notifications")} cursor={"pointer"}>
+                <Box _hover={{
+                    bgColor:"red",
+                    borderRadius:"xl",
+                    paddingLeft:5,
+                    paddingRight:5
+                }} mt={5} mr={5}  onClick={()=>router.push("/notifications")} cursor={"pointer"}>
                    <Box ml={5}>
                     <IoIosNotifications className="Notif" width={"24px"} height={"24px"} fontSize={"24px"} />
                    </Box>
@@ -70,7 +86,12 @@ export default function ThreeSec(){
                 <Text fontSize={"12px"} lineHeight={"16px"} >{"Notifications"}</Text>
                 </Box>
                 <PrincipalePopup/>
-                <Box mt={5} mr={5}  onClick={()=>router.push("/messages")} cursor={"pointer"}>
+                <Box _hover={{
+                    bgColor:"red",
+                    borderRadius:"xl",
+                    paddingLeft:5,
+                    paddingRight:5
+                }} mt={5} mr={5}  onClick={()=>router.push("/messages")} cursor={"pointer"}>
                    <Box ml={2}>
                     <MdMessage className="Message"   width={"24px"} height={"24px"} fontSize={"24px"}/>
                    </Box>
