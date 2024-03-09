@@ -55,8 +55,10 @@ export default function Suggestion() {
           {
             suggest.map((data,index)=>{
               return (
+<Flex key={index}>
 
-                <Flex key={index} fontSize={"12px"} display={"grid"} mb={2} justifyContent={"space-between"}>
+<img width="64" height="64" src="https://img.icons8.com/cute-clipart/64/bookmark.png" alt="bookmark"/>
+<Flex  fontSize={"12px"} display={"grid"} mb={2} justifyContent={"space-between"}>
                 <Flex>
                   <Text noOfLines={1} ml={2} fontWeight={700}>{data.description}</Text>
                 </Flex>
@@ -65,6 +67,8 @@ export default function Suggestion() {
                   textDecoration:'none'
                 }}>Voir publication</Button>
               </Flex>
+</Flex>
+               
               )
             })
           }

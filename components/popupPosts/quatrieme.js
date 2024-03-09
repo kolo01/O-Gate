@@ -25,6 +25,7 @@ import secureLocalStorage from "react-secure-storage";
 export default function Dernier() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   //variable globale
+  const [fields, setFields] = useState([{ id: 1, fileType: '', selectedFile: null }]);
   const toast = useToast();
   const router = useRouter();
 
@@ -37,38 +38,9 @@ export default function Dernier() {
 
   //fin des declarations
 
-  ///Fonction des checkbox
 
-  const CheckedDoc = (index, valeur, bool) => {
-    if (bool == true) {
-      checkedD[index] = valeur;
-    } else {
-      checkedD[index] = "";
-    }
-  };
-  const CheckedBien = (index, valeur, bool) => {
-    if (bool == true) {
-      checkedB[index] = valeur;
-    } else {
-      checkedB[index] = "";
-    }
-  };
-  const CheckedQuartier = (index, valeur, bool) => {
-    if (bool == true) {
-      checkedQ[index] = valeur;
-    } else {
-      checkedQ[index] = "";
-    }
-  };
-  ///fin des declarations
 
-  ///Variable de recuperation des champs dans la base de donnée
-  const [typebienId, setTypebienId] = useState([]);
-  const [documentId, setDocumentId] = useState([]);
-  const [quartierId, setQuartierId] = useState([]);
-  const [bienId, setBienId] = useState([]);
-
-  ///Fin de la recuperation
+ 
 
   ///variable pour Post
   const [TypePoste, setTypePoste] = useState("");
@@ -82,8 +54,8 @@ export default function Dernier() {
   const [prix, SetPrix] = useState(0);
   const [periodicite, SetPeriodicite] = useState("JOUR");
   const [apportInit, SetApportInit] = useState(0);
-  const [doctype, setDocType] = useState("IMAGE");
-  const [accepted, setAccepted] = useState("image/*");
+ 
+  
   const [fichiers, setFichiers] = useState([]); //utiliser pour recuperer les images dans post et Besoin
   const [fichiersId, setFichiersId] = useState([]); //utiliser pour recuperer les id dans la bd
   const [OtherB, setOtherB] = useState("");
@@ -194,15 +166,69 @@ export default function Dernier() {
       });
   };
 
-  const handleDocType = (targeted) => {
-    setDocType(targeted);
-    if (targeted == "VIDEO") {
-      setAccepted("video/*");
-    } else if (targeted == "DOCUMENT") {
-      setAccepted(".doc,.docx,.pdf,.ods,.odt,.odf");
-    } else setAccepted("image/*");
+
+
+ 
+
+  const handleAddField = () => {
+    const newId = fields.length + 1;
+    setFields([...fields, { id: newId, fileType: 'IMAGE', selectedFile: null }]);
+    console.log(fields)
   };
 
+  const handleRemoveFields = (id) => {
+    if (fields.length === 1) return; // Ne supprime pas le dernier champ
+    const updatedFields = fields.filter(field => field.id !== id);
+    setFields(updatedFields);
+    console.log(fields)
+  };
+
+
+  const getFileAcceptType = (fileType) => {
+    switch (fileType) {
+      case 'IMAGE':
+        return 'image/*';
+      case 'DOCUMENT':
+        return ".doc,.docx,.pdf,.ods,.odt,.odf";
+      case 'VIDEO':
+        return 'video/*';
+      default:
+        return '';
+    }
+  };
+
+
+  const handleFileTypeChange = (event, id) => {
+    const updatedFields = fields.map(field => {
+      if (field.id === id) {
+        return { ...field, fileType: event.target.value };
+      }
+      return field;
+    });
+    setFields(updatedFields);
+    console.log(fields)
+  };
+
+  const handleFileChange = (event, id) => {
+    const updatedFields = fields.map(field => {
+      if (field.id === id) {
+        return { ...field, selectedFile: event.target.files };
+      }
+      return field;
+    });
+    setFields(updatedFields);
+    console.log(fields)
+  };
+
+
+
+
+
+
+
+
+
+  
   useEffect(() => {
     setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
 
@@ -225,7 +251,10 @@ export default function Dernier() {
           <ModalCloseButton />
           <ModalBody width={"100%"}>
             <SimpleGrid columns={[1, 1, 1, 2, 2]} spacingX={20} mb={20}>
-              <Box width={"300px"} mt={2}>
+            {fields.map(field => (
+        < >
+
+<Box key={field.id} width={"300px"} mt={2}>
                 <Text fontWeight={600}>Type de Fichier</Text>
                 <Select
                   height={"50px"}
@@ -234,7 +263,7 @@ export default function Dernier() {
                     color: "cyan.700",
                   }}
                   onChange={(e) => {
-                    handleDocType(e.target.value);
+                    handleFileTypeChange(e,field.id);
                   }}
                 >
                   <option value={"IMAGE"}>IMAGE</option>
@@ -242,19 +271,107 @@ export default function Dernier() {
                   <option value={"VIDEO"}>VIDEO</option>
                 </Select>
               </Box>
-              <Box width={"300px"} mt={2}>
+          {field.fileType && (
+           <Box width={"390px"} mt={2}>
+           <Text fontWeight={600}>Fichier(s)</Text>
+           <Flex>
+           <Input
+             border={"2px solid gray"}
+             _placeholder={{
+               color: "cyan.700",
+             }}
+             type="file"
+             accept={getFileAcceptType(field.fileType)}
+             multiple={true}
+             onChange={(e) => handleFileChange(e,field.id)}
+           />
+ {field.id == 1 ? (
+          
+          <Button ml={10} bgColor={"#00ffef"}textAlign={'center'} fontSize={"20px"} onClick={handleAddField} borderRadius={"full"}>+</Button>
+            
+         ):<Button ml={10} bgColor={"#00ffef"}textAlign={'center'} fontSize={"20px"} onClick={() => handleRemoveFields(field.id)} borderRadius={"full"}>-</Button>}
+           
+           </Flex>
+         </Box>
+          )}
+        
+       
+        </>
+       
+      ))}
+      {/* <
+              {/* <Box width={"300px"} mt={2}>
+                <Text fontWeight={600}>Type de Fichier</Text>
+                <Select
+                  height={"50px"}
+                  border={"2px solid gray"}
+                  _placeholder={{
+                    color: "cyan.700",
+                  }}
+                  onChange={(e) => {
+                    handleDocType(0,e.target.value);
+                  }}
+                >
+                  <option value={"IMAGE"}>IMAGE</option>
+                  <option value={"DOCUMENT"}>DOCUMENT</option>
+                  <option value={"VIDEO"}>VIDEO</option>
+                </Select>
+              </Box>
+              <Box width={"390px"} mt={2}>
                 <Text fontWeight={600}>Fichier(s)</Text>
+                <Flex>
                 <Input
                   border={"2px solid gray"}
                   _placeholder={{
                     color: "cyan.700",
                   }}
                   type="file"
-                  accept={`${accepted}`}
+                  accept={getFileAcceptType(field.fileType)}
                   multiple={true}
                   onChange={(e) => setFichiers([e.target.files])}
                 />
+
+                <Button ml={10} bgColor={"#00ffef"}textAlign={'center'} fontSize={"20px"} onClick={()=>addPoint()} borderRadius={"full"}>+</Button>
+                </Flex>
               </Box>
+              {accepted.length>1? accepted.map((data,index)=>(
+                <>
+               <Box key={index} width={"300px"} mt={2}>
+                <Text fontWeight={600}>Type de Fichier</Text>
+                <Select
+                  height={"50px"}
+                  border={"2px solid gray"}
+                  _placeholder={{
+                    color: "cyan.700",
+                  }}
+                  onChange={(e) => {
+                    handleDocType(index,e.target.value);
+                  }}
+                >
+                  <option value={"IMAGE"}>IMAGE</option>
+                  <option value={"DOCUMENT"}>DOCUMENT</option>
+                  <option value={"VIDEO"}>VIDEO</option>
+                </Select>
+              </Box>
+              <Box width={"390px"} mt={2}>
+                <Text fontWeight={600}>Fichier(s)</Text>
+                <Flex>
+                <Input
+                  border={"2px solid gray"}
+                  _placeholder={{
+                    color: "cyan.700",
+                  }}
+                  type="file"
+                  accept={`${data}`}
+                  multiple={true}
+                  onChange={(e) => setFichiers(index,[e.target.files])}
+                />
+
+                <Button ml={10} bgColor={"#00ffef"}textAlign={'center'} fontSize={"20px"}onClick={removePoint(index)} borderRadius={"full"}>-</Button>
+                </Flex>
+              </Box>
+                </> 
+              ))  :<></>} */}
               <Box width={"300px"} mt={2}>
                 <Text fontWeight={600}>Localisation</Text>
                 <Input

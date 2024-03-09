@@ -128,9 +128,13 @@ export default function Home() {
                 <Text  fontWeight={"bold"}>Filtres</Text>
                 </Flex>
               
-                <SimpleGrid columns={2} p={5}>
+                <SimpleGrid columns={2} p={5} spacing={5}> 
                   <Box>
+                    <Flex>
+                    <img width="24" height="24" src="https://img.icons8.com/cute-clipart/64/bookmark.png" alt="bookmark"/>
                     <Text fontSize={"16px"}   fontWeight={"bold"}>Type de poste</Text>
+                    </Flex>
+                    
                     <select >
                       <option>Choisir un type</option>
                       <option>Information</option>
@@ -140,7 +144,11 @@ export default function Home() {
                     </select>
                   </Box>
                   <Box >
+                    <Flex>
+                    <img width="24" height="24" src="https://img.icons8.com/fluency/48/city-buildings.png" alt="city-buildings"/>
                     <Text fontSize={"16px"} fontWeight={"bold"}>Type d{"'"}appartement</Text>
+                    </Flex>
+                   
                     <select >
                       <option>Choisir un type</option>
                       <option>Studio</option>
@@ -151,7 +159,11 @@ export default function Home() {
                     </select>
                   </Box>
                   <Box>
+                    <Flex>
+                    <img width="24" height="24" src="https://img.icons8.com/color-glass/48/furniture.png" alt="furniture"/>
                     <Text fontSize={"16px"} fontWeight={"bold"}>Meublé?</Text>
+                    </Flex>
+                    
                     <select >
                       <option>Choisir un type</option>
                       <option>Oui</option>
@@ -159,7 +171,11 @@ export default function Home() {
                     </select>
                   </Box>
                   <Box  width={"100%"}>
+                    <Flex>
+                    <img width="24" height="24" src="https://img.icons8.com/nolan/64/cash--v1.png" alt="cash--v1"/>
                     <Text fontSize={"16px"} fontWeight={"bold"}>Prix</Text>
+                    </Flex>
+                    
                     <RangeSlider aria-label={['min', 'max']} max={300} defaultValue={[0, 300]} onChange={(val)=>setSliderValue(val)}>
   <RangeSliderTrack bg='red.100'>
     <RangeSliderFilledTrack bg='tomato' />
