@@ -25,7 +25,7 @@ import secureLocalStorage from "react-secure-storage";
 export default function Dernier() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   //variable globale
-  const [fields, setFields] = useState([{ id: 1, fileType: '', selectedFile: null }]);
+  const [fields, setFields] = useState([{ id: 1, fileType: 'IMAGE', selectedFile: null }]);
   const toast = useToast();
   const router = useRouter();
 
@@ -54,6 +54,7 @@ export default function Dernier() {
   const [prix, SetPrix] = useState(0);
   const [periodicite, SetPeriodicite] = useState("JOUR");
   const [apportInit, SetApportInit] = useState(0);
+  const [doctype, SetDoctype] = useState([""]);
  
   
   const [fichiers, setFichiers] = useState([]); //utiliser pour recuperer les images dans post et Besoin
@@ -78,32 +79,44 @@ export default function Dernier() {
 
   //Fonction d'envoi basé sur le modele
 
-  const HandleMedia = (doctype, fichiers) => {
+  const HandleMedia = (fields) => {
     try {
-      const total = fichiers[0].length;
       var tester =0;
-      fichiers.map(async (data, index) => {
-        Object.values(data).map(async (donnees, index) => {
-          let formdata = new FormData();
-          formdata.append("fichier", donnees);
-          formdata.append("typeFichier", doctype);
-          await axios
-            .post(
-              "http://185.98.139.246:9090/ogatemanagement-api/ajouterfichier",
-              formdata,
-              config
-            )
-            .then((response) => {
-              tester = tester+1
-              if (tester == total) {
-                setDisplayed1("none");
-              setDisplayed2("block");
-              }
-                fichiersId.push(response.data.donnee.id);
-            });
+      fields.map((data,index)=>{
+        
+        const total = data.selectedFile.length;
+        
+        Object.values(data.selectedFile).map(async (dats, index) => {
+          console.log(dats)
+          console.log(data.fileType)
+    
+            let formdata = new FormData();
+            formdata.append("fichier", dats);
+            formdata.append("typeFichier", data.fileType);
+            await axios.post(
+                "http://185.98.139.246:9090/ogatemanagement-api/ajouterfichier",
+                formdata,
+                config
+              )
+              .then((response) => {
+                tester = tester+1
+              
+                if (tester == total) {
+                  setDisplayed1("none");
+                setDisplayed2("block");
+                }
+                  fichiersId.push(response.data.donnee.id);
+              }).catch((error)=>{})
+        
         });
-      });
+
+
+
+
+      })
+     console.log("fichiersID",fichiersId)
     } catch (error) {
+      console.log(error)
       setDisplayed1("none");
       setDisplayed2("block");
     }0
@@ -140,7 +153,7 @@ export default function Dernier() {
           typeAppartement: JSON.parse(sessionStorage.getItem("meuble"))??"NON_MEUBLE",
           typeBienId: JSON.parse(sessionStorage.getItem("typeBien"))??0,
           typeDocumentIds: JSON.parse(sessionStorage.getItem("typeDocument"))??[null],
-          typeFichier: doctype,
+          typeFichier: "DOCUMENT",
           typePost: JSON.parse(sessionStorage.getItem("typePoste")),
           typeRequete: "EXPRESSION_BESOIN",
         },
@@ -155,15 +168,16 @@ export default function Dernier() {
         });
         router.reload()
       })
-      .catch((error) => {
-        console.log(error),
-          toast({
-            title: "Erreur lors de l'enregistrement",
-            status: "error",
-            description: "Veuillez réesayer svp!!!",
-            duration: 7000,
-          });
-      });
+      // .catch((error) => {
+      //   console.log(error),
+      //     toast({
+      //       title: "Erreur lors de l'enregistrement",
+      //       status: "error",
+      //       description: "Veuillez réesayer svp!!!",
+      //       duration: 7000,
+      //     });
+      // })
+      ;
   };
 
 
@@ -173,14 +187,14 @@ export default function Dernier() {
   const handleAddField = () => {
     const newId = fields.length + 1;
     setFields([...fields, { id: newId, fileType: 'IMAGE', selectedFile: null }]);
-    console.log(fields)
+ 
   };
 
   const handleRemoveFields = (id) => {
     if (fields.length === 1) return; // Ne supprime pas le dernier champ
     const updatedFields = fields.filter(field => field.id !== id);
     setFields(updatedFields);
-    console.log(fields)
+  
   };
 
 
@@ -439,7 +453,7 @@ export default function Dernier() {
               mr={3}
               display={displayed1}
               onClick={() => {
-                HandleMedia(doctype, fichiers);
+                HandleMedia(fields);
                 setLoad(true)
               }}
             >

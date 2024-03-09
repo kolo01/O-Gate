@@ -57,7 +57,7 @@ export default function Suggestion() {
               return (
 <Flex key={index}>
 
-<img width="64" height="64" src="https://img.icons8.com/cute-clipart/64/bookmark.png" alt="bookmark"/>
+
 <Flex  fontSize={"12px"} display={"grid"} mb={2} justifyContent={"space-between"}>
                 <Flex>
                   <Text noOfLines={1} ml={2} fontWeight={700}>{data.description}</Text>

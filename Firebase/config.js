@@ -1,35 +1,21 @@
-// import firebase from 'firebase/app';
-// import 'firebase/messaging';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-import { getMessaging } from "@firebase/messaging";
-import { initializeApp } from "firebase-admin";
-
-// const firebaseConfig = {
-//   apiKey: "AIzaSyAsAJY6FLiEHeU3QnHB5MfXFk4ITkvV4yE",
-//   authDomain: "ogate-5bac1.firebaseapp.com",
-//   projectId: "ogate-5bac1",
-//   storageBucket: "ogate-5bac1.appspot.com",
-//   messagingSenderId: "1004275406470",
-//   appId: "1:1004275406470:web:eec9bfffe448d173eaa307",
-//   measurementId: "G-NQRPRGL6DC"
-// };
-
-// firebase.initializeApp(firebaseConfig);
-
-
-// export const messaging = firebase.messaging();
-
-// firebaseConfig.js
-
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyAsAJY6FLiEHeU3QnHB5MfXFk4ITkvV4yE",
-    authDomain: "ogate-5bac1.firebaseapp.com",
-    projectId: "ogate-5bac1",
-    storageBucket: "ogate-5bac1.appspot.com",
-    messagingSenderId: "1004275406470",
-    appId: "1:1004275406470:web:eec9bfffe448d173eaa307",
-    measurementId: "G-NQRPRGL6DC"
+  apiKey: "AIzaSyDslirp1m8dRri0s8cjQtdO_5up1oEnTLQ",
+  authDomain: "ogatenotification.firebaseapp.com",
+  projectId: "ogatenotification",
+  storageBucket: "ogatenotification.appspot.com",
+  messagingSenderId: "219059064219",
+  appId: "1:219059064219:web:8d77c7a4c2134bba08e53e",
+  measurementId: "G-4BJS7V16XN"
 };
 
-const app = initializeApp(firebaseConfig)
-export const messaging = getMessaging(app)
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);

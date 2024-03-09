@@ -28,6 +28,7 @@ import {
   RangeSliderFilledTrack,
   RangeSliderThumb,
   RangeSliderTrack,
+  Select,
   SimpleGrid,
   Text,
   Tooltip,
@@ -43,7 +44,10 @@ import { MdGraphicEq } from "react-icons/md";
 export default function Home() {
   const [message, setMessage] = useState([]);
   const [token, setToken] = useState("");
-  const [sliderValue, setSliderValue] = useState([0,0]);
+  const [max, setMax] = useState(300);
+  const [min, setMin] = useState(0);
+
+  const [sliderValue, setSliderValue] = useState([min,max]);
 
   const [nom, setNom] = useState("");
   const all = [
@@ -123,56 +127,53 @@ export default function Home() {
 
             <Box mr={5}>
               <Box bgColor={"whiteAlpha.600"} mb={2} fontFamily={'-apple-system'}>
-                <Flex>
-                <img width="30" height="30" src="https://img.icons8.com/arcade/64/generic-sorting.png" alt="generic-sorting"/>
-                <Text  fontWeight={"bold"}>Filtres</Text>
-                </Flex>
+              
               
                 <SimpleGrid columns={2} p={5} spacing={5}> 
                   <Box>
                     <Flex>
-                    <img width="24" height="24" src="https://img.icons8.com/cute-clipart/64/bookmark.png" alt="bookmark"/>
+                    
                     <Text fontSize={"16px"}   fontWeight={"bold"}>Type de poste</Text>
                     </Flex>
                     
-                    <select >
+                    <Select border={"1px solid black"} >
                       <option>Choisir un type</option>
                       <option>Information</option>
                       <option>Achat</option>
                       <option>Vente</option>
                       <option>Location</option>
-                    </select>
+                    </Select>
                   </Box>
                   <Box >
                     <Flex>
-                    <img width="24" height="24" src="https://img.icons8.com/fluency/48/city-buildings.png" alt="city-buildings"/>
+                 
                     <Text fontSize={"16px"} fontWeight={"bold"}>Type d{"'"}appartement</Text>
                     </Flex>
                    
-                    <select >
+                    <Select border={"1px solid black"} >
                       <option>Choisir un type</option>
                       <option>Studio</option>
                       <option>2 Pièces</option>
                       <option>3 Pièces</option>
                       <option> Duplex</option>
                       <option>Triplex</option>
-                    </select>
+                    </Select>
                   </Box>
                   <Box>
                     <Flex>
-                    <img width="24" height="24" src="https://img.icons8.com/color-glass/48/furniture.png" alt="furniture"/>
+                   
                     <Text fontSize={"16px"} fontWeight={"bold"}>Meublé?</Text>
                     </Flex>
                     
-                    <select >
+                    <Select border={"1px solid black"} >
                       <option>Choisir un type</option>
                       <option>Oui</option>
                       <option>Non</option>                     
-                    </select>
+                    </Select>
                   </Box>
                   <Box  width={"100%"}>
                     <Flex>
-                    <img width="24" height="24" src="https://img.icons8.com/nolan/64/cash--v1.png" alt="cash--v1"/>
+                  
                     <Text fontSize={"16px"} fontWeight={"bold"}>Prix</Text>
                     </Flex>
                     
