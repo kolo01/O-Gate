@@ -13,6 +13,7 @@ import {
   Box,
   Center,
   Flex,
+  Heading,
   Icon,
   Image,
   Input,
@@ -40,6 +41,9 @@ import secureLocalStorage from "react-secure-storage";
 import { useStyleRegistry } from "styled-jsx";
 import MyComponent from "./testMap";
 import { MdGraphicEq } from "react-icons/md";
+import toast, { Toaster } from "react-hot-toast";
+import { getMessaging, getToken, onMessage } from "@firebase/messaging";
+import { app } from "@/utils/firebase";
 
 export default function Home() {
   const [message, setMessage] = useState([]);
@@ -49,39 +53,102 @@ export default function Home() {
 
   const [sliderValue, setSliderValue] = useState([min,max]);
 
-  const [nom, setNom] = useState("");
-  const all = [
-    {
-      image: "./all/Home.png",
-      text: "Accueil",
-      l: 2,
-      link: "/home",
-    },
-
-    {
-      image: "./all/partenaire.png",
-      text: "Mes relations",
-      l: 5,
-      link: "/relation",
-    },
-    {
-      image: "./all/notifications.png",
-      text: "Notifications",
-      l: 10,
-      link: "/notifications",
-    },
-    ,
-    {
-      image: "./all/mesasge.png",
-      text: "Messagerie",
-      l: 10,
-      link: "/messages",
-    },
-  ];
   const router = useRouter();
   const [checker, setChecker] = useState(false);
 
+
+  const [token2,setToken2]= useState("")
+const [notification, setNotification] = useState({title: '', body: ''});
+  const notify = () => { toast(<ToastDisplay/>)};
+
+
+  const onMessageListener = () =>
+  new Promise((resolve) => {
+    onMessage(getMessaging(app), (payload) => {
+      console.log("payload", payload)
+      resolve(payload);
+      // router.replace(router.asPath)
+    });
+  });
+
+
+  function ToastDisplay() {
+    return (
+   
+        <Box  width={"full"}>
+          <Heading>{notification?.title}</Heading>
+          <Text>
+          {notification?.body}
+          </Text>
+        </Box>
+      
+    );
+  };
+
+
+  const requestForToken = () => {
+    const permission = Notification.requestPermission();
+    if (permission== "granted") {
+      return getToken(getMessaging(app), { vapidKey: "BFRmFZ3CsyZ2EF8rO78MDYieqCookk1exTmOL3u4OuvQyYhamK30HN9VqwTO3DN6q01l20Koxh49F5-YCi1PoTE" })
+      .then((currentToken) => {
+        if (currentToken) {
+          console.log('current token for client: ', currentToken);
+          // Perform any other neccessary action with the token
+          setToken2(currentToken)
+          localStorage.setItem("item",currentToken)
+        } else {
+          // Show permission request UI
+          console.log('No registration token available. Request permission to generate one.');
+          setToken2("Okay")
+        }
+      })
+      .catch((err) => {
+        console.log('An error occurred while retrieving token. ', err);
+      });
+    }else{
+      // alert("SVP merci de bien vouloir activer les notifications");
+      const permission = Notification.requestPermission();
+      return getToken(getMessaging(app), { vapidKey: "BFRmFZ3CsyZ2EF8rO78MDYieqCookk1exTmOL3u4OuvQyYhamK30HN9VqwTO3DN6q01l20Koxh49F5-YCi1PoTE" })
+      .then((currentToken) => {
+        if (currentToken) {
+          console.log('current token for client: ', currentToken);
+          // Perform any other neccessary action with the token
+          setToken2(currentToken)
+          localStorage.setItem("item",currentToken)
+        } else {
+          // Show permission request UI
+          console.log('No registration token available. Request permission to generate one.');
+          setToken2("Okay")
+        }
+      })
+      .catch((err) => {
+        console.log('An error occurred while retrieving token. ', err);
+      });
+
+
+
+    }
+   
+  };
+
+  onMessageListener()
+  .then((payload) => {
+    setNotification({title: payload?.notification?.title, body: payload?.notification?.body});    
+    router.replace(router.asPath) 
+  })
+  .catch((err) => console.log('failed: ', err));
+
+
+
+
+
+
+
   useEffect(() => {
+    requestForToken()
+    if (notification?.title ){
+      notify()
+     }
     try {
       // console.log(localStorage.getItem("local"))
       if (
@@ -114,8 +181,13 @@ export default function Home() {
   if (checker) {
     return (
       <Box bgColor={"#f3f3f3 "} mb={10}>
+        
         <NavbarCo />
         <Center>
+        <Toaster
+  position="bottom-right"
+  reverseOrder={false}
+/>
           <Flex mt={5} pb={10}>
             <Box
               mr={5}

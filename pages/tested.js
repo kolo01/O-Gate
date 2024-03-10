@@ -34,8 +34,6 @@ const [notification, setNotification] = useState({title: '', body: ''});
 
   const requestForToken = () => {
     const permission = Notification.requestPermission();
-    
-    console.log("permission",permission.then((res)=>res));
     if (permission== "granted") {
       return getToken(getMessaging(app), { vapidKey: "BFRmFZ3CsyZ2EF8rO78MDYieqCookk1exTmOL3u4OuvQyYhamK30HN9VqwTO3DN6q01l20Koxh49F5-YCi1PoTE" })
       .then((currentToken) => {
@@ -72,6 +70,9 @@ const [notification, setNotification] = useState({title: '', body: ''});
       .catch((err) => {
         console.log('An error occurred while retrieving token. ', err);
       });
+
+
+
     }
    
   };
