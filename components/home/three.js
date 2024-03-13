@@ -58,7 +58,7 @@ export default function ThreeSec(){
                 </Box>
                 {/* <Box mt={5} mr={5}  onClick={()=>router.push("/relation")} cursor={"pointer"} textAlign={"center"}>
                   <Center >
-                    {/* <PiUsersBold  className="Users"  width={"24px"} height={"24px"} fontSize={"24px"}/> 
+                     <PiUsersBold  className="Users"  width={"24px"} height={"24px"} fontSize={"24px"}/> 
                     <img width="24" height="24" src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/96/external-public-relation-advertisement-tanah-basah-glyph-tanah-basah.png" alt="external-public-relation-advertisement-tanah-basah-glyph-tanah-basah"/>
                    </Center>
                 <Text fontSize={"12px"} lineHeight={"16px"} minW={"95px"}     width={"95px"}>{"Mes relations"}</Text>
@@ -76,7 +76,7 @@ export default function ThreeSec(){
                     <MdMessage className="Message"   width={"24px"} height={"24px"} fontSize={"24px"}/>
                    </Box>
                
-                <Text fontSize={"12px"} lineHeight={"16px"} >{"Message"}</Text>
+                <Text fontSize={"12px"} lineHeight={"16px"} >{"Message"}</Text>    
                 </Box> */}
                 
                   
