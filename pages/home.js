@@ -76,7 +76,7 @@ const [notification, setNotification] = useState({title: '', body: ''});
     return (
    
         <Box  width={"full"}>
-          <Heading>{notification?.title}</Heading>
+          <Text fontSize={"15px"} fontWeight={"bold"}>{notification?.title}</Text>
           <Text>
           {notification?.body}
           </Text>
@@ -86,15 +86,20 @@ const [notification, setNotification] = useState({title: '', body: ''});
   };
 
 
+
   const requestForToken = () => {
+    let config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
     const permission = Notification.requestPermission();
     if (permission== "granted") {
       return getToken(getMessaging(app), { vapidKey: "BFRmFZ3CsyZ2EF8rO78MDYieqCookk1exTmOL3u4OuvQyYhamK30HN9VqwTO3DN6q01l20Koxh49F5-YCi1PoTE" })
-      .then((currentToken) => {
+      .then( async (currentToken) => {
         if (currentToken) {
           console.log('current token for client: ', currentToken);
           // Perform any other neccessary action with the token
           setToken2(currentToken)
+          await axios.post("http://185.98.139.246:9090/ogatemanagement-api/client/enregistrertoken",config,{token:currentToken})
           localStorage.setItem("item",currentToken)
         } else {
           // Show permission request UI
@@ -109,10 +114,11 @@ const [notification, setNotification] = useState({title: '', body: ''});
       // alert("SVP merci de bien vouloir activer les notifications");
       const permission = Notification.requestPermission();
       return getToken(getMessaging(app), { vapidKey: "BFRmFZ3CsyZ2EF8rO78MDYieqCookk1exTmOL3u4OuvQyYhamK30HN9VqwTO3DN6q01l20Koxh49F5-YCi1PoTE" })
-      .then((currentToken) => {
+      .then(async (currentToken) => {
         if (currentToken) {
           console.log('current token for client: ', currentToken);
           // Perform any other neccessary action with the token
+          await axios.post("http://185.98.139.246:9090/ogatemanagement-api/client/enregistrertoken",{token:currentToken},config)
           setToken2(currentToken)
           localStorage.setItem("item",currentToken)
         } else {

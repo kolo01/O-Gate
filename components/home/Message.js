@@ -86,48 +86,6 @@ export default function Messages({
 
   //fin des declarations
 
-  useEffect(() => {
-    if (image.length > 0) {
-      if (image.length > 5) {
-        setILength(image.length);
-      } else {
-        setILength(5);
-      }
-      setTyped(image[0].typeFichier);
-    } else {
-      setTyped("IMAGES");
-    }
-
-    setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
-    let config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    axios
-      .get(
-        `http://185.98.139.246:9090/ogatemanagement-api/client/recherchercommentairesparpublication/${idM}`,
-        { page: 0, taille: 10, publicationId: idM },
-        config
-      )
-      .then((response) => {
-        console.log("responseeee", response.data.donnee.publications);
-      })
-      .catch((error) => {});
-
-    setLikes(isliked);
-    setInteressed(isInteressed);
-    setFollow(isFav);
-  }, [
-    token,
-    idM,
-    like,
-    follow,
-    interessed,
-    isliked,
-    isInteressed,
-    isFav,
-    all,
-    image,
-  ]);
 
   const liked = async (id) => {
     axios
@@ -204,6 +162,56 @@ export default function Messages({
   };
 
   const [index, setIndex] = useState(-1);
+
+
+
+  useEffect(() => {
+    if (image.length > 0) {
+      if (image.length > 5) {
+        setILength(image.length);
+      } else {
+        setILength(5);
+      }
+      setTyped(image[0].typeFichier);
+    } else {
+      setTyped("IMAGES");
+    }
+
+    setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
+    let config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    axios
+      .get(
+        `http://185.98.139.246:9090/ogatemanagement-api/client/recherchercommentairesparpublication/${idM}`,
+        { page: 0, taille: 10, publicationId: idM },
+        config
+      )
+      .then((response) => {
+        console.log("responseeee", response.data.donnee.publications);
+      })
+      .catch((error) => {});
+
+    setLikes(isliked);
+    setInteressed(isInteressed);
+    setFollow(isFav);
+
+
+    
+  }, [
+    token,
+    idM,
+    like,
+    follow,
+    interessed,
+    isliked,
+    isInteressed,
+    isFav,
+    all,
+    image,
+  ]);
+
+
 
   return (
     <>
@@ -393,7 +401,7 @@ export default function Messages({
           <Flex cursor={"pointer"} mr={2} mt={3} onClick={() => liked(idM)}>
            
             {likes ? (
-              <Box ml={5}>
+              <Box ml={5} onClick={()=>setLikes(!likes)}>
 <Box >
               <Image
                 alt="like"
@@ -408,7 +416,7 @@ export default function Messages({
               <Text>J{`'`}aime</Text>
               </Box>
             ) : (
-            <Box ml={5}>
+            <Box ml={5} onClick={()=>setLikes(!likes)}>
 <Box >
               <Image
                  width={"20px"}
@@ -571,7 +579,7 @@ export default function Messages({
           <Flex cursor={"pointer"} mr={2} mt={3} onClick={() => liked(idM)}>
             
             {likes ? (
-              <Flex p={2}>
+              <Flex px={2} onClick={()=>setLikes(!likes)}>
                   <Image
                 alt="like"
                 color={"red"}
@@ -580,11 +588,11 @@ export default function Messages({
                 height={"20px"}
                 mt={-2}
                 mx={2}
-              /> <Text mt={-2}  color={'#6a6a6a'} fontSize={"12px"}>J{`'`}aime</Text>
+              /> <Text mt={-2}  color={'#6a6a6a'} fontSize={"15px"}>J{`'`}aime</Text>
               </Flex>
             
             ) : (
-              <Flex pX={2}>
+              <Flex pX={2}  onClick={()=>setLikes(!likes)}>
 
              
               <Image
@@ -594,18 +602,18 @@ export default function Messages({
                 mx={2}
                 src="./images/liked.png"
                 alt="not_liked"
-              /><Text mt={-2}  color={'#6a6a6a'} fontSize={"12px"}>J{`'`}aime</Text>
+              /><Text mt={-2}  color={'#6a6a6a'} fontSize={"15px"}>J{`'`}aime</Text>
                </Flex>
             )}
           </Flex>
           <Flex cursor={"pointer"}  mt={2} pX={2}>
      
             <MdOutlineMessage onClick={onOpen} size={20} />
-            <Text ml={2} mt={-1} color={'#6a6a6a'} fontSize={"12px"}  fontWeight={500}>Commenter</Text>
+            <Text ml={2} mt={-1} color={'#6a6a6a'} fontSize={"15px"}  fontWeight={500}>Commenter</Text>
           </Flex>
           <Flex cursor={"pointer"}  mt={[1, 1, 1, 2, 2]} px={2}>
             <PiSwapFill size={20}  />
-            <Text ml={2} mt={-1} color={'#6a6a6a'} fontSize={"12px"}>Republier</Text>
+            <Text ml={2} mt={-1} color={'#6a6a6a'} fontSize={"15px"}>Republier</Text>
           </Flex>
           <Flex
             cursor={"pointer"}
@@ -613,16 +621,16 @@ export default function Messages({
             mt={[1, 1, 1, 2, 2]}
             onClick={() => Favoris(idM)}
           >
-            
+            {console.log(follow,"follow")}
             {follow ? (
-              <Flex>
+              <Flex onClick={()=>setFollow(!follow)}>
               <FcLike   size={20} />
-              <Text ml={2}  color={'#6a6a6a'} fontSize={"12px"}>Favoris</Text>
+              <Text ml={2}  color={'#6a6a6a'} fontSize={"15px"}>Favoris</Text>
               </Flex>
             ) : (
-            <Flex>
+            <Flex onClick={()=>setFollow(!follow)}>
               <PiHeart size={20}></PiHeart>
-              <Text ml={2} mt={-1} color={'#6a6a6a'} fontSize={"12px"}>Favoris</Text>
+              <Text ml={2} mt={-1} color={'#6a6a6a'} fontSize={"15px"}>Favoris</Text>
               </Flex>
             )}
           </Flex>

@@ -76,18 +76,7 @@ export default function Suggestion() {
          
         </Box>
       </Box>
-      <Center>
-        <Button
-          
-          className="button-64"
-          // rightIcon={<ArrowRightIcon />}
-          
-        >
-          <span>
-          Toutes les suggestions
-          </span>
-        </Button>
-      </Center>
+    
     </Box>
   );
 }
