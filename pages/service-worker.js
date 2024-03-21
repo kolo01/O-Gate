@@ -1,1 +1,9 @@
-importScripts("https://js.pusher.com/beams/service-worker.js");
+import React from 'react'
+
+function ServiceWorker() {
+  return (
+    <div>service-worker</div>
+  )
+}
+
+export default ServiceWorker
