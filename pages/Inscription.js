@@ -94,7 +94,7 @@ export default function Box2() {
   return (
     <>
       <Navbar />
-      <Center fontFamily={"-apple-system"}>
+      <Center fontFamily={"-apple-system"} display={{base:"none",lg:"block"}}>
         <Box
           boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px;"}
           p={5}
@@ -260,6 +260,173 @@ export default function Box2() {
           </Button>
         </Box>
       </Center>
+      <Box
+      width={"90%"}
+      mx={"5%"}
+       display={{base:"block",lg:"none"}}
+          boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px;"}
+          p={5}
+          borderRadius={"25px"}
+          my={10}
+        >
+          <Text color={" #7a1317"} fontWeight={700} fontSize={"48px"}>
+            Inscription
+          </Text>
+          <Text></Text>
+          {/* <Box mt={5}>
+        <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}> 
+            Email  
+        </Text>
+        <Input borderRadius={"16px"} onChange={(e)=>{setEmail(e.target.value)}} type="email" value={email} width={"408px"} height={"55px"}  border={"1px solid black"}/>
+        </Box> */}
+          <Box mt={5}>
+            <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}>
+              Type de Compte
+            </Text>
+            <Select onChange={(e) => setCompte(e.target.value)}>
+              <option value={"PARTICULIER"}>PARTICULIER</option>
+              <option value={"ENTREPRISE"}>ENTREPRISE</option>
+            </Select>
+          </Box>
+          <Box mt={5}>
+            <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}>
+              Téléphone
+            </Text>
+            <Input
+              borderRadius={"16px"}
+              onChange={(e) => {
+                setTel(e.target.value);
+              }}
+              type="number"
+             
+              height={"55px"}
+              maxLength={8}
+              border={"1px solid black"}
+            />
+          </Box>
+          <Box mt={5}>
+            <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}>
+              Nom
+            </Text>
+            <Input
+              borderRadius={"16px"}
+              onChange={(e) => {
+                setNom(e.target.value);
+              }}
+              type="text"
+             
+              height={"55px"}
+              border={"1px solid black"}
+            />
+          </Box>
+          <Box mt={5}>
+            <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}>
+              Mot de passe
+            </Text>
+            <Input
+              borderRadius={"16px"}
+          
+              onChange={(e) => {
+                setMdp(e.target.value);
+              }}
+              type={"password"}
+              height={"55px"}
+              border={"1px solid black"}
+            />
+          </Box>
+          <Box mt={5}>
+            <Text fontWeight={700} fontSize={"16px"} lineHeight={"19.5px"}>
+              Confirmer votre mot de passe
+            </Text>
+            <Input
+              borderRadius={"16px"}
+              
+              onChange={(e) => {
+                setMdpC(e.target.value);
+              }}
+              type={"password"}
+              height={"55px"}
+              border={"1px solid black"}
+            />
+          </Box>
+          <Box display={"grid"}>
+            <Button
+              mt={5}
+              fontWeight={700}
+              isLoading={loaded}
+              onClick={() => {
+                Validate();
+              }}
+              fontSize={"16px"}
+              lineHeight={"19.5px"}
+              borderRadius={"16px"}
+              
+              height={"55px"}
+              bgColor={"#7a1317"}
+              color={"white"}
+              _hover={{
+                bgColor: "#7a1317",
+              }}
+            >
+              {" "}
+              {insc}
+            </Button>
+            <Button
+              mt={5}
+              bgColor="transparent"
+              border="1px solid black"
+              fontWeight={700}
+              fontSize={"16px"}
+              lineHeight={"19.5px"}
+              borderRadius={"16px"}
+             
+              height={"55px"}
+              leftIcon={<FcGoogle />}
+              _hover={{
+                bgColor: "transparent",
+              }}
+            >
+              {" "}
+              Continuer avec Google
+            </Button>
+          </Box>
+          <Center>
+            <Text
+              fontWeight={700}
+              fontSize={"16px"}
+              lineHeight={"19.5px"}
+              mt={5}
+            >
+              Ou
+            </Text>
+          </Center>
+          <Button
+            mt={5}
+            bgColor="transparent"
+            border="1px solid black"
+            fontWeight={700}
+            fontSize={"16px"}
+            lineHeight={"19.5px"}
+            borderRadius={"16px"}
+           
+            height={"55px"}
+            _hover={{
+              bgColor: "transparent",
+            }}
+          >
+            {" "}
+            Déjà membre ?
+            <Text
+              ml={2}
+              color="#7a1317"
+              as={Link}
+              href={"/Connexion"}
+              _hover={{ textDecoration: "none", color: "#7a1317" }}
+            >
+              Connectez vous ici
+            </Text>{" "}
+          </Button>
+        </Box>
     </>
   );
 }

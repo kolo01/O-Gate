@@ -11,6 +11,7 @@ import {
   AspectRatio,
   Avatar,
   Box,
+  Button,
   Center,
   Flex,
   Heading,
@@ -51,110 +52,140 @@ export default function Home() {
   const [max, setMax] = useState(300);
   const [min, setMin] = useState(0);
 
-  const [sliderValue, setSliderValue] = useState([min,max]);
+  const [sliderValue, setSliderValue] = useState([min, max]);
 
   const router = useRouter();
   const [checker, setChecker] = useState(false);
 
-
-  const [token2,setToken2]= useState("")
-const [notification, setNotification] = useState({title: '', body: ''});
-  const notify = () => { toast(<ToastDisplay/>)};
-
+  const [token2, setToken2] = useState("");
+  const [notification, setNotification] = useState({ title: "", body: "" });
+  const notify = () => {
+    toast(<ToastDisplay />);
+  };
 
   const onMessageListener = () =>
-  new Promise((resolve) => {
-    onMessage(getMessaging(app), (payload) => {
-      console.log("payload", payload)
-      resolve(payload);
-      // router.replace(router.asPath)
+    new Promise((resolve) => {
+      onMessage(getMessaging(app), (payload) => {
+        console.log("payload", payload);
+        resolve(payload);
+        // router.replace(router.asPath)
+      });
     });
-  });
-
 
   function ToastDisplay() {
     return (
-   
-        <Box  width={"full"}>
-          <Text fontSize={"15px"} fontWeight={"bold"}>{notification?.title}</Text>
-          <Text>
-          {notification?.body}
-          </Text>
-        </Box>
-      
+      <Box width={"full"}>
+        <Text fontSize={"15px"} fontWeight={"bold"}>
+          {notification?.title}
+        </Text>
+        <Text>{notification?.body}</Text>
+      </Box>
     );
-  };
-
-
+  }
 
   const requestForToken = () => {
     let config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     const permission = Notification.requestPermission();
-    if (permission== "granted") {
-      return getToken(getMessaging(app), { vapidKey: "BFRmFZ3CsyZ2EF8rO78MDYieqCookk1exTmOL3u4OuvQyYhamK30HN9VqwTO3DN6q01l20Koxh49F5-YCi1PoTE" })
-      .then( async (currentToken) => {
-        if (currentToken) {
-          console.log('current token for client: ', currentToken);
-          // Perform any other neccessary action with the token
-          setToken2(currentToken)
-          await axios.post("http://185.98.139.246:9090/ogatemanagement-api/client/enregistrertoken",config,{token:currentToken})
-          localStorage.setItem("item",currentToken)
-        } else {
-          // Show permission request UI
-          console.log('No registration token available. Request permission to generate one.');
-          setToken2("Okay")
-        }
+    if (permission == "granted") {
+      return getToken(getMessaging(app), {
+        vapidKey:
+          "BFRmFZ3CsyZ2EF8rO78MDYieqCookk1exTmOL3u4OuvQyYhamK30HN9VqwTO3DN6q01l20Koxh49F5-YCi1PoTE",
       })
-      .catch((err) => {
-        console.log('An error occurred while retrieving token. ', err);
-      });
-    }else{
+        .then(async (currentToken) => {
+          if (currentToken) {
+            console.log("current token for client: ", currentToken);
+            // Perform any other neccessary action with the token
+            setToken2(currentToken);
+            await axios.post(
+              `http://185.98.139.246:9090/ogatemanagement-api/client/enregistrertoken?token=${currentToken}`,
+              { token: currentToken },
+              config
+            );
+            localStorage.setItem("item", currentToken);
+          } else {
+            // Show permission request UI
+            console.log(
+              "No registration token available. Request permission to generate one."
+            );
+            setToken2("Okay");
+          }
+        })
+        .catch((err) => {
+          console.log("An error occurred while retrieving token. ", err);
+        });
+    } else {
       // alert("SVP merci de bien vouloir activer les notifications");
       const permission = Notification.requestPermission();
-      return getToken(getMessaging(app), { vapidKey: "BFRmFZ3CsyZ2EF8rO78MDYieqCookk1exTmOL3u4OuvQyYhamK30HN9VqwTO3DN6q01l20Koxh49F5-YCi1PoTE" })
-      .then(async (currentToken) => {
-        if (currentToken) {
-          console.log('current token for client: ', currentToken);
-          // Perform any other neccessary action with the token
-          await axios.post("http://185.98.139.246:9090/ogatemanagement-api/client/enregistrertoken",{token:currentToken},config)
-          setToken2(currentToken)
-          localStorage.setItem("item",currentToken)
-        } else {
-          // Show permission request UI
-          console.log('No registration token available. Request permission to generate one.');
-          setToken2("Okay")
-        }
+      return getToken(getMessaging(app), {
+        vapidKey:
+          "BFRmFZ3CsyZ2EF8rO78MDYieqCookk1exTmOL3u4OuvQyYhamK30HN9VqwTO3DN6q01l20Koxh49F5-YCi1PoTE",
       })
-      .catch((err) => {
-        console.log('An error occurred while retrieving token. ', err);
-      });
-
-
-
+        .then(async (currentToken) => {
+          if (currentToken) {
+            console.log("current token for client: ", currentToken);
+            // Perform any other neccessary action with the token
+            await axios.post(
+              `http://185.98.139.246:9090/ogatemanagement-api/client/enregistrertoken?token=${currentToken}`,
+              { token: currentToken },
+              config
+            );
+            setToken2(currentToken);
+            localStorage.setItem("item", currentToken);
+          } else {
+            // Show permission request UI
+            console.log(
+              "No registration token available. Request permission to generate one."
+            );
+            setToken2("Okay");
+          }
+        })
+        .catch((err) => {
+          console.log("An error occurred while retrieving token. ", err);
+        });
     }
-   
   };
 
   onMessageListener()
-  .then((payload) => {
-    setNotification({title: payload?.notification?.title, body: payload?.notification?.body});    
-    router.replace(router.asPath) 
-  })
-  .catch((err) => console.log('failed: ', err));
+    .then((payload) => {
+      setNotification({
+        title: payload?.notification?.title,
+        body: payload?.notification?.body,
+      });
+      router.replace(router.asPath);
+    })
+    .catch((err) => console.log("failed: ", err));
 
-
-
-
-
-
+  const Filtered = async ({
+    prixMax,
+    prixMin,
+    typeAppartement,
+    typeBienId,
+    typePost,
+  }) => {
+    let config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    await axios
+      .post(
+        "http://185.98.139.246:9090/ogatemanagement-api/client/rechercherpublicationsparpage?page=10&taille=100",
+        {prixMax: prixMax,
+        prixMin: prixMin,
+        typeAppartement: typeAppartement,
+        typeBienId: typeBienId,
+        typePost: typePost},
+        config
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log("erreur", err));
+  };
 
   useEffect(() => {
-    requestForToken()
-    if (notification?.title ){
-      notify()
-     }
+    requestForToken();
+    if (notification?.title) {
+      notify();
+    }
     try {
       // console.log(localStorage.getItem("local"))
       if (
@@ -174,6 +205,7 @@ const [notification, setNotification] = useState({title: '', body: ''});
           )
           .then((response) => {
             setMessage(response.data.donnee.publications);
+            console.log(response.data.donnee.publications);
           })
           .catch((error) => {});
       } else {
@@ -187,13 +219,9 @@ const [notification, setNotification] = useState({title: '', body: ''});
   if (checker) {
     return (
       <Box bgColor={"#f3f3f3 "} mb={10}>
-        
         <NavbarCo />
         <Center>
-        <Toaster
-  position="bottom-right"
-  reverseOrder={false}
-/>
+          <Toaster position="bottom-right" reverseOrder={false} />
           <Flex mt={5} pb={10}>
             <Box
               mr={5}
@@ -204,17 +232,20 @@ const [notification, setNotification] = useState({title: '', body: ''});
             </Box>
 
             <Box mr={5}>
-              <Box bgColor={"whiteAlpha.600"} mb={2} fontFamily={'-apple-system'}>
-              
-              
-                <SimpleGrid columns={2} p={5} spacing={5}> 
+              <Box
+                bgColor={"whiteAlpha.600"}
+                mb={2}
+                fontFamily={"-apple-system"}
+              >
+                <SimpleGrid columns={2} p={5} spacing={5}>
                   <Box>
                     <Flex>
-                    
-                    <Text fontSize={"16px"}   fontWeight={"bold"}>Type de poste</Text>
+                      <Text fontSize={"16px"} fontWeight={"bold"}>
+                        Type de poste
+                      </Text>
                     </Flex>
-                    
-                    <Select border={"1px solid black"} >
+
+                    <Select border={"1px solid black"}>
                       <option>Choisir un type</option>
                       <option>Information</option>
                       <option>Achat</option>
@@ -222,13 +253,14 @@ const [notification, setNotification] = useState({title: '', body: ''});
                       <option>Location</option>
                     </Select>
                   </Box>
-                  <Box >
+                  <Box>
                     <Flex>
-                 
-                    <Text fontSize={"16px"} fontWeight={"bold"}>Type d{"'"}appartement</Text>
+                      <Text fontSize={"16px"} fontWeight={"bold"}>
+                        Type d{"'"}appartement
+                      </Text>
                     </Flex>
-                   
-                    <Select border={"1px solid black"} >
+
+                    <Select border={"1px solid black"}>
                       <option>Choisir un type</option>
                       <option>Studio</option>
                       <option>2 Pièces</option>
@@ -239,50 +271,74 @@ const [notification, setNotification] = useState({title: '', body: ''});
                   </Box>
                   <Box>
                     <Flex>
-                   
-                    <Text fontSize={"16px"} fontWeight={"bold"}>Meublé?</Text>
+                      <Text fontSize={"16px"} fontWeight={"bold"}>
+                        Meublé?
+                      </Text>
                     </Flex>
-                    
-                    <Select border={"1px solid black"} >
+
+                    <Select border={"1px solid black"}>
                       <option>Choisir un type</option>
                       <option>Oui</option>
-                      <option>Non</option>                     
+                      <option>Non</option>
                     </Select>
                   </Box>
-                  <Box  width={"100%"}>
+                  <Box width={"100%"}>
                     <Flex>
-                  
-                    <Text fontSize={"16px"} fontWeight={"bold"}>Prix</Text>
+                      <Text fontSize={"16px"} fontWeight={"bold"}>
+                        Prix
+                      </Text>
                     </Flex>
-                    
-                    <RangeSlider aria-label={['min', 'max']} max={300} defaultValue={[0, 300]} onChange={(val)=>setSliderValue(val)}>
-  <RangeSliderTrack bg='red.100'>
-    <RangeSliderFilledTrack bg='tomato' />
-  </RangeSliderTrack>
-  <RangeSliderThumb boxSize={6} index={0}>
-    <Box color='tomato' as={MdGraphicEq} />
-  </RangeSliderThumb>
-  {/* <RangeSliderThumb boxSize={6} index={1}>
+
+                    <RangeSlider
+                      aria-label={["min", "max"]}
+                      max={300}
+                      defaultValue={[0, 300]}
+                      onChange={(val) => setSliderValue(val)}
+                    >
+                      <RangeSliderTrack bg="red.100">
+                        <RangeSliderFilledTrack bg="tomato" />
+                      </RangeSliderTrack>
+                      <RangeSliderThumb boxSize={6} index={0}>
+                        <Box color="tomato" as={MdGraphicEq} />
+                      </RangeSliderThumb>
+                      {/* <RangeSliderThumb boxSize={6} index={1}>
     <Box color='tomato' as={MdGraphicEq} />
   </RangeSliderThumb> */}
-  <Tooltip
-        hasArrow
-        bg='teal.500'
-        color='white'
-        placement='top'
-        isOpen={true}
-        label={`${sliderValue}`}
-      >
-        <RangeSliderThumb  index={1}/>
-      </Tooltip>
-</RangeSlider>
+                      <Tooltip
+                        hasArrow
+                        bg="teal.500"
+                        color="white"
+                        placement="top"
+                        isOpen={true}
+                        label={`${sliderValue}`}
+                      >
+                        <RangeSliderThumb index={1} />
+                      </Tooltip>
+                    </RangeSlider>
                   </Box>
                 </SimpleGrid>
+                <Flex justifyContent={"right"}>
+                  <Button
+                    variant={"solid"}
+                    mr={2}
+                    colorScheme="red"
+                    onClick={() => {Filtered({min, max, typeAppartement,typeBienId })}}
+                  >
+                    Reinitialiser
+                  </Button>
+                  <Button
+                    variant={"solid"}
+                    colorScheme="blue"
+                    onClick={() => {}}
+                  >
+                    Appliquer
+                  </Button>
+                </Flex>
               </Box>
               {message.length > 0 ? (
                 <>
                   {" "}
-                  <Box  bgColor={"white"} p={2} borderRadius={"xl"}>
+                  <Box bgColor={"white"} p={2} borderRadius={"xl"}>
                     {/* <AspectRatio ratio={16 / 9} mb={10} bgColor={"white"} borderRadius={25}>
                       <iframe
                         loading="lazy"
@@ -293,10 +349,10 @@ const [notification, setNotification] = useState({title: '', body: ''});
                         }
                       ></iframe>
                     </AspectRatio> */}
-                    <MyComponent/>
+                    <MyComponent />
                   </Box>
                   {message.map((data, ind) => (
-                    <Box key={ind} >
+                    <Box key={ind}>
                       <Messages
                         like={data.nombrelike}
                         isliked={data.isLiked}
@@ -318,21 +374,20 @@ const [notification, setNotification] = useState({title: '', body: ''});
                         piece={data.nombrePieces}
                         chambre={data.nombreChambres}
                         salon={data.nombreSalon}
-                        all = {data}
+                        all={data}
                       />
                     </Box>
                   ))}{" "}
                 </>
               ) : (
                 <AspectRatio
-                bgColor={"white"}
+                  bgColor={"white"}
                   width={{ base: "400px", lg: "542px" }}
                   ratio={16 / 9}
                   mb={10}
                   borderRadius={25}
                 >
                   <iframe
-                 
                     loading="lazy"
                     allowFullScreen
                     referrerPolicy="no-referrer-when-downgrade"

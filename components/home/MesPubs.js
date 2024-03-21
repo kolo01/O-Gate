@@ -26,6 +26,7 @@ import {
   Textarea,
   Img,
   SimpleGrid,
+  Badge,
 } from "@chakra-ui/react";
 import axios from "axios";
 import Head from "next/head";
@@ -60,6 +61,7 @@ export default function Mespub(
   isInteressed,
   isFav,
   favoris,
+  dispo
 }
 ) {
   const Imaged = [
@@ -71,6 +73,7 @@ export default function Mespub(
   const [commented, setCommented] = useState("");
   const [commentaire, setCommentaire] = useState(0);
   const [likes, setLikes] = useState(isliked);
+  const [Dispo, setDispo] = useState(dispo);
   const [share, setShare] = useState();
   const [interessed, setInteressed] = useState(isInteressed);
   const [follow, setFollow] = useState(isFav);
@@ -177,6 +180,19 @@ export default function Mespub(
   const HandleDrawner = () => {
     onOpen();
   };
+
+  const changerEtat = async (etat) =>
+  {
+      await axios.post(`http://185.98.139.246:9090/ogatemanagement-api/client/modifierdisponibilitepublication/${idM}?disponibilite=${etat}`,{
+        publicationId:idM,
+        disponibilite:etat
+      },config).then((res)=>{setDispo(etat),toast({title:"Succès",duration:9000,status:"success",description:res.data.donnee})}).catch((err)=>{toast({title:"Erreur",duration:9000,status:"error",description:err.response.data.donnee})})
+  }
+
+
+
+
+
   return (
     <>
       <Box
@@ -198,10 +214,11 @@ export default function Mespub(
           width={"full"}
           // bgImage={image}
           // bgColor={"gray"}
-          height={{ base: "400", lg: "342px" }}
+          height={"fit-content"}
           bgRepeat={"no-repeat"}
           bgSize={"cover"}
         >
+          {Dispo == "DISPONIBLE" ? <Badge colorScheme='green'>{Dispo}</Badge> : <Badge  colorScheme='red'>{Dispo}</Badge>}
           <Carousel
             interval={5000}
             showThumbs={false}
@@ -249,7 +266,7 @@ export default function Mespub(
            
           </Box>
         </Flex>
-
+             {Dispo == "DISPONIBLE"? <Button bgColor={"red"} width={"full"} color={"white"} onClick={()=>changerEtat("INDISPONIBLE")}> MARQUER INDISPONIBLE</Button> : <Button bgColor={"green"}  onClick={()=>changerEtat("DISPONIBLE")} width={"full"} color={"white"} > MARQUER DISPONIBLE</Button>} 
       </Box>
 
     

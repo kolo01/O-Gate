@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Center, Flex, Image, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
+import { Avatar, Box, Button, Center, Flex, Image, Menu, MenuButton, MenuItem, MenuList, SimpleGrid, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 import { MdHome } from "react-icons/md";
@@ -48,13 +48,14 @@ export default function ThreeSec(){
 
 
     return(
-        <Flex   fontSize={'12px'} fontFamily={"-apple-system"} >
-            <Box mt={5} mr={5} onClick={()=>router.push("/")} cursor={"pointer"}>
-                   <Box ml={2}>
-                    <MdHome className="Home"   width={"24px"} height={"24px"} fontSize={"24px"}/>
-                   </Box>
-               
-                <Text fontSize={"12px"} lineHeight={"16px"} >{"Accueil"}</Text>
+        <SimpleGrid columns={4}  mt={5}  fontSize={'12px'} fontFamily={"-apple-system"} >
+            <Box  onClick={()=>router.push("/")} cursor={"pointer"} w={"fit-content"}>
+                <Center>
+                   
+                    <MdHome className="Home"  fontSize={"24px"}/>
+                   
+                   </Center>
+                <Text fontSize={"20px"} lineHeight={"16px"} >{"Accueil"}</Text>
                 </Box>
                 {/* <Box mt={5} mr={5}  onClick={()=>router.push("/relation")} cursor={"pointer"} textAlign={"center"}>
                   <Center >
@@ -63,12 +64,14 @@ export default function ThreeSec(){
                    </Center>
                 <Text fontSize={"12px"} lineHeight={"16px"} minW={"95px"}     width={"95px"}>{"Mes relations"}</Text>
                 </Box> */}
-                <Box  mt={5} mr={5}  onClick={()=>router.push("/notifications")} cursor={"pointer"}>
-                   <Box ml={5}>
+                <Box    onClick={()=>router.push("/notifications")} cursor={"pointer"}>
+                    <Center>
+                   <Box >
                     <IoIosNotifications className="Notif" width={"24px"} height={"24px"} fontSize={"24px"} />
                    </Box>
+                   </Center>
                
-                <Text fontSize={"12px"} lineHeight={"16px"} >{"Notifications"}</Text>
+                <Text fontSize={"20px"} lineHeight={"16px"} >{"Notifications"}</Text>
                 </Box>
                 <PrincipalePopup/>
                 {/* <Box mt={5} mr={5}  onClick={()=>router.push("/messages")} cursor={"pointer"}>
@@ -84,10 +87,11 @@ export default function ThreeSec(){
            
             <Menu >
   <MenuButton >
-    <Box display={"grid"} mt={5} textAlign={"center"}>
-  <Avatar  width={"24px"} height={"24px"} fontSize={"24px"} ml={"30%"}/>
-  
-  <Text fontSize={'12px'} fontFamily={'-apple-system'}>{nom=="NON DEFINI"? "New user" : nom} </Text>
+    <Box >
+        <Center>
+  <Avatar  width={"24px"} height={"24px"} fontSize={"24px"}/>
+  </Center>
+  <Text fontSize={'20px'}  lineHeight={"16px"} fontFamily={'-apple-system'}>{nom=="NON DEFINI"? "New user" : nom} </Text>
  
   </Box>
   </MenuButton>
@@ -104,6 +108,6 @@ export default function ThreeSec(){
   </MenuList>
 </Menu>
             
-        </Flex>
+        </SimpleGrid>
     )
 }

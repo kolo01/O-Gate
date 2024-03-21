@@ -154,7 +154,7 @@ function MyComponent() {
               </InfoWindowF>}
         {mark.map((place) => (
           <>
-            {console.log("place", place)}
+            {/* {console.log("place", place)} */}
             <MarkerF
               draggable
               onClick={()=>{HandleClicked({ lat: place.latitude, lng: place.longitude })}}

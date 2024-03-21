@@ -19,10 +19,10 @@ export default function Navbar(){
     ]
     const insc = "S’incrire"
     return(
-        <Box display={"flex"} width={"full"} justifyContent={"space-between"}  bgColor={"#ffffff"} pb={2}>
+        <Box display={"flex"} width={{base:"100%",lg:"100%"}} justifyContent={"space-between"}  bgColor={"#ffffff"} pb={2}>
           <Logo/>
        
-          <Box mr={20}>
+          <Box >
            <Last/>
            </Box>
         </Box>

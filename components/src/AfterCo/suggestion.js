@@ -48,7 +48,7 @@ export default function Suggestion() {
       boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"}
     >
       <Box>
-        <Text fontWeight={700} fontSize={"16px"} ml={2} mb={5} width={"240px"}>
+        <Text fontWeight={700} fontSize={"20px"} ml={2} mb={5} width={"fit-content"} fontFamily={"sans-serif"}>
           Vous pourriez être interessé
         </Text>
         <Box width={"220px"} ml={5}>
@@ -58,11 +58,11 @@ export default function Suggestion() {
 <Flex key={index}>
 
 
-<Flex  fontSize={"12px"} display={"grid"} mb={2} justifyContent={"space-between"}>
+<Flex  fontSize={"15px"} display={"grid"} mb={2} fontFamily={"sans-serif"} justifyContent={"space-between"}>
                 <Flex>
-                  <Text noOfLines={1} ml={2} fontWeight={700}>{data.description}</Text>
+                  <Text noOfLines={2} ml={2} fontWeight={600}>{data.description}</Text>
                 </Flex>
-                <Text ml={2} fontWeight={700}>{data.prix}</Text>
+                <Text ml={2} fontWeight={500}>{data.prix}</Text>
                 <Button color={"#219EF9"} as={Link} href={`/Publication?id=${data.id}`} _hover={{
                   textDecoration:'none'
                 }}>Voir publication</Button>

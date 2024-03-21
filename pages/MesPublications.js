@@ -58,7 +58,7 @@ function MesPub() {
               VOS PUBLICATIONS
             </Text>
           </Box>
-          {length>0 ?   <SimpleGrid columns={[1, 1, 1, 3, 3]} spacingX={10}>
+          {length>0 ?   <SimpleGrid columns={[1, 1, 1, 2,2,2, 3]} spacingX={10}>
             {pub.map((data, index) => {
               return (
                 <Box key={index}>
@@ -83,6 +83,7 @@ function MesPub() {
                     piece={data.nombrePieces}
                     chambre={data.nombreChambres}
                     salon={data.nombreSalon}
+                    dispo={data.disponibilite}
                   />
                 </Box>
               );

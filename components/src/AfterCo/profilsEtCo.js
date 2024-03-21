@@ -1,13 +1,32 @@
 import { Avatar, Box, Center, Flex, Image, Link, Text } from "@chakra-ui/react";
+import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 
 export default function Profilers(){
     const [nom,setNom] = useState("")
+    const [interet,setInteret] = useState(0)
+    const [favoris,setFavoris] = useState(0)
+    const [publication,setPublication] = useState(0)
+    const [token,setToken] = useState("")
     const router = useRouter()
-    useEffect(()=>{
+    useEffect( ()=>{
+      
+       
+
         try{
+            setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
+    
+            let config = {
+              headers: { Authorization: `Bearer ${token}` },
+            };
+            axios.get("http://185.98.139.246:9090/ogatemanagement-api/client/rechercherquantitepublicationsparclient",config).then((res)=>{
+                setFavoris(res.data.donnee.nombreFavoris),
+                setInteret(res.data.donnee.nombreInteresse),
+                setPublication(res.data.donnee.nombrePublication)
+            }).catch((err)=>{console.log("erreur",err)})
+    
             if(JSON.parse(localStorage.getItem("local")).data.nom == "NON DEFINI"){
                 setNom("NON DEFINI")
                }else{
@@ -18,7 +37,7 @@ export default function Profilers(){
             router.push("/")
         }
       
-    },[nom,router])
+    },[nom,router,token])
     return(
     <Box pb={5}  display={{base:"none",lg:"grid"}} width={"250px"} fontFamily={"-apple-system"} bgColor={"white"}  borderBottomRadius={"xl"}  borderTopRadius={"xl"}   boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"}>
         <Box bgColor={"#7a1317"} width={"full"} borderTopRadius={"xl"} height={"50px"} ></Box>
@@ -47,7 +66,7 @@ export default function Profilers(){
         <Text>Publications favoris : </Text>
         </Flex>
         
-        <Text>12</Text>
+        <Text>{favoris}</Text>
        </Flex>
        <Flex as={Link} href="/Interet" _hover={{
         textDecoration:"none"
@@ -57,7 +76,7 @@ export default function Profilers(){
         <Text>Interessés par :</Text>
         </Flex>
       
-        <Text>5 </Text>
+        <Text>{interet}</Text>
        </Flex>
        <Flex  as={Link} href="/MesPublications" _hover={{
         textDecoration:"none"
@@ -67,7 +86,7 @@ export default function Profilers(){
         <Text>Mes publications:</Text>
         </Flex>
        
-        <Text>55</Text>
+        <Text>{publication}</Text>
        </Flex>
        {/* <Flex as={Link} href="/Followers" _hover={{
         textDecoration:"none"

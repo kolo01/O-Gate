@@ -623,7 +623,7 @@ export default function Messages({
           >
             {console.log(follow,"follow")}
             {follow ? (
-              <Flex onClick={()=>setFollow(!follow)}>
+              <Flex onClick={()=>setFollow(!follow) }>
               <FcLike   size={20} />
               <Text ml={2}  color={'#6a6a6a'} fontSize={"15px"}>Favoris</Text>
               </Flex>

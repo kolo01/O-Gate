@@ -10,7 +10,7 @@ export default function NavbarCo(){
     return(
         <>
         
-        <Flex display={{base:"none", lg: "flex"}} justifyContent={"space-evenly"} bgColor={"whiteAlpha.700"} pb={5}>
+        <Flex display={{base:"none", lg: "flex"}} justifyContent={"space-around"} bgColor={"whiteAlpha.700"} pb={5}>
         <Center>
           <Flex>
          <Logo/>

@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, CheckboxGroup, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure,SimpleGrid,Select,RadioGroup,Radio,useToast } from "@chakra-ui/react";
+import { Box, Button, Checkbox, CheckboxGroup, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure,SimpleGrid,Select,RadioGroup,Radio,useToast, Center } from "@chakra-ui/react";
 import { useState,useEffect } from "react";
 import {useRouter} from "next/router"
 import secureLocalStorage from "react-secure-storage";
@@ -57,7 +57,8 @@ export default function PrincipalePopup() {
     //fin des declarations
       //fin des declarations
       useEffect(() => {
-        setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
+        try {
+          setToken(JSON.parse(localStorage.getItem("local")).data.accessToken);
     
         let config = {
           headers: { Authorization: `Bearer ${token}` },
@@ -91,8 +92,12 @@ export default function PrincipalePopup() {
         axios.get('http://185.98.139.246:9090/ogatemanagement-api/rechercherlisteinformationsadditionnellessurquartier',config).then((response)=>setQuartierId(response.data.donnee)).catch((error)=>{
             
         })
+        } catch (error) {
+          router.push("/")
+        }
+        
     
-      }, [token]);
+      }, [token,router]);
 
 const handleSubmit = () =>{
   sessionStorage.setItem("typePoste",JSON.stringify(TypePoste))
@@ -107,15 +112,15 @@ const handleSubmit = () =>{
       <Box
     
         onClick={onOpen}
-        mt={5}
-        mr={5}
+        
         maxW={"107px"}
         maxH={"56px"}
         textAlign={"center"}
       
         cursor={"pointer"}
       >
-        <Box ml={2}>
+        <Center>
+        <Box >
           <Image
             src={"./all/Sell.png"}
             alt=""
@@ -124,8 +129,8 @@ const handleSubmit = () =>{
             fontSize={"24px"}
           />
         </Box>
-
-        <Text fontSize={"12px"} lineHeight={"16px"}>
+        </Center>
+        <Text fontSize={"20px"} lineHeight={"16px"}>
           {"Postes"}
         </Text>
       </Box>

@@ -58,14 +58,16 @@ export default function Box2() {
   };
   return (
     <>
-      <Center
+     
+     
+        <Box  width={"100%"}
+      mx={"5%"}
       fontFamily={"-apple-system"}
-      color={"black"}
-        display={{ base: "block", lg: "none" }}
-        ml={["5%", "25%", "25%", "0%", "0%"]}
-        width={"full"}
-      >
-        <Box>
+       display={{base:"block",lg:"none"}}
+          boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px;"}
+          p={5}
+          borderRadius={"25px"}
+          my={10}>
           <Text color={" #7a1317"} fontWeight={700} fontSize={"48px"}>
             Connexion
           </Text>
@@ -78,7 +80,7 @@ export default function Box2() {
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
-              width={"408px"}
+             
               height={"55px"}
               border={"1px solid black"}
             />
@@ -89,7 +91,7 @@ export default function Box2() {
             </Text>
             <Input
               borderRadius={"16px"}
-              width={"408px"}
+             
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -110,7 +112,7 @@ export default function Box2() {
             fontSize={"16px"}
             lineHeight={"19.5px"}
             borderRadius={"16px"}
-            width={"408px"}
+            width={"full"}
             height={"55px"}
             bgColor={"#7a1317"}
             color={"white"}
@@ -130,7 +132,7 @@ export default function Box2() {
             fontSize={"16px"}
             lineHeight={"19.5px"}
             borderRadius={"16px"}
-            width={"408px"}
+           width={"full"}
             height={"55px"}
             leftIcon={<FcGoogle />}
             _hover={{
@@ -140,7 +142,7 @@ export default function Box2() {
             {" "}
             Continuer avec Google
           </Button>
-          <Box position='relative' py={10} width={"80%"}>
+          <Box position='relative' py={10} width={{base:"100%",lg:"80%"}}>
   <Divider color={"black"} bgColor={"black"} border={"1px solid black"}/>
   <AbsoluteCenter bg='white' px='4'>
     Ou
@@ -154,7 +156,7 @@ export default function Box2() {
             fontSize={"16px"}
             lineHeight={"19.5px"}
             borderRadius={"16px"}
-            width={"408px"}
+            width={"full"}
             height={"55px"}
             _hover={{
               bgColor: "transparent",
@@ -173,7 +175,13 @@ export default function Box2() {
             </Text>{" "}
           </Button>
         </Box>
-      </Center>
+     
+     
+
+
+
+
+     {/* Affichage pc */}
       <Box display={{ base: "none", lg: "block" }} fontFamily={"-apple-system"}>
         <Text color={" #7a1317"} fontWeight={700} fontSize={"48px"}>
           Connexion

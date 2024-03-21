@@ -24,8 +24,8 @@ else
   return (
     <Box  width={"full"}>
     <Navbar/>
-    <Flex mx={{base:"0%",lg:"20%"}} mt={"5%"}
-    width={"full"}>
+    <Flex ml={{base:"0%",lg:"20%"}} mt={"5%"}
+    width={{base:"full",lg:"80%"}}>
       <Box display={["none","none","none","grid","grid"]}>
       <Box1/>
       <Image mt={"-150px"} alt='clé en main' src="./all/key.png"/> 
