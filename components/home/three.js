@@ -95,12 +95,12 @@ export default function ThreeSec(){
  
   </Box>
   </MenuButton>
-  <MenuList>
-    <MenuItem _hover={{
-        bgColor:'white',
+  <MenuList borderRadius={"25px"}>
+    <MenuItem  borderRadius={"25px"} fontSize={"20px"} _hover={{
+        bgColor:'gray',
         textDecoration:"none"
     }}>Mon profils</MenuItem>
-    <MenuItem _hover={{
+    <MenuItem  borderRadius={"25px"} fontSize={"20px"} _hover={{
         bgColor:'white',
         textDecoration:"none"
     }} onClick={()=>{Logout()}}>Deconnexion de {nom=="NON DEFINI"? "New user" : nom}</MenuItem>

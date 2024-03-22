@@ -159,6 +159,7 @@ const handleSubmit = () =>{
       <Box>
         <Text>Type de bien</Text>
         <Select width={'fit-content'} onChange={(e) => {setStypeBien(e.target.value)}} >
+        <option>Veuillez choisir une option</option>
           {typebienId.map((data, index) => (
             <option key={index}   value={parseInt(index+1)} >
               {data.designation}

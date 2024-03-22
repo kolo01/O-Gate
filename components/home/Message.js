@@ -110,7 +110,7 @@ export default function Messages({
       .then((response) => {
         // toast({title:"Succès, favoris ajouté",duration:9000,status:"success",description:response.data.donnee})
         // ,
-        setFollow(isFav);
+        // setFollow(!isFav);
       })
       .catch((error) => {});
   };
@@ -621,7 +621,7 @@ export default function Messages({
             mt={[1, 1, 1, 2, 2]}
             onClick={() => Favoris(idM)}
           >
-            {console.log(follow,"follow")}
+            {/* {console.log(follow,"follow")} */}
             {follow ? (
               <Flex onClick={()=>setFollow(!follow) }>
               <FcLike   size={20} />

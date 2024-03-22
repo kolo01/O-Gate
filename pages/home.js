@@ -48,6 +48,10 @@ import { app } from "@/utils/firebase";
 
 export default function Home() {
   const [message, setMessage] = useState([]);
+  const [typeBien, setTypeBien] = useState([]);
+  const [typePoste, setTypePoste] = useState("INFORMATION");
+  const [meuble, setMeuble] = useState("NON_MEUBLE");
+  const [typeBienId, setTypeBienId] = useState(0);
   const [token, setToken] = useState("");
   const [max, setMax] = useState(300);
   const [min, setMin] = useState(0);
@@ -157,28 +161,37 @@ export default function Home() {
     })
     .catch((err) => console.log("failed: ", err));
 
-  const Filtered = async ({
-    prixMax,
-    prixMin,
-    typeAppartement,
-    typeBienId,
-    typePost,
-  }) => {
+
+    const Zero = () =>{}
+
+
+
+  const Filtered = async () => {
     let config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     await axios
-      .post(
+      .get(
         "http://185.98.139.246:9090/ogatemanagement-api/client/rechercherpublicationsparpage?page=10&taille=100",
-        {prixMax: prixMax,
-        prixMin: prixMin,
-        typeAppartement: typeAppartement,
-        typeBienId: typeBienId,
-        typePost: typePost},
+        {
+          prixMax: sliderValue[1],
+          prixMin: sliderValue[0],
+          typeAppartement: meuble,
+          typeBienId: typeBienId,
+          typePost: typePoste,
+        },
         config
       )
       .then((res) => console.log(res))
-      .catch((err) => console.log("erreur", err));
+      .catch((err) => {
+        console.log("erreur dans le filtre", err);
+      if (err.code =="ERR_NETWORK") {
+        alert("Veuillez verifier votre connexion")
+      }else if (err.code =="ERR_BAD_REQUEST") {
+        alert("Veuiller reessayez plus tard ou signalez l'erreur aux administrateurs")
+      } 
+    
+    });
   };
 
   useEffect(() => {
@@ -197,7 +210,16 @@ export default function Home() {
         let config = {
           headers: { Authorization: `Bearer ${token}` },
         };
+        ///reccuperation des types de bien
+        axios
+        .get(
+          "http://185.98.139.246:9090/ogatemanagement-api/rechercherlistetypebiens",
+          config
+        )
+        .then((response) =>{ setTypeBien(response.data.donnee),console.log("type bien id",(response.data.donnee))})
+        .catch((error) => {});
 
+        ///recherche des publications
         axios
           .get(
             "http://185.98.139.246:9090/ogatemanagement-api/client/rechercherpublicationparpage?page=0&taille=10",
@@ -205,7 +227,7 @@ export default function Home() {
           )
           .then((response) => {
             setMessage(response.data.donnee.publications);
-            console.log(response.data.donnee.publications);
+            // console.log(response.data.donnee.publications);
           })
           .catch((error) => {});
       } else {
@@ -218,7 +240,7 @@ export default function Home() {
   }, [router, token]);
   if (checker) {
     return (
-      <Box bgColor={"#f3f3f3 "} mb={10}>
+      <Box bgColor={"#f3f3f3 "} h={"full"}>
         <NavbarCo />
         <Center>
           <Toaster position="bottom-right" reverseOrder={false} />
@@ -245,28 +267,35 @@ export default function Home() {
                       </Text>
                     </Flex>
 
-                    <Select border={"1px solid black"}>
-                      <option>Choisir un type</option>
-                      <option>Information</option>
-                      <option>Achat</option>
-                      <option>Vente</option>
-                      <option>Location</option>
+                    <Select
+                      border={"1px solid black"}
+                      onChange={(e) => setTypePoste(e.target.value)}
+                    >
+                      <option value={"INFORMATION"}>INFORMATION</option>
+                      <option value={"VENTE"}>VENTE</option>
+                      <option value={"LOCATION"}>LOCATION</option>
+                      <option value={"LOCATION_VENTE"}>LOCATION-VENTE</option>
                     </Select>
                   </Box>
                   <Box>
                     <Flex>
                       <Text fontSize={"16px"} fontWeight={"bold"}>
-                        Type d{"'"}appartement
+                        Type de bien
                       </Text>
                     </Flex>
 
-                    <Select border={"1px solid black"}>
-                      <option>Choisir un type</option>
-                      <option>Studio</option>
-                      <option>2 Pièces</option>
-                      <option>3 Pièces</option>
-                      <option> Duplex</option>
-                      <option>Triplex</option>
+                    <Select
+                      width={"fit-content"}
+                      onChange={(e) => {
+                        setTypeBienId(e.target.value);
+                      }}
+                    >
+                      <option>Veuillez choisir une option</option>
+                      {typeBien.map((data, index) => (
+                        <option key={index} value={parseInt(index + 1)} >
+                          {data.designation}
+                        </option>
+                      ))}
                     </Select>
                   </Box>
                   <Box>
@@ -276,10 +305,10 @@ export default function Home() {
                       </Text>
                     </Flex>
 
-                    <Select border={"1px solid black"}>
+                    <Select border={"1px solid black"} onChange={(e)=>setMeuble(e.target.value)}>
                       <option>Choisir un type</option>
-                      <option>Oui</option>
-                      <option>Non</option>
+                      <option value="MEUBLE" >Oui</option>
+                      <option value="NON_MEUBLE">Non</option>
                     </Select>
                   </Box>
                   <Box width={"100%"}>
@@ -322,14 +351,16 @@ export default function Home() {
                     variant={"solid"}
                     mr={2}
                     colorScheme="red"
-                    onClick={() => {Filtered({min, max, typeAppartement,typeBienId })}}
+                   
                   >
                     Reinitialiser
                   </Button>
                   <Button
                     variant={"solid"}
                     colorScheme="blue"
-                    onClick={() => {}}
+                    onClick={() => {
+                      Filtered();
+                    }}
                   >
                     Appliquer
                   </Button>

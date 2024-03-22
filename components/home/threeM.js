@@ -122,7 +122,7 @@ export default function ThreeSecM(){
                         fontSize:"20px"
 
                     }}>Mon Profils</Button>
-                    <Button bgColor={"transparent"} _hover={{
+                    <Button bgColor={"transparent"}  _hover={{
                         bgColor:"transparent",
                         textAlign:"center",
                         fontWeight:700,
