@@ -142,9 +142,9 @@ export default function Box2() {
             {" "}
             Continuer avec Google
           </Button>
-          <Box position='relative' py={10} width={{base:"100%",lg:"80%"}}>
+          <Box position='relative' bgColor={"#f5f5f2"} py={10} width={{base:"100%",lg:"80%"}}>
   <Divider color={"black"} bgColor={"black"} border={"1px solid black"}/>
-  <AbsoluteCenter bg='white' px='4'>
+  <AbsoluteCenter bgColor={"#f5f5f2"} px='4'>
     Ou
   </AbsoluteCenter>
 </Box>

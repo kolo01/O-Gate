@@ -22,7 +22,7 @@ router.push("/home")
 else
 {
   return (
-    <Box  width={"full"} bgColor={"#ebebe8"} height={"calc(100vh)"}>
+    <Box  width={"full"} bgColor={"#f5f5f2"} height={{base:"calc(100vh)",xl:"full"}}>
     <Navbar/>
     <Flex ml={{base:"0%",lg:"10%",xl:"20%"}} mt={"5%"}
     width={{base:"full",lg:"80%"}}>
