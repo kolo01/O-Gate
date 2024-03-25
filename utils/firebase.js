@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 
 import { getMessaging, getToken } from "firebase/messaging";
 
+
+
 //Firebase Config values imported from .env file
 const firebaseConfig = {
     apiKey: "AIzaSyDslirp1m8dRri0s8cjQtdO_5up1oEnTLQ",

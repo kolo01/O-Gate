@@ -1,8 +1,9 @@
 import '@/styles/globals.css'
 import "react-toastify/dist/ReactToastify.css";
 import { ChakraProvider } from '@chakra-ui/react'
-import { getToken } from '@firebase/messaging';
-import { messaging } from '@/utils/firebase';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 
 export default function App({ Component, pageProps }) {

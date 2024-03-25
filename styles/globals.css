@@ -78,3 +78,17 @@ body {
   }
 }
 
+
+
+.ImgBorder{
+  border-radius: 25px 25px 0px 0px; 
+  height: 350px;
+}
+
+.flottant{
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
+  color: gray;
+  margin-left: 5px;
+}
